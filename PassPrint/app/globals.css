@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+/*
+  PassPrint design system — "Stempelboek" (the well-travelled passport).
+
+  The world of real passport stamps and postal cancellations: traditional
+  stamp inks struck onto aged paper, engraved line-work, guilloche rosettes,
+  arced lettering, worn edges. Everything is hand-cut and hand-struck —
+  copperplate engraving and rubber stamps, never flat digital blocks.
+
+  No blurry gradients, no glassmorphism, no neon, and no hard offset
+  "sticker" shadows — richness comes from ink, line and ornament.
+*/
+
+@theme {
+  /* ── the official PassPrint identity ────────────────────────────────
+     Two inks, struck on oatmeal paper: navy and rust. The brand is rich
+     through ornament and engraving, never through extra colours.        */
+  --color-paper: #f0e9db;
+  --color-paper-deep: #e6ddca;
+  --color-paper-shade: #d9cdb4;
+  --color-ink: #1c2434; /* deep navy-black, for text */
+  --color-ink-soft: #3b4557;
+  --color-pencil: #726b5e;
+
+  --color-navy: #1e3a60;
+  --color-navy-deep: #142842;
+  --color-rust: #bf5a2c;
+  --color-rust-deep: #9a4520;
+
+  /* legacy ink names now resolve to the two brand inks, so every
+     component inherits the identity without renaming a single class. */
+  --color-vermilion: #bf5a2c; /* = rust, the accent */
+  --color-vermilion-deep: #9a4520;
+  --color-cobalt: #1e3a60; /* = navy, the primary */
+  --color-cobalt-deep: #142842;
+  --color-verde: #17324f; /* navy, deeper */
+  --color-verde-deep: #0f2439;
+  --color-marigold: #c9763f; /* rust, lighter — for dark grounds */
+  --color-marigold-deep: #a24c22;
+  --color-rosa: #9a4520; /* rust, deeper */
+  --color-rosa-deep: #7d3517;
+  --color-sepia: #8a5a2b;
+  --color-violet: #2c3d63;
+  --color-kraft: #d6c4a0;
+
+  /* legacy aliases — now the brand rust, so older components stay on-identity */
+  --color-accent: #bf5a2c;
+  --color-accent-deep: #9a4520;
+  /* error is the one place a redder ink is allowed, kept close to rust */
+  --color-error: #a3301b;
+  --color-hairline: rgb(28 36 52 / 0.3);
+  --color-hairline-soft: rgb(28 36 52 / 0.15);
+
+  /* type */
+  --font-serif: var(--font-newsreader), "Newsreader", georgia, serif;
+  --font-sans: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+
+  /* motion — paper and ink: slide, tilt, stamp. Livelier, still crafted. */
+  --ease-ink: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --duration-stamp: 400ms;
+  --duration-slide: 500ms;
+  --duration-ui: 200ms;
+
+  /* layout */
+  --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --container-measure: 40rem;
+  --container-page: 88rem;
+
+  /* shadows — sheets resting on a desk, never stickers floating above it */
+  --shadow-paper: 0 1px 2px rgb(28 36 52 / 0.12), 0 5px 14px rgb(28 36 52 / 0.09);
+  --shadow-paper-lifted: 0 2px 4px rgb(28 36 52 / 0.14), 0 12px 26px rgb(28 36 52 / 0.13);
+  /* engraved double rule — the passport-page frame, not an offset block */
+  --shadow-block: inset 0 0 0 2px var(--color-paper), inset 0 0 0 3px rgb(30 58 96 / 0.6),
+    0 2px 10px rgb(28 36 52 / 0.1);
+  --shadow-block-sm: inset 0 0 0 1.5px var(--color-paper), inset 0 0 0 2.5px rgb(30 58 96 / 0.55),
+    0 1px 6px rgb(28 36 52 / 0.08);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* uncoated paper grain — one tiny inline SVG, no request */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background-color: var(--color-vermilion);
+  color: var(--color-paper);
+}
+
+/* --- editorial voices ------------------------------------------------- */
+
+.font-serif-display {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+
+.font-serif-book {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-pencil);
+}
+
+.hairline {
+  border-color: var(--color-hairline);
+}
+
+/* focus — visible, rectangular, ink */
+:focus-visible {
+  outline: 3px solid var(--color-cobalt);
+  outline-offset: 3px;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* --- the stamp -------------------------------------------------------- */
+
+@keyframes stamp-set {
+  0% {
+    opacity: 0;
+    transform: scale(1.35) rotate(var(--stamp-rotate, -6deg));
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.96) rotate(var(--stamp-rotate, -6deg));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--stamp-rotate, -6deg));
+  }
+}
+
+.stamp-in {
+  animation: stamp-set var(--duration-stamp) var(--ease-ink) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-in {
+    animation: none;
+    opacity: 1;
+    transform: rotate(var(--stamp-rotate, -6deg));
+  }
+}
+
+/* --- printer's ornaments ---------------------------------------------- */
+
+/* the ink band — the two brand inks, ruled top and bottom like a stamp sheet.
+   (Single definition: the band's colours live here and nowhere else.) */
+.press-band {
+  height: 7px;
+  background: linear-gradient(
+    to right,
+    var(--color-navy) 0 38%,
+    var(--color-rust) 38% 62%,
+    var(--color-navy) 62% 100%
+  );
+  border-top: 1px solid rgb(28 36 52 / 0.5);
+  border-bottom: 1px solid rgb(28 36 52 / 0.5);
+}
+
+/* perforated edge, like a sheet of postage stamps */
+.perforated {
+  --perf: 7px;
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 0,
+    transparent var(--perf),
+    black calc(var(--perf) + 0.5px)
+  );
+  -webkit-mask-size: calc(var(--perf) * 2.4) 100%;
+  -webkit-mask-repeat: repeat-x;
+  mask-image: radial-gradient(
+    circle at 50% 0,
+    transparent var(--perf),
+    black calc(var(--perf) + 0.5px)
+  );
+  mask-size: calc(var(--perf) * 2.4) 100%;
+  mask-repeat: repeat-x;
+}
+
+/* scalloped paper edge, like a ticket or stamp sheet */
+.scallop-bottom {
+  --scallop-size: 14px;
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 100%,
+    transparent var(--scallop-size),
+    black calc(var(--scallop-size) + 0.5px)
+  );
+  -webkit-mask-size: calc(var(--scallop-size) * 2.6) 100%;
+  -webkit-mask-repeat: repeat-x;
+  mask-image: radial-gradient(
+    circle at 50% 100%,
+    transparent var(--scallop-size),
+    black calc(var(--scallop-size) + 0.5px)
+  );
+  mask-size: calc(var(--scallop-size) * 2.6) 100%;
+  mask-repeat: repeat-x;
+}
+
+/* diagonal ticking, like kraft parcel tape */
+.ticking {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 8px,
+    rgb(26 23 20 / 0.08) 8px 9px
+  );
+}
+
+/* engraved document frame — the double rule of a passport page */
+.print-block {
+  border: 1.5px solid var(--color-ink);
+  box-shadow: var(--shadow-block);
+  background: var(--color-paper);
+}
+
+.print-block-sm {
+  border: 1.5px solid var(--color-ink);
+  box-shadow: var(--shadow-block-sm);
+  background: var(--color-paper);
+}
+
+/* engraved hatching — fine parallel lines, the shading of a copperplate */
+.engrave-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgb(32 26 20 / 0.16) 0 1px,
+    transparent 1px 6px
+  );
+}
+
+/* guilloche ground — the woven security tint of a passport page */
+.security-tint {
+  background-image:
+    repeating-linear-gradient(45deg, rgb(30 58 96 / 0.05) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(-45deg, rgb(191 90 44 / 0.04) 0 1px, transparent 1px 9px);
+}
+
+/* --- utility ----------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.rule {
+  height: 1px;
+  background: var(--color-hairline);
+}
+
+.paper-card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-hairline);
+  box-shadow: var(--shadow-paper);
+}

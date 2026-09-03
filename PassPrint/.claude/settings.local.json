@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"/c/Users/eduso244549/Downloads/files.zip\" 2>/dev/null && ls -la \"/c/Users/eduso244549/OneDrive - Stedelijk Onderwijs Antwerpen/Documents/PassPrint\")",
+      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead\\(\"C:\\\\Users\\\\eduso244549\\\\Downloads\\\\files.zip\"\\); $zip.Entries | Select-Object -First 60 FullName, Length; Write-Host \"---TOTAL:\" $zip.Entries.Count; $zip.Dispose\\(\\))",
+      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory\\(\"C:\\\\Users\\\\eduso244549\\\\Downloads\\\\files.zip\", \"C:\\\\Users\\\\eduso244549\\\\OneDrive - Stedelijk Onderwijs Antwerpen\\\\Documents\\\\PassPrint\"\\); Get-ChildItem \"C:\\\\Users\\\\eduso244549\\\\OneDrive - Stedelijk Onderwijs Antwerpen\\\\Documents\\\\PassPrint\")",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell($paths = @\\(\"$env:ProgramFiles\\\\nodejs\\\\node.exe\", \"${env:ProgramFiles\\(x86\\)}\\\\nodejs\\\\node.exe\", \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\", \"$env:APPDATA\\\\nvm\", \"$env:LOCALAPPDATA\\\\nvs\", \"$env:USERPROFILE\\\\scoop\\\\apps\\\\nodejs\", \"$env:LOCALAPPDATA\\\\fnm_multishells\", \"$env:LOCALAPPDATA\\\\Volta\"\\); foreach \\($p in $paths\\) { Write-Host \"$p => $\\(Test-Path $p\\)\" }; Get-Command winget -ErrorAction SilentlyContinue | Select-Object -First 1 Source)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements --silent)",
+      "PowerShell($url = \"https://nodejs.org/dist/v24.18.0/node-v24.18.0-win-x64.zip\"; $dest = \"$env:LOCALAPPDATA\\\\node-v24.18.0-win-x64.zip\"; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; \\(Get-Item $dest\\).Length)",
+      "PowerShell($env:Path = \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs;$env:Path\"; npm run build 2>&1 | Select-String -Pattern \"Compiled|Failed|Type error|✓|⨯|Error:\" | Select-Object -First 15)",
+      "PowerShell($env:Path = \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs;$env:Path\"; npm run build 2>&1 | Select-String -Pattern \"Compiled|Failed|Type error|✓|⨯|Error:|error\" | Select-Object -First 20)",
+      "PowerShell($ok=$false; for \\($i=0; $i -lt 14; $i++\\) { Start-Sleep -Seconds 8; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/\" -UseBasicParsing -TimeoutSec 30; Write-Host \"HOME => $\\($r.StatusCode\\) \\($\\($r.Content.Length\\) b\\)\"; $ok=$true; break } catch { Write-Host \"attempt $\\($i+1\\): compiling...\" } }; if\\(-not $ok\\){Write-Host \"NOT READY\"})",
+      "PowerShell($ok=$false; for \\($i=0; $i -lt 14; $i++\\) { Start-Sleep -Seconds 10; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/\" -UseBasicParsing -TimeoutSec 30; Write-Host \"HOME => $\\($r.StatusCode\\) \\($\\($r.Content.Length\\) b\\)\"; $ok=$true; break } catch { Write-Host \"attempt $\\($i+1\\): compiling...\" } }; if\\(-not $ok\\){Write-Host \"NOT READY\"})",
+      "PowerShell($env:Path = \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs;$env:Path\"; npm run verify 2>&1 | Select-String -Pattern \"Compiled|Failed|Type error|✓|⨯|Error:\" | Select-Object -First 15)",
+      "PowerShell($routes = @\\(\"/\",\"/collection\",\"/artists\",\"/subscribe\",\"/about\",\"/how-it-works\",\"/vote\",\"/faq\",\"/contact\",\"/styleguide\"\\); foreach \\($r in $routes\\) { try { $resp = Invoke-WebRequest -Uri \"http://localhost:3000$r\" -UseBasicParsing -TimeoutSec 180; Write-Host \"$r => $\\($resp.StatusCode\\)\" } catch { Write-Host \"$r => ERR $\\($_.Exception.Message\\)\" } }; try { Invoke-WebRequest -Uri \"http://localhost:3000/nope-xyz\" -UseBasicParsing -TimeoutSec 120 | Out-Null } catch { $c=[int]$_.Exception.Response.StatusCode; Write-Host \"/nope-xyz => $c \\(expect 404\\)\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/nope-xyz\" -UseBasicParsing -TimeoutSec 180 -SkipHttpErrorCheck; Write-Host \"STATUS: $\\($r.StatusCode\\)\"; if \\($r.Content -match \"Return to sender\"\\) { Write-Host \"custom 404 rendering: YES\" } else { Write-Host \"custom 404 rendering: NO\" } } catch { Write-Host \"ERR $\\($_.Exception.Message\\)\" })",
+      "Bash(curl -s -o /tmp/404.html -w \"STATUS: %{http_code}\\\\n\" http://localhost:3000/nope-xyz)",
+      "Read(//tmp/**)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/nope-xyz\" -UseBasicParsing -TimeoutSec 180 } catch { $resp = $_.Exception.Response; $code = [int]$resp.StatusCode; $sr = New-Object System.IO.StreamReader\\($resp.GetResponseStream\\(\\)\\); $body = $sr.ReadToEnd\\(\\); Write-Host \"STATUS: $code\"; if \\($body -match \"Return to sender\"\\) { Write-Host \"custom 404: YES\" } else { Write-Host \"custom 404: NO \\(len $\\($body.Length\\)\\)\" } })",
+      "mcp__3576d633-6d5c-4a98-8087-5abe94c6435c__validate_graphql_codeblocks",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/webhooks/shopify\" -UseBasicParsing -TimeoutSec 180; Write-Host \"GET  => $\\($r.StatusCode\\) : $\\($r.Content\\)\" } catch { Write-Host \"GET ERR $\\($_.Exception.Message\\)\" })",
+      "Bash(cd \"C:/Users/eduso244549/OneDrive - Stedelijk Onderwijs Antwerpen/Documents/PassPrint\" && cp .env.local /tmp/env.local.bak && printf '\\\\n# TEMPORARY — webhook signature test, removed after verification\\\\nSHOPIFY_WEBHOOK_SECRET=test-secret\\\\n' >> .env.local && tail -3 .env.local)",
+      "PowerShell($ok=$false; for \\($i=0; $i -lt 14; $i++\\) { Start-Sleep -Seconds 8; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/webhooks/shopify\" -UseBasicParsing -TimeoutSec 30; Write-Host \"READY => $\\($r.Content\\)\"; $ok=$true; break } catch { Write-Host \"attempt $\\($i+1\\)...\" } }; if\\(-not $ok\\){Write-Host \"NOT READY\"})",
+      "Bash(cp /tmp/env.local.bak .env.local)",
+      "Bash(rm -f /tmp/env.local.bak /tmp/hmac_test.js)",
+      "Bash(printf '\\\\n# ── Shopify Admin + webhooks \\(see .env.example for setup\\) ──────────────\\\\nSHOPIFY_ADMIN_ACCESS_TOKEN=\\\\nSHOPIFY_WEBHOOK_SECRET=\\\\n\\\\n# ── Supabase: votes, newsletter, contact \\(run lib/db/schema.sql first\\) ─\\\\nSUPABASE_URL=\\\\nSUPABASE_SERVICE_ROLE_KEY=\\\\n')",
+      "PowerShell($ok=$false; for \\($i=0; $i -lt 14; $i++\\) { Start-Sleep -Seconds 9; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/vote\" -UseBasicParsing -TimeoutSec 30; Write-Host \"VOTE => $\\($r.StatusCode\\)\"; $ok=$true; break } catch { Write-Host \"attempt $\\($i+1\\)...\" } }; if\\(-not $ok\\){Write-Host \"NOT READY\"})",
+      "PowerShell($env:Path = \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs;$env:Path\"; npm run verify 2>&1 | Select-String -Pattern \"Compiled|Failed|Type error|⨯|Error:\" | Select-Object -First 10)",
+      "PowerShell($env:Path = \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs;$env:Path\"; npm run verify 2>&1 | Select-String -Pattern \"Compiled|Failed|Type error|⨯|Error:|error TS\" | Select-Object -First 12)",
+      "PowerShell($ok=$false; for \\($i=0; $i -lt 14; $i++\\) { Start-Sleep -Seconds 9; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/webhooks/shopify\" -UseBasicParsing -TimeoutSec 30; Write-Host \"READY => $\\($r.Content\\)\"; $ok=$true; break } catch { Write-Host \"attempt $\\($i+1\\)...\" } }; if\\(-not $ok\\){Write-Host \"NOT READY\"})",
+      "Bash(cp /tmp/env.bak .env.local)",
+      "Bash(rm -f /tmp/env.bak)"
+    ]
+  }
+}
