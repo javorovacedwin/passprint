@@ -63,7 +63,7 @@ function verify(rawBody: string, signature: string | null, secret: string): bool
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
-/** Pull PassPrint edition codes (NP-01 …) out of the line items. */
+/** Pull PassPrint edition codes (BAL-01 …) out of the line items. */
 function editionCodes(order: ShopifyOrder): string[] {
   const codes = (order.line_items ?? [])
     .map((l) => l.sku ?? l.title)

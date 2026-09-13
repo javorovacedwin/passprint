@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SubscriptionPlans } from "@/components/subscription/SubscriptionPlans";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
-import { currentCollection } from "@/content/collections";
 import { singleEditionPrice, formatPrice } from "@/content/pricing";
 import { getCurrentEdition, getSubscriptionPlans } from "@/lib/shopify";
 
@@ -32,7 +31,7 @@ export default async function SubscribePage() {
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.05rem] leading-relaxed text-ink-soft">
           Order before the 20th and your first envelope is this month&apos;s
           edition — {currentEdition.code}, {currentEdition.subject},{" "}
-          {currentCollection.city}. After the 20th you start with the next one;
+          {currentEdition.city}. After the 20th you start with the next one;
           we say so before you pay, not after.
         </p>
       </header>
@@ -50,7 +49,7 @@ export default async function SubscribePage() {
               Buy {currentEdition.code} on its own
             </h2>
             <p className="mt-2 max-w-[34rem] text-[0.98rem] leading-relaxed text-ink-soft">
-              The current edition — {currentEdition.subject}, {currentCollection.city} —
+              The current edition — {currentEdition.subject}, {currentEdition.city} —
               as a single order while its window is open. {formatPrice(singleEditionPrice)},
               shipping included.
             </p>

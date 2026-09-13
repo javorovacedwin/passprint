@@ -11,7 +11,8 @@ import { landRings } from "@/content/land";
 
   Not a satellite Earth: a matte sphere in paper tones carrying an engraved
   coastline, a thin graticule, the two cities of the first leg, and a plane
-  flying the route the envelopes actually travel — Antwerpen to Novi Pazar.
+  flying the route the envelopes actually travel — Antwerpen to Mostar, the
+  opening city of The Balkan Collection.
   Coasts only; no borders are drawn anywhere on the site.
 */
 
@@ -37,9 +38,9 @@ function latLonToVec3(lat: number, lon: number, radius: number): THREE.Vector3 {
   );
 }
 
-/** Where the envelopes are printed, and where the first collection is drawn. */
+/** Where the envelopes are printed, and where the launch edition is drawn. */
 const ANTWERP = { lat: 51.2194, lon: 4.4025, label: "Antwerpen — the press" };
-const NOVI_PAZAR = { lat: 43.1367, lon: 20.5122, label: "Novi Pazar — Collection 01" };
+const MOSTAR = { lat: 43.3438, lon: 17.8078, label: "Mostar — Collection 01" };
 
 /** Seconds for one flight, plus the pause before the plane sets off again. */
 const FLIGHT_SECONDS = 7;
@@ -85,7 +86,7 @@ function buildGraticule(simple: boolean): Float32Array {
 /** The flight arc, lifted off the surface so it reads as a route, not a border. */
 function buildRoute(): THREE.QuadraticBezierCurve3 {
   const from = latLonToVec3(ANTWERP.lat, ANTWERP.lon, R * 1.01);
-  const to = latLonToVec3(NOVI_PAZAR.lat, NOVI_PAZAR.lon, R * 1.01);
+  const to = latLonToVec3(MOSTAR.lat, MOSTAR.lon, R * 1.01);
   const mid = from.clone().add(to).multiplyScalar(0.5).normalize().multiplyScalar(R * 1.16);
   return new THREE.QuadraticBezierCurve3(from, mid, to);
 }
@@ -178,24 +179,24 @@ function GlobeScene({ simple, reduceMotion, hovered }: GlobeSceneProps) {
   const planeShape = useMemo(buildPlaneShape, []);
 
   const antwerp = useMemo(() => latLonToVec3(ANTWERP.lat, ANTWERP.lon, R_COAST), []);
-  const noviPazar = useMemo(() => latLonToVec3(NOVI_PAZAR.lat, NOVI_PAZAR.lon, R_COAST), []);
+  const mostar = useMemo(() => latLonToVec3(MOSTAR.lat, MOSTAR.lon, R_COAST), []);
   const antwerpLabel = useMemo(
     () => latLonToVec3(ANTWERP.lat + 6, ANTWERP.lon - 21, R * 1.02),
     []
   );
-  const noviPazarLabel = useMemo(
-    () => latLonToVec3(NOVI_PAZAR.lat - 8, NOVI_PAZAR.lon + 16, R * 1.02),
+  const mostarLabel = useMemo(
+    () => latLonToVec3(MOSTAR.lat - 8, MOSTAR.lon + 16, R * 1.02),
     []
   );
 
   /* At rest the globe holds the route square to the camera. */
   const rest = useMemo(() => {
-    const mid = antwerp.clone().add(noviPazar).multiplyScalar(0.5).normalize();
+    const mid = antwerp.clone().add(mostar).multiplyScalar(0.5).normalize();
     const y = Math.atan2(-mid.x, mid.z);
     // Not the full latitude: tilting all the way would show the globe pole-on.
     const x = Math.asin(THREE.MathUtils.clamp(mid.y, -1, 1)) * 0.78;
     return { x, y };
-  }, [antwerp, noviPazar]);
+  }, [antwerp, mostar]);
 
   /* Park the plane at its destination when motion is not wanted. */
   const settle = (t: number) => {
@@ -287,7 +288,7 @@ function GlobeScene({ simple, reduceMotion, hovered }: GlobeSceneProps) {
       </group>
 
       <CityMark position={antwerp} ink={COAST} filled={false} />
-      <CityMark position={noviPazar} ink={ACCENT} filled />
+      <CityMark position={mostar} ink={ACCENT} filled />
 
       {/* Labels sit off their cities so the two never collide. */}
       {hovered && (
@@ -295,8 +296,8 @@ function GlobeScene({ simple, reduceMotion, hovered }: GlobeSceneProps) {
           <Html position={antwerpLabel} className={LABEL} distanceFactor={2.6} zIndexRange={[10, 0]}>
             {ANTWERP.label}
           </Html>
-          <Html position={noviPazarLabel} className={LABEL} distanceFactor={2.6} zIndexRange={[10, 0]}>
-            {NOVI_PAZAR.label}
+          <Html position={mostarLabel} className={LABEL} distanceFactor={2.6} zIndexRange={[10, 0]}>
+            {MOSTAR.label}
           </Html>
         </>
       )}

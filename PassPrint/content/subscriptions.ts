@@ -33,7 +33,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     priceDetail: `${planPricing.annual.cadence} · ${planPricing.annual.effective}`,
     summary: "All twelve editions of the collection, paid once.",
     items: [
-      "Twelve monthly editions of Novi Pazar",
+      "Twelve monthly editions — one Balkan city a month, from Mostar on",
       "The collector's archive folder, sized for the full set",
       "The final print — a thirteenth work, members only",
       "Your edition number reserved for the whole year",

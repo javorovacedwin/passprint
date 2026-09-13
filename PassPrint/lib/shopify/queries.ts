@@ -12,6 +12,9 @@ const EDITION_METAFIELDS = `
   number: metafield(namespace: "passprint", key: "edition_number") { value }
   month: metafield(namespace: "passprint", key: "month") { value }
   monthCode: metafield(namespace: "passprint", key: "month_code") { value }
+  city: metafield(namespace: "passprint", key: "city") { value }
+  country: metafield(namespace: "passprint", key: "country") { value }
+  region: metafield(namespace: "passprint", key: "region") { value }
   subject: metafield(namespace: "passprint", key: "subject") { value }
   site: metafield(namespace: "passprint", key: "site") { value }
   coordinates: metafield(namespace: "passprint", key: "coordinates") { value }
@@ -22,17 +25,18 @@ const EDITION_METAFIELDS = `
   artistSlug: metafield(namespace: "passprint", key: "artist_slug") { value }
 `;
 
-/** One PassPrint collection (a city) and its twelve edition products. */
+/**
+ * One PassPrint collection and its twelve edition products. Each edition
+ * carries its own city/country/region metafields — a collection is now a
+ * region-spanning set of cities (The Balkan Collection), not one place.
+ */
 export const COLLECTION_QUERY = /* GraphQL */ `
   query PassPrintCollection($handle: String!, $first: Int!) {
     collection(handle: $handle) {
       handle
       title
       description
-      city: metafield(namespace: "passprint", key: "city") { value }
-      country: metafield(namespace: "passprint", key: "country") { value }
       region: metafield(namespace: "passprint", key: "region") { value }
-      coordinates: metafield(namespace: "passprint", key: "coordinates") { value }
       year: metafield(namespace: "passprint", key: "year") { value }
       accent: metafield(namespace: "passprint", key: "accent") { value }
       launchMonth: metafield(namespace: "passprint", key: "launch_month") { value }
@@ -84,7 +88,7 @@ export const SUBSCRIPTION_PRODUCTS_QUERY = /* GraphQL */ `
   }
 `;
 
-/** Every PassPrint collection, so future cities appear automatically. */
+/** Every PassPrint collection, so future regions appear automatically. */
 export const ALL_COLLECTIONS_QUERY = /* GraphQL */ `
   query PassPrintCollections($first: Int!) {
     collections(first: $first, query: "tag:passprint") {
@@ -92,7 +96,7 @@ export const ALL_COLLECTIONS_QUERY = /* GraphQL */ `
         handle
         title
         collectionCode: metafield(namespace: "passprint", key: "collection_code") { value }
-        city: metafield(namespace: "passprint", key: "city") { value }
+        region: metafield(namespace: "passprint", key: "region") { value }
         year: metafield(namespace: "passprint", key: "year") { value }
       }
     }

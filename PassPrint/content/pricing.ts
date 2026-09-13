@@ -68,6 +68,19 @@ export const planPricing: Record<PlanPricing["id"], PlanPricing> = {
 /** Price of a single print edition bought on its own. */
 export const singleEditionPrice: Money = { amount: 24, currency: "EUR" };
 
+/*
+  Studio works — the paintings sold outside the monthly cycle, as the
+  original or as a giclée print. Deliberately in A4/A3 rather than the
+  house A5/A6, so a studio print is never mistaken for a monthly edition.
+
+  PLACEHOLDER prices. Confirm with the artist before launch; the original
+  price is per work and lives in content/artworks.ts.
+*/
+export const studioPrintPrice = {
+  a3: { amount: 85, currency: "EUR" } as Money,
+  a4: { amount: 45, currency: "EUR" } as Money,
+};
+
 /** Format a Money value as a clean price string, e.g. "€18". */
 export function formatPrice(money: Money): string {
   const whole = Number.isInteger(money.amount);

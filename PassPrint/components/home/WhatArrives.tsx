@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArtworkPlaceholder } from "@/components/artwork/ArtworkPlaceholder";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StampMark } from "@/components/ui/StampMark";
-import { currentCollection, currentEdition, production } from "@/content/collections";
+import { currentEdition, production } from "@/content/collections";
 
 const items = [
   {
@@ -101,7 +101,7 @@ export function WhatArrives() {
           <div {...hover("story")} className={`absolute bottom-[12%] left-[38%] w-[30%] rotate-[1.5deg] border border-hairline bg-paper p-[1.6cqw] shadow-[var(--shadow-paper)] ${objectClass("story")}`}>
             <p className="font-serif-display text-[1.9cqw]">{currentEdition.subject}</p>
             <p className="mt-[0.5cqw] font-mono text-[1.06cqw] uppercase tracking-[0.08em] text-pencil">
-              {currentCollection.city} · {currentEdition.coordinates}
+              {currentEdition.city} · {currentEdition.coordinates}
             </p>
             <div className="mt-[1.1cqw] space-y-[0.8cqw]">
               <div className="h-px w-full bg-hairline" />
@@ -113,7 +113,7 @@ export function WhatArrives() {
           <div {...hover("envelope")} className={`absolute right-[4%] top-[34%] w-[34%] rotate-[-1deg] bg-kraft p-[1.6cqw] shadow-[var(--shadow-paper)] ${objectClass("envelope")}`}>
             <div className="flex items-start justify-between">
               <StampMark
-                legend={currentCollection.city.toUpperCase()}
+                legend={currentEdition.city.toUpperCase()}
                 size={52}
                 className="h-auto w-[6.9cqw]"
               />

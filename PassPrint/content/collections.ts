@@ -2,209 +2,231 @@ import type { Collection, Edition, ProductionSpec } from "./types";
 
 /*
   ────────────────────────────────────────────────────────────────────────
-  COLLECTION 01 — NOVI PAZAR (launch, August 2026)
+  COLLECTION 01 — THE BALKAN COLLECTION (launch, August 2026)
   ────────────────────────────────────────────────────────────────────────
 
-  The launch collection is devoted entirely to one city: Novi Pazar, in the
-  Raška / Sandžak region of southern Serbia. Twelve months, twelve facets of
-  the same place — the fortress, the bazaar, the mosques, the medieval
-  churches and monasteries in the hills around it, the crafts, the river,
-  everyday life. One artist makes all twelve: Bakir C. (see content/artists).
+  Twelve months, twelve cities across the Balkans — a different place, and a
+  different artist who actually lives there, every time. The launch edition
+  opens in Mostar, Bosnia and Herzegovina, on the Neretva.
 
-  Local spelling with diacritics throughout. The country is named for
-  orientation only. No borders are drawn anywhere on the site.
+  This is deliberately not "one region told as one story": the region is
+  named only for orientation. Each city keeps its own spelling (with
+  diacritics), its own artist, its own reader who checks the story before
+  it prints, and its own facts. No borders are drawn anywhere on the site.
 
-  Future collections travel to other cities and cultures; adding one means
-  adding a new Collection object here (or a Shopify collection — see
-  lib/shopify). The data model does not change.
+  Future collections travel to other regions; adding one means adding a new
+  Collection object here (or a Shopify collection — see lib/shopify). The
+  data model does not change.
 
   TODO before launch: confirm edition sizes with the printer; the numbers
-  below are planned launch runs, not final.
+  below are planned launch runs, not final. Cast and confirm the artists for
+  BAL-04 onward — they are listed as "artist to be announced" until then.
 */
-
-const ARTIST = "bakir-c";
 
 const editions: Edition[] = [
   {
-    code: "NP-01",
+    code: "BAL-01",
     number: 1,
     month: "August 2026",
     monthCode: "08.2026",
-    subject: "The fortress",
-    site: "Gradina",
-    coordinates: "43.1408 N, 20.5186 E",
+    city: "Mostar",
+    country: "Bosnia and Herzegovina",
+    region: "Herzegovina",
+    subject: "The old bridge",
+    site: "Stari Most",
+    coordinates: "43.3438 N, 17.8078 E",
     technique: "Screen print, two layers",
-    editionSize: 150,
-    artistSlug: ARTIST,
+    editionSize: 180,
+    artistSlug: "ajla-m",
     status: "current",
-    note: "The launch edition. Gradina, the old fortress above the Raška, drawn from the slope below its hexagonal tower rather than from the postcard viewpoint — the angle you get walking up to it.",
+    note: "The launch edition. Stari Most, rebuilt stone by stone after 1993 and reopened in 2004, drawn from the riverbank steps below Kujundžiluk rather than from the postcard parapet — the angle the old town actually sees it from.",
   },
   {
-    code: "NP-02",
+    code: "BAL-02",
     number: 2,
     month: "September 2026",
     monthCode: "09.2026",
-    subject: "The mosque",
-    site: "Altun-alem",
-    coordinates: "43.1372 N, 20.5136 E",
+    city: "Sarajevo",
+    country: "Bosnia and Herzegovina",
+    region: "Sarajevo Canton",
+    subject: "The old bazaar",
+    site: "Baščaršija",
+    coordinates: "43.8593 N, 18.4321 E",
     technique: "Giclée",
-    editionSize: 150,
-    artistSlug: ARTIST,
+    editionSize: 180,
+    artistSlug: null,
     status: "announced",
-    note: "The Altun-alem mosque, among the oldest still standing in the city, drawn in the low light of late afternoon when the stone warms.",
+    note: "Baščaršija's copper row at closing time, when the shutters come halfway down and the light runs low along Ćurčiluk. Artist to be confirmed with the edition.",
   },
   {
-    code: "NP-03",
+    code: "BAL-03",
     number: 3,
     month: "October 2026",
     monthCode: "10.2026",
-    subject: "The old bazaar",
-    site: "Stara čaršija",
-    coordinates: "43.1389 N, 20.5150 E",
+    city: "Beograd",
+    country: "Serbia",
+    subject: "The fortress",
+    site: "Kalemegdan",
+    coordinates: "44.8225 N, 20.4491 E",
     technique: "Screen print",
-    editionSize: 150,
-    artistSlug: ARTIST,
+    editionSize: 180,
+    artistSlug: null,
     status: "announced",
-    note: "The čaršija — the trading streets that gave the city its name. Shopfronts, awnings, and the coppersmiths still working the same corner.",
+    note: "The ramparts above the confluence of the Sava and the Danube, drawn from the walk along the walls rather than the view from the terrace café. Artist to be confirmed with the edition.",
   },
   {
-    code: "NP-04",
+    code: "BAL-04",
     number: 4,
     month: "November 2026",
     monthCode: "11.2026",
-    subject: "The oldest church",
-    site: "Petrova crkva",
-    coordinates: "43.1497 N, 20.5303 E",
+    city: "Zagreb",
+    country: "Croatia",
+    subject: "The upper town",
+    site: "Gornji grad",
+    coordinates: "45.8150 N, 15.9785 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-05",
+    code: "BAL-05",
     number: 5,
     month: "December 2026",
     monthCode: "12.2026",
-    subject: "Filigree",
-    site: "The silversmiths' hands",
-    coordinates: "43.1382 N, 20.5145 E",
+    city: "Dubrovnik",
+    country: "Croatia",
+    subject: "The walls",
+    site: "Gradske zidine",
+    coordinates: "42.6403 N, 18.1084 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-06",
+    code: "BAL-06",
     number: 6,
     month: "January 2027",
     monthCode: "01.2027",
-    subject: "The river in winter",
-    site: "Raška",
-    coordinates: "43.1400 N, 20.5170 E",
+    city: "Kotor",
+    country: "Montenegro",
+    subject: "The bay",
+    site: "Boka Kotorska",
+    coordinates: "42.4247 N, 18.7712 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-07",
+    code: "BAL-07",
     number: 7,
     month: "February 2027",
     monthCode: "02.2027",
-    subject: "The monastery",
-    site: "Sopoćani",
-    coordinates: "43.0783 N, 20.4172 E",
+    city: "Ljubljana",
+    country: "Slovenia",
+    subject: "The triple bridge",
+    site: "Tromostovje",
+    coordinates: "46.0511 N, 14.5051 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-08",
+    code: "BAL-08",
     number: 8,
     month: "March 2027",
     monthCode: "03.2027",
-    subject: "The towers on the hill",
-    site: "Đurđevi stupovi",
-    coordinates: "43.1489 N, 20.4986 E",
+    city: "Skopje",
+    country: "North Macedonia",
+    subject: "The old bazaar",
+    site: "Stara čaršija",
+    coordinates: "41.9981 N, 21.4361 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-09",
+    code: "BAL-09",
     number: 9,
     month: "April 2027",
     monthCode: "04.2027",
-    subject: "The bath",
-    site: "The old hammam",
-    coordinates: "43.1386 N, 20.5158 E",
+    city: "Ohrid",
+    country: "North Macedonia",
+    subject: "The lake shore",
+    site: "Ohridsko Ezero",
+    coordinates: "41.1231 N, 20.8016 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-10",
+    code: "BAL-10",
     number: 10,
     month: "May 2027",
     monthCode: "05.2027",
-    subject: "Courtyards",
-    site: "The old town",
-    coordinates: "43.1390 N, 20.5160 E",
+    city: "Tirana",
+    country: "Albania",
+    subject: "The boulevard",
+    site: "Bulevardi Dëshmorët e Kombit",
+    coordinates: "41.3275 N, 19.8187 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-11",
+    code: "BAL-11",
     number: 11,
     month: "June 2027",
     monthCode: "06.2027",
-    subject: "Cloth and pattern",
-    site: "The weavers",
-    coordinates: "43.1384 N, 20.5148 E",
+    city: "Sofia",
+    country: "Bulgaria",
+    subject: "The cathedral square",
+    site: "Aleksandar Nevski",
+    coordinates: "42.6959 N, 23.3327 E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
     note: "",
   },
   {
-    code: "NP-12",
+    code: "BAL-12",
     number: 12,
     month: "July 2027",
     monthCode: "07.2027",
+    city: "———",
+    country: "———",
     subject: "To be revealed",
     site: "———",
     coordinates: "·· ···· N, ·· ···· E",
     technique: null,
     editionSize: null,
-    artistSlug: ARTIST,
+    artistSlug: null,
     status: "sealed",
-    note: "The twelfth subject is announced to members only, one month before it ships — the work that closes the collection.",
+    note: "The twelfth city is announced to members only, one month before it ships — the destination that closes the collection.",
   },
 ];
 
-export const noviPazar: Collection = {
+export const balkanCollection: Collection = {
   code: "COLLECTION 01",
   number: 1,
-  title: "Novi Pazar",
-  city: "Novi Pazar",
-  country: "Serbia",
-  region: "Raška · Sandžak",
-  coordinates: "43.1367 N, 20.5122 E",
+  title: "The Balkan Collection",
+  region: "The Balkans",
   year: "2026–2027",
-  accent: "#A65B33",
+  accent: "#BF5A2C",
   launchMonth: "August 2026",
   editions,
 };
@@ -226,7 +248,7 @@ export const production: ProductionSpec = {
 export const currentEdition: Edition =
   editions.find((e) => e.status === "current") ?? editions[0];
 
-export const collections: Collection[] = [noviPazar];
+export const collections: Collection[] = [balkanCollection];
 
 /** Convenience: the launch collection. */
-export const currentCollection: Collection = noviPazar;
+export const currentCollection: Collection = balkanCollection;

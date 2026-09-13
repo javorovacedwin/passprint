@@ -3,7 +3,7 @@
 A monthly art publication in an envelope. One place, one artist, one numbered
 edition — with the story that belongs to it.
 
-**Collection 01 — Novi Pazar. Launching August 2026.**
+**Collection 01 — The Balkan Collection. Opens in Mostar, August 2026.**
 
 The strategic plan behind the brand lives in [`passprint-plan.md`](passprint-plan.md);
 the binding design rules in [`CLAUDE.md`](CLAUDE.md).
@@ -60,8 +60,8 @@ No component library. Every component is custom.
 
 - **Newsreader** (serif) for display and editorial voice: a genuine
   editorial face with real italics, free, and complete **latin-ext**
-  coverage — mandatory for č ć š ž đ in place names like *Stara čaršija*
-  and *Đurđevi stupovi*.
+  coverage — mandatory for č ć š ž đ in place names like *Stari Most*,
+  *Baščaršija* and *Stara čaršija*.
 - **IBM Plex Sans** for interface and running text, **IBM Plex Mono** for
   codes, coordinates, prices and labels. Sans and Mono are one superfamily,
   so the site reads as two voices (editorial serif + technical Plex), not
@@ -69,13 +69,21 @@ No component library. Every component is custom.
 
 ## The first collection
 
-Collection 01 stays in **one city for twelve months**. Each edition is a
-different facet of Novi Pazar — the fortress, the bazaar, the mosque, the
-medieval churches in the hills, filigree, the river, courtyards, textiles.
-All twelve are drawn by **Bakir C.**, born and working there, and Creative
-Director of PassPrint.
+Collection 01 is **The Balkan Collection**: twelve months, twelve different
+Balkan cities, each drawn by an artist who actually lives there — never one
+person drawing twelve places they only visited. It opens in **Mostar,
+Bosnia and Herzegovina**, with **Ajla M.**, born and working there, and runs
+on through Sarajevo, Beograd, Zagreb, Dubrovnik, Kotor, Ljubljana, Skopje,
+Ohrid, Tirana, Sofia and a twelfth city revealed only to members. See
+`content/collections.ts` for the full route and `content/mostar.ts` for the
+launch city's story.
 
-Future collections travel elsewhere; the data model does not change.
+The region is named only for orientation — the site never treats "the
+Balkans" as one culture. Each edition keeps its own local spelling (with
+diacritics), its own artist, and its own reader who checks the story before
+it prints.
+
+Future collections travel to other regions; the data model does not change.
 
 ## Print sizes (do not mix these up)
 
@@ -243,27 +251,29 @@ Data refreshes hourly (`revalidate: 3600`).
 
 ### Adding a new edition (no code change)
 
-Create a product in the city's Shopify collection and set these metafields
-in the `passprint` namespace:
+Create a product in the collection and set these metafields in the
+`passprint` namespace — each edition now carries its own city and country,
+since a collection spans a whole region:
 
 ```
-edition_code    NP-04              month         November 2026
+edition_code    BAL-04             month         November 2026
 edition_number  4        (integer) month_code    11.2026
-subject         The oldest church  site          Petrova crkva
-coordinates     43.1497 N, 20.5303 E
-technique       Giclée             edition_size  150 (integer)
+city            Zagreb             country       Croatia
+subject         The upper town     site          Gornji grad
+coordinates     45.8150 N, 15.9785 E
+technique       Giclée             edition_size  180 (integer)
 status          current | announced | sealed | published
 note            One or two factual sentences
-artist_slug     bakir-c
+artist_slug     the city's artist, e.g. ajla-m — or leave unset
 ```
 
 It appears on `/collection` automatically.
 
-### Adding a new collection (a new city)
+### Adding a new collection (a new region)
 
 Create a Shopify collection, tag it `passprint`, set `collection_code`,
-`city`, `country`, `region`, `coordinates`, `year`, `accent`, `launch_month`,
-then add its twelve edition products.
+`region`, `year`, `accent`, `launch_month`, then add its twelve edition
+products — each one carrying its own `city` and `country`.
 
 ### Adding a subscription product
 
@@ -276,34 +286,35 @@ the Shopify admin.
 Recurring billing itself needs a Shopify subscriptions app (selling plans);
 this layer reads price and availability.
 
-> **Store status:** the store is LIVE. The Novi Pazar collection, all 12
-> edition products, and the 3 subscription products are created, priced,
-> Active and published to the Online Store (public on passprint.eu). The
-> sealed future editions carry neutral public titles ("NP-07 — February 2027
-> (sealed)"); their real subjects live in the `subject` metafield and are
-> revealed by the site on schedule. This Next.js site reads that live data
-> as soon as `SHOPIFY_STOREFRONT_ACCESS_TOKEN` is set; until then it uses the
-> identical local content.
+> **Store status:** `SHOPIFY_STOREFRONT_ACCESS_TOKEN` is unset in this
+> environment, so the site runs entirely on local content
+> (`content/collections.ts`) — nothing above is live yet.
 >
-> **Two things still needed on the commerce side:**
-> 1. **Recurring billing.** The three subscription products are ordinary
->    one-time products right now (Monthly €18 charges once, not monthly).
->    Install a Shopify subscriptions app and attach a selling plan to each to
->    make them truly recurring.
-> 2. **Future editions are purchasable.** NP-02…NP-12 are Active and priced,
->    so they can be bought today on the Shopify theme. If you only want the
->    current edition sellable, set the future ones to Draft (or mark them
->    out of stock) until their month.
+> **Rebrand note:** this repository previously described a live store built
+> around a single-city "Novi Pazar" collection (NP-01…NP-12). The content
+> layer has been rebuilt around **The Balkan Collection** — BAL-01…BAL-12,
+> opening in Mostar — but if a Shopify store was actually created against
+> the old schema, it still needs, on the commerce side:
+> 1. **Renaming the collection** from Novi Pazar to The Balkan Collection
+>    (handle `the-balkan-collection`), and its `collection_code`/`region`
+>    metafields updated (region-level `city`/`country`/`coordinates` no
+>    longer apply — see below).
+> 2. **Replacing the 12 NP-* products** with 12 BAL-* products, one per city
+>    (Mostar first), each carrying the new per-edition `city` and `country`
+>    metafields alongside the existing edition metafields.
+> 3. **Recurring billing** — the subscription products, once created, need a
+>    Shopify subscriptions app and a selling plan attached to each to charge
+>    monthly rather than once.
 
 ## Where to change things
 
 | What | Where |
 |---|---|
 | **Prices** | `content/pricing.ts` — the only place |
-| Editions, subjects, sites, coordinates | `content/collections.ts` |
+| Editions, cities, subjects, sites, coordinates | `content/collections.ts` |
 | Print sizes / production spec | `production` in `content/collections.ts` |
-| Bakir C.'s biography, philosophy, process | `content/artists.ts` |
-| The Novi Pazar cultural story | `content/novipazar.ts` |
+| Ajla M.'s biography, philosophy, process | `content/artists.ts` |
+| The Mostar cultural story (launch edition) | `content/mostar.ts` |
 | Plan copy | `content/subscriptions.ts` |
 | FAQ | `content/faq.ts` |
 | Vote regions | `content/regions.ts` |
@@ -332,10 +343,10 @@ swap the placeholder components for `next/image`.
   motion, then dynamically imports the 3D scene (`ssr: false`). While
   loading, and wherever WebGL is missing, it renders `GlobeFallback.tsx`.
 - `PaperGlobe.tsx` — the R3F scene: a matte paper-toned sphere, a thin
-  pencil graticule, a copper stamped marker on **Novi Pazar**, and a dashed
+  pencil graticule, a copper stamped marker on **Mostar**, and a dashed
   route arc from Antwerpen. Slow auto-rotation (stops for reduced motion), a
   damped lean toward the pointer, and an HTML label
-  (`Novi Pazar — Collection 01`) on hover. Mobile gets fewer segments; the
+  (`Mostar — Collection 01`) on hover. Mobile gets fewer segments; the
   canvas caps at 1.5 dpr.
 - **No borders are drawn anywhere** — deliberate, and wise in this region.
 
@@ -362,11 +373,13 @@ the rest. Keyboard users reach the same state through the caption buttons.
 
 ## TODO — real content needed before launch
 
-- [ ] Confirm Bakir C.'s biography with him; replace portrait and studio
+- [ ] Confirm Ajla M.'s biography with her; replace portrait and studio
       placeholders with real photographs.
 - [ ] Photography of actual prints, envelopes and flat lays.
-- [ ] Have the Novi Pazar story read by someone from the city and credit
-      them by name (`content/novipazar.ts`).
+- [ ] Have the Mostar story read by someone from the city and credit them
+      by name (`content/mostar.ts`); repeat for each later city as it is
+      cast (Sarajevo, Beograd, …).
+- [ ] Cast and confirm the artists for BAL-04 onward.
 - [ ] Final pricing after print/postage quotes (`content/pricing.ts`).
 - [ ] Confirm edition sizes with the printer.
 - [ ] Printer name and city (`app/about/page.tsx`).

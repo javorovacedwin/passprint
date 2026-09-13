@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { StampMark } from "@/components/ui/StampMark";
 import { CartoucheLogo } from "@/components/brand/CartoucheLogo";
 import { ButtonLink } from "@/components/ui/Button";
-import { noviPazar } from "@/content/collections";
-import { noviPazarStory } from "@/content/novipazar";
+import { balkanCollection, currentEdition } from "@/content/collections";
+import { mostarStory } from "@/content/mostar";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why PassPrint exists, why it begins in Novi Pazar, who reads the stories before they print, and how the work is made.",
+    "Why PassPrint exists, why The Balkan Collection begins in Mostar, who reads the stories before they print, and how the work is made.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <div className="security-tint mb-16 border border-ink/25 px-6 py-12">
         <CartoucheLogo
           className="mx-auto w-full max-w-[40rem]"
-          coordinates={noviPazar.coordinates
+          coordinates={currentEdition.coordinates
             .replace(" N,", "° N,")
             .replace(" E", "° E")}
           uid="about"
@@ -44,9 +44,10 @@ export default function AboutPage() {
             <p>
               PassPrint started from a simple observation: those stories
               usually live in families, not in guidebooks. Each month we
-              choose one place and ask one artist to draw it, paint it or
-              print it. Not the postcard version — the version seen by
-              someone who has something to do with it.
+              travel to a different city and ask one artist who actually
+              lives there to draw it, paint it or print it. Not the postcard
+              version — the version seen by someone who has something to do
+              with it.
             </p>
             <p>
               You get it by post. An envelope, two prints, a card with the
@@ -56,21 +57,23 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <h2 className="font-serif-display mt-14 text-2xl">Why we begin in {noviPazar.city}</h2>
+          <h2 className="font-serif-display mt-14 text-2xl">Why we begin in {currentEdition.city}</h2>
           <div className="mt-4 space-y-6 text-[1.02rem] leading-relaxed text-ink-soft">
-            {noviPazarStory.full.map((para) => (
+            {mostarStory.full.map((para) => (
               <p key={para.slice(0, 24)}>{para}</p>
             ))}
           </div>
 
           <h2 className="font-serif-display mt-12 text-2xl">How the work is made</h2>
           <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
-            The whole of Collection 01 is drawn by Bakir C., our Creative
-            Director, who was born and works in {noviPazar.city}. Every story
-            is read before printing by someone from the place it describes,
-            and that reader is credited by name on the card. We name buildings
-            and people, never a region as if it were one thing, and we draw no
-            borders on any map.
+            Each edition of {balkanCollection.title} is drawn by an artist who
+            actually lives in the city it depicts — never one person drawing
+            twelve places they have only visited. The launch edition is made
+            by Ajla M., born and working in {currentEdition.city}. Every story
+            is read before printing by someone else from the place it
+            describes, and that reader is credited by name on the card. We
+            name buildings and people, never a region as if it were one
+            thing, and we draw no borders on any map.
           </p>
 
           <h2 className="font-serif-display mt-12 text-2xl">The same, every month</h2>
@@ -98,9 +101,9 @@ export default function AboutPage() {
                 <dd className="mt-1 text-ink">Antwerpen, Belgium</dd>
               </div>
               <div>
-                <dt className="text-pencil">Launch collection</dt>
+                <dt className="text-pencil">Launch edition</dt>
                 <dd className="mt-1 text-ink">
-                  {noviPazar.city} · {noviPazar.launchMonth}
+                  {currentEdition.city} · {balkanCollection.launchMonth}
                 </dd>
               </div>
               <div>
@@ -110,7 +113,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <dt className="text-pencil">Region</dt>
-                <dd className="mt-1 text-ink">{noviPazar.region}</dd>
+                <dd className="mt-1 text-ink">{currentEdition.region ?? currentEdition.country}</dd>
               </div>
             </dl>
           </div>

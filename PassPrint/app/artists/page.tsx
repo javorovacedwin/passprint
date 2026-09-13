@@ -4,12 +4,12 @@ import { ArtistPortrait } from "@/components/artist/ArtistPortrait";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { leadArtist } from "@/content/artists";
-import { noviPazar } from "@/content/collections";
+import { balkanCollection, currentEdition } from "@/content/collections";
 
 export const metadata: Metadata = {
-  title: "Bakir C. — Artist",
+  title: "Ajla M. — Artist",
   description:
-    "Bakir C., born and working in Novi Pazar and Creative Director of PassPrint, draws every edition of the launch collection. Biography, philosophy, process, studio and featured works.",
+    "Ajla M., born and working in Mostar, draws the launch edition of The Balkan Collection. Biography, philosophy, process, studio and featured works.",
 };
 
 /** Small helper: a titled block of paragraphs, set like a catalogue essay. */
@@ -45,7 +45,7 @@ export default function ArtistsPage() {
       <header className="grid gap-10 border-b border-hairline pb-14 lg:grid-cols-[1.6fr_1fr] lg:items-end">
         <div>
           <p className="mono-label">
-            {noviPazar.code} · one artist, twelve editions
+            {currentEdition.code} · one city, one artist
           </p>
           <h1 className="font-serif-display mt-5 text-[clamp(2.6rem,7vw,4.6rem)]">
             {artist.name}
@@ -154,7 +154,7 @@ export default function ArtistsPage() {
           <table className="w-full min-w-[600px] border-collapse text-left">
             <thead>
               <tr className="border-b border-hairline">
-                {["Collection", "Place", "Editions", "Role", "Year"].map((h) => (
+                {["Collection", "Edition", "Place", "Role", "Year"].map((h) => (
                   <th key={h} scope="col" className="mono-label py-3 pr-6 font-medium">
                     {h}
                   </th>
@@ -163,11 +163,11 @@ export default function ArtistsPage() {
             </thead>
             <tbody className="font-mono text-[0.82rem] text-ink-soft">
               <tr className="border-b border-hairline-soft">
-                <td className="py-3 pr-6 text-ink">{noviPazar.code}</td>
-                <td className="py-3 pr-6">{noviPazar.city}, {noviPazar.country}</td>
-                <td className="py-3 pr-6">12 · all plates</td>
-                <td className="py-3 pr-6">Artist &amp; Creative Director</td>
-                <td className="py-3">{noviPazar.year}</td>
+                <td className="py-3 pr-6 text-ink">{balkanCollection.code}</td>
+                <td className="py-3 pr-6">{currentEdition.code}</td>
+                <td className="py-3 pr-6">{currentEdition.city}, {currentEdition.country}</td>
+                <td className="py-3 pr-6">Launch artist</td>
+                <td className="py-3">{currentEdition.month}</td>
               </tr>
             </tbody>
           </table>
@@ -207,8 +207,9 @@ export default function ArtistsPage() {
       </div>
 
       <p className="mono-label mt-12">
-        Future collections are made by other artists with the same kind of
-        connection to their place. They are announced with their collection.
+        Every later city in this collection is made by a different artist
+        with the same kind of connection to their own place. They are
+        announced with their edition.
       </p>
     </div>
   );

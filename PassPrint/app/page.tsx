@@ -3,6 +3,7 @@ import { WhatArrives } from "@/components/home/WhatArrives";
 import { CurrentJourney } from "@/components/home/CurrentJourney";
 import { FeaturedArtwork } from "@/components/artwork/FeaturedArtwork";
 import { MeetArtist } from "@/components/home/MeetArtist";
+import { StudioWorks } from "@/components/home/StudioWorks";
 import { ClosingStatement } from "@/components/home/ClosingStatement";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SubscriptionPlans } from "@/components/subscription/SubscriptionPlans";
@@ -20,7 +21,8 @@ export const revalidate = 3600;
     3. Show me — can I buy it?  → § 02  This month  (price + add to cart)
     4. Does it keep going?      → § 03  The year
     5. Who makes it?            → § 04  The maker
-    6. How do I join?           → § 05  Memberships
+    6. Can I buy a painting?    → § 05  The studio
+    7. How do I join?           → § 06  Memberships
 
   Everything else — the full catalogue, the artist in depth, the vote for
   the next region — lives on its own page and is linked from here. Keeping
@@ -41,11 +43,12 @@ export default async function HomePage() {
       <FeaturedArtwork edition={currentEdition} />
       <CurrentJourney />
       <MeetArtist />
+      <StudioWorks />
 
       <section id="join" className="security-tint border-y border-ink/25 bg-cobalt/[0.05] py-24">
         <div className="mx-auto max-w-[var(--container-page)] px-gutter">
           <SectionHeader
-            index="§ 05"
+            index="§ 06"
             label="Shipping included BE · NL · EU"
             title="Three ways in"
           />

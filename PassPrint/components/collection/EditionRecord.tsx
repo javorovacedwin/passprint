@@ -43,7 +43,7 @@ export function EditionRecord({ edition, collection, index, total }: EditionReco
             {withArt ? (
               <ArtworkPlaceholder
                 seedKey={edition.code}
-                title={`${edition.subject}, ${collection.city}`}
+                title={`${edition.subject}, ${edition.city}`}
                 className="block aspect-[148/210] w-full"
               />
             ) : (
@@ -70,7 +70,7 @@ export function EditionRecord({ edition, collection, index, total }: EditionReco
           </h3>
           <p className="mono-label mt-2">
             {edition.site !== "———" ? `${edition.site} · ` : ""}
-            {collection.city}, {collection.country}
+            {edition.city}, {edition.country}
           </p>
 
           <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-y border-hairline-soft py-4 font-mono text-[0.72rem] uppercase tracking-[0.05em] sm:grid-cols-3">

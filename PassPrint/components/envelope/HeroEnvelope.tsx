@@ -4,7 +4,7 @@ import { useReducedMotion, motion, useScroll, useSpring, useTransform } from "mo
 import { useRef, useState } from "react";
 import { ArtworkPlaceholder } from "@/components/artwork/ArtworkPlaceholder";
 import { StampMark } from "@/components/ui/StampMark";
-import { currentCollection, currentEdition } from "@/content/collections";
+import { currentEdition } from "@/content/collections";
 
 /**
  * The physical envelope, built from layered HTML/SVG with CSS perspective —
@@ -45,7 +45,7 @@ export function HeroEnvelope() {
       style={{ perspective: "1100px" }}
       onPointerMove={onPointerMove}
       onPointerLeave={() => setTilt({ x: 0, y: 0 })}
-      aria-label={`The monthly envelope for ${currentEdition.code} — ${currentEdition.subject}, ${currentCollection.city}, containing two prints`}
+      aria-label={`The monthly envelope for ${currentEdition.code} — ${currentEdition.subject}, ${currentEdition.city}, containing two prints`}
       role="img"
     >
       <motion.div
@@ -61,7 +61,7 @@ export function HeroEnvelope() {
         >
           <ArtworkPlaceholder
             seedKey={currentEdition.code}
-            title={`Main print — ${currentEdition.subject}, ${currentCollection.city}`}
+            title={`Main print — ${currentEdition.subject}, ${currentEdition.city}`}
             className="block aspect-[148/210] w-full"
           />
           <p className="border-t border-hairline-soft px-2 py-1 font-mono text-[0.5rem] uppercase tracking-[0.08em] text-pencil">
@@ -96,10 +96,10 @@ export function HeroEnvelope() {
             </span>
           </div>
           <div className="absolute left-[6%] top-[10%]">
-            <StampMark legend={currentCollection.city.toUpperCase()} size={84} className="stamp-in" />
+            <StampMark legend={currentEdition.city.toUpperCase()} size={84} className="stamp-in" />
           </div>
           <p className="absolute bottom-[7%] left-[6%] font-mono text-[0.6rem] uppercase tracking-[0.12em] text-ink/60">
-            {currentEdition.code} · {currentCollection.city} · {currentEdition.monthCode}
+            {currentEdition.code} · {currentEdition.city} · {currentEdition.monthCode}
           </p>
           {/* fold line */}
           <div className="absolute inset-x-0 bottom-[18%] h-px bg-ink/10" />

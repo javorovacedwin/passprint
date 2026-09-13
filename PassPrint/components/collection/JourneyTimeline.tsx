@@ -1,9 +1,9 @@
 import { ArtworkPlaceholder } from "@/components/artwork/ArtworkPlaceholder";
 import { inkFor } from "@/components/ui/Ornaments";
-import { noviPazar } from "@/content/collections";
+import { balkanCollection } from "@/content/collections";
 import type { Edition } from "@/content/types";
 
-function EditionField({ edition, city }: { edition: Edition; city: string }) {
+function EditionField({ edition }: { edition: Edition }) {
   const sealed = edition.status === "sealed";
   const revealed = edition.status === "published" || edition.status === "current" || edition.status === "announced";
   const withArt = edition.status === "published" || edition.status === "current";
@@ -37,7 +37,7 @@ function EditionField({ edition, city }: { edition: Edition; city: string }) {
         {withArt ? (
           <ArtworkPlaceholder
             seedKey={edition.code}
-            title={`Edition artwork — ${edition.subject}, ${city}`}
+            title={`Edition artwork — ${edition.subject}, ${edition.city}`}
             className="block h-full w-full"
           />
         ) : (
@@ -47,7 +47,10 @@ function EditionField({ edition, city }: { edition: Edition; city: string }) {
         )}
       </div>
 
-      <p className="font-serif-book mt-3 text-xl font-bold">
+      <p className="mt-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-accent-deep">
+        {edition.city !== "———" ? edition.city : "———"}
+      </p>
+      <p className="font-serif-book mt-1 text-xl font-bold">
         {toBeRevealed ? (
           <span aria-label="Subject not yet revealed">———</span>
         ) : sealed ? (
@@ -71,17 +74,17 @@ function EditionField({ edition, city }: { edition: Edition; city: string }) {
 }
 
 /**
- * The collection as a horizontal shelf of monthly chapters — twelve facets
- * of one city — joined by one cartographic dashed route. Future editions
- * stay sealed with a censor bar, not a padlock icon.
+ * The collection as a horizontal shelf of monthly chapters — twelve
+ * different Balkan cities — joined by one cartographic dashed route. Each
+ * card always names its city (that is the pitch); only the specific subject
+ * and site stay sealed with a censor bar, not a padlock icon, until closer
+ * to the month.
  */
 export function JourneyTimeline({
-  editions = noviPazar.editions,
-  city = noviPazar.city,
-  code = noviPazar.code,
+  editions = balkanCollection.editions,
+  code = balkanCollection.code,
 }: {
   editions?: Edition[];
-  city?: string;
   code?: string;
 } = {}) {
   return (
@@ -107,7 +110,7 @@ export function JourneyTimeline({
         aria-label={`The twelve editions of ${code}`}
       >
         {editions.map((edition) => (
-          <EditionField key={edition.code} edition={edition} city={city} />
+          <EditionField key={edition.code} edition={edition} />
         ))}
       </ol>
     </div>

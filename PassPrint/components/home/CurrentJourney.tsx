@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { JourneyTimeline } from "@/components/collection/JourneyTimeline";
-import { noviPazar } from "@/content/collections";
+import { balkanCollection } from "@/content/collections";
 
 /**
  * The year, in one place. This used to be two sections — a timeline and a
@@ -10,22 +10,23 @@ import { noviPazar } from "@/content/collections";
  * twelve of them make a set worth completing.
  */
 export function CurrentJourney() {
-  const announced = noviPazar.editions.filter((e) => e.status === "announced");
+  const announced = balkanCollection.editions.filter((e) => e.status === "announced");
 
   return (
     <section className="security-tint border-y border-ink/25 bg-verde/[0.06] py-24">
       <div className="mx-auto max-w-[var(--container-page)] px-gutter">
         <SectionHeader
           index="§ 03"
-          label={`${noviPazar.code} · ${noviPazar.year}`}
+          label={`${balkanCollection.code} · ${balkanCollection.year}`}
           title="Twelve envelopes make one collection"
         />
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.02rem] leading-relaxed text-ink-soft">
-          The launch collection stays in {noviPazar.city} for a full year —
-          the fortress, the bazaar, the mosques, the medieval churches in the
-          hills, the crafts and the everyday. Each subject is announced a few
-          months ahead; the last are sealed until they ship. Complete the year
-          and you receive the closing stamp and a thirteenth print.
+          The launch collection crosses the Balkans, one city a month, for a
+          full year — Mostar, Sarajevo, Beograd and nine more, each drawn by
+          an artist who actually lives there. Each city is announced a few
+          months ahead; the last are sealed until they ship. Complete the
+          year and you receive the closing stamp and a thirteenth print, from
+          a destination revealed only to members.
         </p>
 
         <div className="mt-12">
@@ -36,9 +37,9 @@ export function CurrentJourney() {
           <div>
             <dt className="text-pencil">Open now</dt>
             <dd className="mt-1 text-ink">
-              {noviPazar.editions
+              {balkanCollection.editions
                 .filter((e) => e.status === "current")
-                .map((e) => e.code)
+                .map((e) => `${e.code} · ${e.city}`)
                 .join(", ")}{" "}
               — until the 20th
             </dd>
@@ -46,7 +47,7 @@ export function CurrentJourney() {
           <div>
             <dt className="text-pencil">Announced next</dt>
             <dd className="mt-1 text-ink">
-              {announced.map((e) => e.subject.toLowerCase()).join(", ")}
+              {announced.map((e) => `${e.city} — ${e.subject.toLowerCase()}`).join(", ")}
             </dd>
           </div>
           <div>
@@ -57,7 +58,7 @@ export function CurrentJourney() {
 
         <div className="mt-8">
           <ButtonLink href="/collection" variant="text">
-            The full catalogue, edition by edition →
+            The full catalogue, city by city →
           </ButtonLink>
         </div>
       </div>

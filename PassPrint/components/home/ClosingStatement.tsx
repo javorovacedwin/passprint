@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { ButtonLink } from "@/components/ui/Button";
 import { CartoucheLogo } from "@/components/brand/CartoucheLogo";
-import { currentCollection } from "@/content/collections";
+import { currentEdition } from "@/content/collections";
 
 /**
  * The sign-off. The ceremonial mark does the closing rather than a shouted
@@ -25,7 +25,7 @@ export function ClosingStatement() {
             ink="var(--color-paper)"
             accent="var(--color-marigold)"
             paper="var(--color-ink)"
-            coordinates={currentCollection.coordinates
+            coordinates={currentEdition.coordinates
               .replace(" N,", "° N,")
               .replace(" E", "° E")}
             uid="closing"
@@ -35,9 +35,9 @@ export function ClosingStatement() {
 
         <div className="mt-12 flex flex-col items-center gap-6 text-center">
           <p className="font-serif-display max-w-2xl text-[clamp(1.6rem,3.4vw,2.6rem)] leading-[1.15]">
-            A year of one place. Twelve editions.
+            Twelve cities. One collection.
             <br />
-            <span className="text-marigold">Begin with {currentCollection.city}.</span>
+            <span className="text-marigold">Begin with {currentEdition.city}.</span>
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <ButtonLink href="/subscribe" variant="vermilion">

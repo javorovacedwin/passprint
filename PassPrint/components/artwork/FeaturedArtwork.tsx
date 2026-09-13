@@ -9,7 +9,6 @@ import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { artistBySlug } from "@/content/artists";
 import {
-  currentCollection,
   currentEdition as localEdition,
   production,
 } from "@/content/collections";
@@ -43,7 +42,7 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
         ink="vermilion"
       />
       <p className="mono-label mt-4">
-        {currentEdition.site} · {currentCollection.city}, {currentCollection.country}
+        {currentEdition.site} · {currentEdition.city}, {currentEdition.country}
       </p>
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.35fr_1fr]">
@@ -64,7 +63,7 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
                     {currentEdition.monthCode}
                   </p>
                   <div className="absolute bottom-8 right-8">
-                    <StampMark legend={currentCollection.city.toUpperCase()} size={92} className="opacity-80" />
+                    <StampMark legend={currentEdition.city.toUpperCase()} size={92} className="opacity-80" />
                   </div>
                   <p className="absolute bottom-8 left-8 max-w-[45%] font-mono text-[0.6rem] uppercase leading-relaxed tracking-[0.08em] text-pencil">
                     Printed on {production.paper}. Keep out of direct sunlight —
@@ -75,14 +74,14 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
                 <ArtworkPlaceholder
                   seedKey={currentEdition.code}
                   face={face}
-                  title={`${currentEdition.subject}, ${currentCollection.city} — ${face === "detail" ? "print detail at actual size" : "main print"}`}
+                  title={`${currentEdition.subject}, ${currentEdition.city} — ${face === "detail" ? "print detail at actual size" : "main print"}`}
                   className="block aspect-[148/210] w-full"
                 />
               )}
             </motion.div>
           </div>
           <figcaption className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.06em] text-pencil">
-            {currentEdition.site}, {currentCollection.city} ·{" "}
+            {currentEdition.site}, {currentEdition.city} ·{" "}
             {currentEdition.coordinates} · {artist?.name} ·{" "}
             {currentEdition.technique?.toLowerCase()}, 2026 · edition of{" "}
             {currentEdition.editionSize} · {production.mainFormat}, {production.paper}

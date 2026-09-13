@@ -42,9 +42,10 @@ export function Hero() {
           <p className="mt-6 max-w-[36rem] text-[1.08rem] leading-relaxed text-ink-soft">
             Every month an envelope full of it: a numbered A5 print, an A6
             companion, and the story of one place — drawn by an artist who
-            lives it, not a tourist who visited it. Twelve editions build one
-            collection worth keeping. We begin in{" "}
-            <strong className="font-semibold text-ink">{currentCollection.city}</strong>.
+            lives it, not a tourist who visited it. Twelve editions travel
+            twelve cities across the Balkans to build one collection worth
+            keeping. We begin in{" "}
+            <strong className="font-semibold text-ink">{currentEdition.city}</strong>.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-6">
@@ -55,7 +56,7 @@ export function Hero() {
               href="/collection"
               className="font-mono text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-ink underline decoration-cobalt decoration-1 underline-offset-[6px] transition-colors hover:text-cobalt"
             >
-              Explore {currentCollection.city} →
+              Explore {currentEdition.city} →
             </Link>
           </div>
 
@@ -95,7 +96,7 @@ export function Hero() {
 
           {/* struck marks, as a well-travelled page collects them */}
           <Stamp
-            topText="NOVI PAZAR"
+            topText="MOSTAR"
             bottomText="ARRIVAL"
             centerBottom={currentEdition.monthCode}
             shape="octagon"
@@ -103,7 +104,7 @@ export function Hero() {
             size={132}
             rotate={-13}
             emblem={<ArchEmblem />}
-            idPrefix="hero-np"
+            idPrefix="hero-bal"
             className="pointer-events-none absolute -left-6 top-4 z-20 hidden opacity-90 lg:block"
           />
           {/* one further mark only — a page that is too heavily stamped

@@ -10,7 +10,7 @@ export function GlobeFallback() {
       viewBox="0 0 300 300"
       className="h-full w-full"
       role="img"
-      aria-label="A drawn globe with the route from Antwerpen to Novi Pazar, the first collection"
+      aria-label="A drawn globe with the route from Antwerpen to Mostar, the launch edition of The Balkan Collection"
     >
       <circle cx="150" cy="150" r="128" fill="var(--color-paper-deep)" stroke="var(--color-navy)" strokeWidth="1.4" />
       <g fill="none" stroke="var(--color-navy)" strokeWidth="0.7" opacity="0.35">
@@ -22,7 +22,7 @@ export function GlobeFallback() {
         <line x1="150" y1="22" x2="150" y2="278" />
       </g>
 
-      {/* the flown route, Antwerpen to Novi Pazar */}
+      {/* the flown route, Antwerpen to Mostar */}
       <path d="M 104 104 Q 145 74 186 122" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
       {/* the plane, mid-flight */}
       <path
@@ -44,7 +44,7 @@ export function GlobeFallback() {
         ANTWERPEN
       </text>
       <text x="200" y="118" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="var(--color-ink)">
-        NOVI PAZAR
+        MOSTAR
       </text>
       <text x="200" y="129" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="var(--color-pencil)">
         COLLECTION 01

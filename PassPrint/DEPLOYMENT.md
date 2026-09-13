@@ -266,7 +266,7 @@ Run against the Vercel URL first, then again after DNS on `https://passprint.eu`
    from Shopify domains** (§6b).
 4. **Edit DNS** (§5) — apex `A` → Vercel, `www` CNAME → Vercel, add `shop`
    CNAME → Shopify. Leave MX/TXT alone.
-5. **Decide on future editions** — NP-02…NP-12 are Active/purchasable; set the
+5. **Decide on future editions** — once BAL-02…BAL-12 exist in Shopify, set the
    ones you don't want sold yet to Draft or out-of-stock.
 6. **Install a Shopify subscriptions app** and attach selling plans to the three
    subscription products, so Monthly/Annual/Gift actually recur (right now they

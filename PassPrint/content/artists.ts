@@ -1,46 +1,46 @@
 import type { Artist } from "./types";
 
 /*
-  Collection 01 is made entirely by one artist, Bakir C., who is also the
-  Creative Director of PassPrint. The profile below is written to read like
-  an artist page in a gallery or museum: grounded, elegant, believable. No
-  invented prizes, no inflated claims — the story is his relationship to
-  Novi Pazar and how he draws it.
+  Each edition of The Balkan Collection is made by an artist who actually
+  lives in the city it depicts — that is the whole premise, so one person
+  cannot make all twelve. The launch edition, BAL-01 in Mostar, is made by
+  Ajla M. Artists for BAL-04 onward are cast city by city and announced with
+  their edition; until then their editions carry `artistSlug: null`.
 
   TODO: replace the portrait and studio placeholders with real photographs
-  (public/artists/bakir-c_portrait.jpg, …). Confirm the biography with Bakir
+  (public/artists/ajla-m_portrait.jpg, …). Confirm the biography with Ajla
   before launch. Never use an AI-generated face here.
 */
 
 export const artists: Artist[] = [
   {
-    slug: "bakir-c",
-    name: "Bakir C.",
-    role: "Creative Director, PassPrint",
-    city: "Novi Pazar",
-    country: "Serbia",
+    slug: "ajla-m",
+    name: "Ajla M.",
+    role: "Launch artist, BAL-01",
+    city: "Mostar",
+    country: "Bosnia and Herzegovina",
     technique: "Drawing, screen print and giclée",
     standfirst:
-      "Born and working in Novi Pazar, Bakir C. draws the city he has known his whole life — and directs the visual identity of PassPrint.",
+      "Born and working in Mostar, on the bank of the Neretva, Ajla M. draws the bridge and the old town she has known her whole life.",
     quote:
-      "I am not showing you the famous view, because there isn't one. I am showing you the doorway you would walk past, the pattern on the door, the light at five o'clock. That is the city I know.",
+      "Everyone who visits photographs the bridge from the same three steps. I wanted to draw it from where I actually stand — from the coppersmiths' row, with someone's washing in the frame. That is the Mostar I know.",
     biography: [
-      "Bakir C. was born in Novi Pazar and has lived and worked there for most of his life. He studied art and design, spent time away, and came back — a decision that sits at the centre of his work. He draws the place he is from, for people who want to understand it rather than just look at it.",
-      "As Creative Director of PassPrint, he is responsible for the whole visual language of the first collection: every main print, every companion study, the way the story cards are set, and the colour of the envelope. Twelve editions, one hand.",
-      "His work is quiet and exact. He is less interested in monuments than in what surrounds them — the street that leads to the fortress, the shadow under an arch, the wear on a threshold that thousands of feet have crossed. He treats an ordinary courtyard with the same attention another artist might give a cathedral.",
+      "Ajla M. was born in Mostar and has lived and worked there for most of her life. She studied printmaking, spent several years working between Mostar and Sarajevo, and returned to open a small studio a short walk from Stari Most — close enough to hear the divers' crowd on a Saturday afternoon.",
+      "She is the first artist commissioned for The Balkan Collection, making the launch edition's main print, its companion study, and the story card that introduces the city. Each future city in the collection is made by a different artist with the same kind of standing in their own place — Mostar is the opening chapter, not the template.",
+      "Her work is quiet and exact. She is less interested in the bridge as a monument than in what happens around it — the coppersmiths still working Kujundžiluk, the queue for the dive, the stone worn pale by four centuries of feet. She treats an ordinary doorway with the same attention another artist might give a landmark.",
     ],
     philosophy: [
-      "A place is not its landmarks. It is the small, repeated things that the people who live there stop noticing — and those are the things Bakir chooses to draw.",
-      "He works against the postcard. Where a photographer looks for the single famous angle, he looks for the angle you actually stand at: too close, slightly off, honest.",
-      "Above all, the work is meant to preserve local identity without freezing it. Novi Pazar is a living city, not a museum, and the drawings are contemporary — traditional in their subject, modern in their line.",
+      "A place is not its landmarks. It is the small, repeated things that the people who live there stop noticing — and those are the things Ajla chooses to draw.",
+      "She works against the postcard. Where a photographer looks for the single famous angle — the parapet, the sunset, the dive — she looks for the angle you actually stand at: from the row of shops, from the riverbank steps, slightly off, honest.",
+      "Above all, the work is meant to preserve local identity without freezing it. Mostar is a living, working town, not a monument to what happened to it, and the drawings are contemporary — traditional in their subject, modern in their line.",
     ],
     process: [
-      "Each edition begins on foot. Bakir walks the subject at different hours and in different weather before he draws anything, photographing and sketching, waiting for the light he wants.",
-      "The drawing is built by hand — line first, then the two colour layers that will become the print. He keeps the palette deliberately narrow, usually the collection's single accent against ink on warm paper, so the composition, not the colour, carries the work.",
-      "Only then does it go to print. He proofs on the final stock, adjusts the registration by eye, and signs off the run himself before every copy is numbered by hand.",
+      "Each edition begins on foot. Ajla walks the subject at different hours and in different weather before she draws anything, photographing and sketching, waiting for the light she wants.",
+      "The drawing is built by hand — line first, then the two colour layers that will become the print. She keeps the palette deliberately narrow, usually the collection's accent against ink on warm paper, so the composition, not the colour, carries the work.",
+      "Only then does it go to print. She proofs on the final stock, adjusts the registration by eye, and signs off the run herself before every copy is numbered by hand.",
     ],
     studio:
-      "A small studio a few streets from the old bazaar, with north light and a flat file that is slowly filling with the collection. Most of what he draws is within walking distance of the door.",
+      "A small studio above a coppersmith's workshop on Kujundžiluk, with a window onto the river and a flat file that is slowly filling with proofs. Most of what she draws is within walking distance of the door.",
     materials: [
       "Ink and pencil for the original drawing",
       "A two-layer approach: the collection accent over ink",
@@ -48,18 +48,18 @@ export const artists: Artist[] = [
       "Giclée pigment and screen print, depending on the edition",
     ],
     inspiration: [
-      "The čaršija and its coppersmiths",
-      "Ottoman domestic architecture — courtyards, eaves, carved doors",
-      "The frescoes and stonework at Sopoćani and Đurđevi stupovi",
-      "Filigree and textile patterns handed down through families",
-      "Late-afternoon light on worked stone",
+      "Stari Most and the mostari who dive from it",
+      "The coppersmiths' row on Kujundžiluk",
+      "Ottoman-era stonework, worn pale by the river's light",
+      "The scaffolding and stonemasons' records from the bridge's 2004 rebuilding",
+      "Late-afternoon light on the Neretva",
     ],
     connection:
-      "Bakir is not a visitor drawing Novi Pazar from the outside. He was born there, his family is there, and the places he draws are the places he grew up in. That is the difference the whole collection rests on.",
+      "Ajla is not a visitor drawing Mostar from the outside. She was born there, her family is there, and she grew up a short walk from a bridge that was rebuilt, stone by stone, within her own lifetime. That is the difference every artist in this collection is chosen for.",
     featuredWorks: [
-      { editionCode: "NP-01", title: "Gradina", subject: "The fortress", technique: "Screen print, two layers" },
-      { editionCode: "NP-02", title: "Altun-alem", subject: "The mosque", technique: "Giclée" },
-      { editionCode: "NP-03", title: "Stara čaršija", subject: "The old bazaar", technique: "Screen print" },
+      { editionCode: "BAL-01", title: "Stari Most", subject: "The old bridge", technique: "Screen print, two layers" },
+      { editionCode: "BAL-01", title: "Kujundžiluk", subject: "The coppersmiths' row", technique: "Screen print, companion study" },
+      { editionCode: "BAL-01", title: "Mostari", subject: "The divers, waiting", technique: "Preparatory drawing" },
     ],
     collectionCodes: ["COLLECTION 01"],
   },
@@ -70,5 +70,5 @@ export function artistBySlug(slug: string | null): Artist | undefined {
   return artists.find((a) => a.slug === slug);
 }
 
-/** The artist directing the current collection. */
+/** The artist directing the current, open edition. */
 export const leadArtist: Artist = artists[0];

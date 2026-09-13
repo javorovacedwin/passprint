@@ -1,6 +1,6 @@
 import { isShopifyConfigured, shopifyFetch } from "./client";
 import { COLLECTION_QUERY, SUBSCRIPTION_PRODUCTS_QUERY } from "./queries";
-import { noviPazar } from "@/content/collections";
+import { balkanCollection } from "@/content/collections";
 import { subscriptionPlans as localPlans } from "@/content/subscriptions";
 import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/content/types";
 
@@ -20,20 +20,22 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
   Create a product in the collection for that city and set these metafields
   (namespace `passprint`, all single-line text unless noted):
 
-    edition_code    NP-04            month         November 2026
+    edition_code    BAL-04           month         November 2026
     edition_number  4 (integer)      month_code    11.2026
-    subject         The oldest church
-    site            Petrova crkva
-    coordinates     43.1497 N, 20.5303 E
-    technique       Giclée           edition_size  150 (integer)
+    city            Zagreb           country       Croatia
+    region          (optional, e.g. "Herzegovina")
+    subject         The upper town
+    site            Gornji grad
+    coordinates     45.8150 N, 15.9785 E
+    technique       Giclée           edition_size  180 (integer)
     status          current | announced | sealed | published
     note            One or two factual sentences (multi-line)
-    artist_slug     bakir-c
+    artist_slug     the city's artist, e.g. ajla-m — or leave unset
 
-  ── How to add a new COLLECTION (a new city) ──────────────────────────
+  ── How to add a new COLLECTION (a new region) ─────────────────────────
   Create a Shopify collection, tag it `passprint`, set metafields
-  `collection_code`, `city`, `country`, `region`, `coordinates`, `year`,
-  `accent`, `launch_month`, then add its twelve edition products. Pass its
+  `collection_code`, `region`, `year`, `accent`, `launch_month`, then add its
+  twelve edition products — each one carrying its own city/country. Pass its
   handle to getCollection().
 
   ── How to add a SUBSCRIPTION product ─────────────────────────────────
@@ -43,7 +45,7 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
   (selling plans); this layer reads the price and availability.
 */
 
-const COLLECTION_HANDLE = "novi-pazar";
+const COLLECTION_HANDLE = "the-balkan-collection";
 
 interface MetafieldValue {
   value: string | null;
@@ -61,6 +63,9 @@ interface ShopifyEditionProduct {
   number: MetafieldValue | null;
   month: MetafieldValue | null;
   monthCode: MetafieldValue | null;
+  city: MetafieldValue | null;
+  country: MetafieldValue | null;
+  region: MetafieldValue | null;
   subject: MetafieldValue | null;
   site: MetafieldValue | null;
   coordinates: MetafieldValue | null;
@@ -76,10 +81,7 @@ interface ShopifyCollectionResponse {
     handle: string;
     title: string;
     collectionCode: MetafieldValue | null;
-    city: MetafieldValue | null;
-    country: MetafieldValue | null;
     region: MetafieldValue | null;
-    coordinates: MetafieldValue | null;
     year: MetafieldValue | null;
     accent: MetafieldValue | null;
     launchMonth: MetafieldValue | null;
@@ -133,6 +135,9 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
     number: number ? Number(number) : 0,
     month: mf(product.month) ?? "",
     monthCode: mf(product.monthCode) ?? "",
+    city: mf(product.city) ?? "———",
+    country: mf(product.country) ?? "———",
+    region: mf(product.region) ?? undefined,
     subject,
     site: mf(product.site) ?? "———",
     coordinates: mf(product.coordinates) ?? "",
@@ -152,7 +157,7 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
 export async function getCollection(
   handle: string = COLLECTION_HANDLE
 ): Promise<Collection> {
-  if (!isShopifyConfigured()) return noviPazar;
+  if (!isShopifyConfigured()) return balkanCollection;
 
   const data = await shopifyFetch<ShopifyCollectionResponse>({
     query: COLLECTION_QUERY,
@@ -160,7 +165,7 @@ export async function getCollection(
   });
 
   const remote = data?.collection;
-  if (!remote) return noviPazar;
+  if (!remote) return balkanCollection;
 
   const editions = remote.products.nodes
     .map(mapEdition)
@@ -168,19 +173,16 @@ export async function getCollection(
     .sort((a, b) => a.number - b.number);
 
   // A collection with no properly tagged editions is not usable — fall back.
-  if (editions.length === 0) return noviPazar;
+  if (editions.length === 0) return balkanCollection;
 
   return {
-    code: mf(remote.collectionCode) ?? noviPazar.code,
-    number: noviPazar.number,
-    title: remote.title || noviPazar.title,
-    city: mf(remote.city) ?? noviPazar.city,
-    country: mf(remote.country) ?? noviPazar.country,
-    region: mf(remote.region) ?? noviPazar.region,
-    coordinates: mf(remote.coordinates) ?? noviPazar.coordinates,
-    year: mf(remote.year) ?? noviPazar.year,
-    accent: mf(remote.accent) ?? noviPazar.accent,
-    launchMonth: mf(remote.launchMonth) ?? noviPazar.launchMonth,
+    code: mf(remote.collectionCode) ?? balkanCollection.code,
+    number: balkanCollection.number,
+    title: remote.title || balkanCollection.title,
+    region: mf(remote.region) ?? balkanCollection.region,
+    year: mf(remote.year) ?? balkanCollection.year,
+    accent: mf(remote.accent) ?? balkanCollection.accent,
+    launchMonth: mf(remote.launchMonth) ?? balkanCollection.launchMonth,
     editions,
   };
 }

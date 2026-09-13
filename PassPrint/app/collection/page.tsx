@@ -6,13 +6,13 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { leadArtist } from "@/content/artists";
 import { production } from "@/content/collections";
-import { noviPazarStory } from "@/content/novipazar";
+import { mostarStory } from "@/content/mostar";
 import { getCollection } from "@/lib/shopify";
 
 export const metadata: Metadata = {
-  title: "Collection 01 — Novi Pazar",
+  title: "Collection 01 — The Balkan Collection",
   description:
-    "The launch collection: twelve monthly editions of Novi Pazar, drawn by Bakir C. An exhibition catalogue of one city — fortress, bazaar, mosques, monasteries, crafts and everyday life.",
+    "The launch collection: twelve monthly editions, twelve Balkan cities, each drawn by an artist who lives there. An exhibition catalogue opening in Mostar.",
 };
 
 // Re-fetch Shopify editions/availability at most hourly (ISR).
@@ -21,8 +21,9 @@ export const revalidate = 3600;
 export default async function CollectionPage() {
   // Editions come from Shopify when configured; from content/collections.ts
   // otherwise. Adding a product in Shopify adds a plate here.
-  const noviPazar = await getCollection();
-  const editions = noviPazar.editions;
+  const balkanCollection = await getCollection();
+  const editions = balkanCollection.editions;
+  const opening = editions[0];
 
   return (
     <div className="mx-auto max-w-[var(--container-page)] px-gutter py-16">
@@ -30,19 +31,21 @@ export default async function CollectionPage() {
       <header className="grid gap-8 border-b border-hairline pb-12 lg:grid-cols-[2fr_1fr] lg:items-end">
         <div>
           <p className="mono-label">
-            {noviPazar.code} · {noviPazar.region} · {noviPazar.year}
+            {balkanCollection.code} · {balkanCollection.region} · {balkanCollection.year}
           </p>
           <h1 className="font-serif-display mt-5 text-[clamp(2.6rem,7vw,4.6rem)]">
-            {noviPazar.city}
+            {balkanCollection.title}
           </h1>
           <p className="mt-5 max-w-[var(--container-measure)] text-[1.05rem] italic leading-relaxed text-ink-soft">
-            {noviPazarStory.standfirst}
+            Twelve months, twelve cities across the Balkans, each with its own
+            artist and its own story. {mostarStory.standfirst} We open in{" "}
+            {opening.city}.
           </p>
         </div>
         <dl className="grid grid-cols-2 gap-x-6 gap-y-4 font-mono text-[0.72rem] uppercase tracking-[0.06em]">
           <div>
-            <dt className="text-pencil">Coordinates</dt>
-            <dd className="mt-1 text-ink">{noviPazar.coordinates}</dd>
+            <dt className="text-pencil">Opens in</dt>
+            <dd className="mt-1 text-ink">{opening.city}, {opening.country}</dd>
           </div>
           <div>
             <dt className="text-pencil">Editions</dt>
@@ -50,7 +53,7 @@ export default async function CollectionPage() {
           </div>
           <div>
             <dt className="text-pencil">Launch</dt>
-            <dd className="mt-1 text-ink">{noviPazar.launchMonth}</dd>
+            <dd className="mt-1 text-ink">{balkanCollection.launchMonth}</dd>
           </div>
           <div>
             <dt className="text-pencil">Format</dt>
@@ -59,17 +62,20 @@ export default async function CollectionPage() {
         </dl>
       </header>
 
-      {/* introduction */}
+      {/* introduction — the opening city, Mostar */}
       <section className="mt-14 grid gap-10 lg:grid-cols-[2fr_1fr]">
         <div className="max-w-[var(--container-measure)] space-y-6 text-[1.05rem] leading-relaxed text-ink-soft">
-          {noviPazarStory.full.map((para) => (
+          <p className="mono-label !text-accent-deep">
+            {opening.code} · Why we open here
+          </p>
+          {mostarStory.full.map((para) => (
             <p key={para.slice(0, 24)}>{para}</p>
           ))}
         </div>
         <aside className="h-fit border border-hairline bg-paper-deep/40 p-6">
-          <p className="mono-label mb-4">The place, in brief</p>
+          <p className="mono-label mb-4">{opening.city}, in brief</p>
           <dl className="divide-y divide-hairline-soft">
-            {noviPazarStory.facts.map((f) => (
+            {mostarStory.facts.map((f) => (
               <div key={f.label} className="grid gap-0.5 py-3">
                 <dt className="mono-label">{f.label}</dt>
                 <dd className="font-mono text-[0.8rem] text-ink">{f.value}</dd>
@@ -81,9 +87,9 @@ export default async function CollectionPage() {
 
       {/* the year as a route */}
       <section className="mt-20">
-        <SectionHeader index="Route" label="Twelve facets, one city" title="The year at a glance" />
+        <SectionHeader index="Route" label="Twelve cities, one collection" title="The year at a glance" />
         <div className="mt-10">
-          <JourneyTimeline editions={editions} city={noviPazar.city} code={noviPazar.code} />
+          <JourneyTimeline editions={editions} code={balkanCollection.code} />
         </div>
       </section>
 
@@ -97,7 +103,7 @@ export default async function CollectionPage() {
               <EditionRecord
                 key={edition.code}
                 edition={edition}
-                collection={noviPazar}
+                collection={balkanCollection}
                 index={i}
                 total={editions.length}
               />
@@ -110,7 +116,7 @@ export default async function CollectionPage() {
       <section className="mt-24 border-t border-hairline pt-12">
         <div className="grid gap-8 md:grid-cols-[2fr_1fr] md:items-end">
           <div className="max-w-[var(--container-measure)]">
-            <p className="mono-label">The maker of the collection</p>
+            <p className="mono-label">The maker of {opening.code}</p>
             <h2 className="font-serif-display mt-4 text-3xl">{leadArtist.name}</h2>
             <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
               {leadArtist.standfirst} {leadArtist.connection}
@@ -131,7 +137,7 @@ export default async function CollectionPage() {
           <table className="w-full min-w-[720px] border-collapse text-left">
             <thead>
               <tr className="border-b border-hairline">
-                {["Code", "Month", "Subject", "Site", "Technique", "Edition", "Status"].map((h) => (
+                {["Code", "Month", "City", "Subject", "Site", "Technique", "Edition", "Status"].map((h) => (
                   <th key={h} scope="col" className="mono-label py-3 pr-6 font-medium">
                     {h}
                   </th>
@@ -147,6 +153,7 @@ export default async function CollectionPage() {
                       <a href={`#${e.code}`} className="hover:text-accent-deep">{e.code}</a>
                     </td>
                     <td className="py-3 pr-6">{e.month}</td>
+                    <td className="py-3 pr-6 text-ink">{e.city}</td>
                     <td className="py-3 pr-6">{sealed ? "— sealed —" : e.subject}</td>
                     <td className="py-3 pr-6">{sealed ? "—" : e.site}</td>
                     <td className="py-3 pr-6">{e.technique ?? "—"}</td>

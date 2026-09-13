@@ -1,7 +1,7 @@
 export type EditionStatus = "current" | "announced" | "sealed" | "published";
 
 export interface Edition {
-  /** Archive code, e.g. "NP-01". */
+  /** Archive code, e.g. "BAL-01". */
   code: string;
   /** 1–12 within the collection. */
   number: number;
@@ -9,17 +9,23 @@ export interface Edition {
   month: string;
   /** Short month code for stamps, e.g. "08.2026". */
   monthCode: string;
-  /** The facet of the place this edition depicts, e.g. "The fortress". */
+  /** The city this edition depicts — each edition travels somewhere new. */
+  city: string;
+  /** Country is orientation only, never a theme. */
+  country: string;
+  /** Historical/cultural region within the country, when it earns its place, e.g. "Herzegovina". Omit rather than force one. */
+  region?: string;
+  /** The facet of the city this edition depicts, e.g. "The old bridge". */
   subject: string;
-  /** The specific site, in local spelling, e.g. "Gradina". */
+  /** The specific site, in local spelling, e.g. "Stari Most". */
   site: string;
-  /** Coordinates of the site, e.g. "43.1408 N, 20.5186 E". */
+  /** Coordinates of the site, e.g. "43.3438 N, 17.8078 E". */
   coordinates: string;
   /** Print technique for this edition; null until announced. */
   technique: string | null;
   /** Hand-numbered run size; null until announced. */
   editionSize: number | null;
-  /** Slug of the artist; all of Collection 01 is one artist. */
+  /** Slug of the artist who lives in this edition's city; null until cast. */
   artistSlug: string | null;
   status: EditionStatus;
   /** One or two factual sentences. Empty until announced. */
@@ -34,15 +40,13 @@ export interface Collection {
   /** e.g. "COLLECTION 01". */
   code: string;
   number: number;
-  /** The place the whole collection depicts, e.g. "Novi Pazar". */
+  /** The collection's name, e.g. "The Balkan Collection". */
   title: string;
-  city: string;
-  /** Country is orientation only, never a theme. */
-  country: string;
-  /** Historical/administrative region, e.g. "Raška · Sandžak". */
+  /**
+   * Orientation only, never a unity: each edition's city, artist and story
+   * stand on their own — this is not "one culture" told in twelve parts.
+   */
   region: string;
-  /** City coordinates, printed on the collection masthead. */
-  coordinates: string;
   year: string;
   /** One accent colour per collection. */
   accent: string;
@@ -133,4 +137,39 @@ export interface VoteRegion {
   /** One factual sentence on why this region is makeable. */
   reason: string;
   coordinates: string;
+}
+
+/** One way a studio work can be bought: the original, or a print size. */
+export interface StudioWorkOption {
+  id: "original" | "print-a3" | "print-a4";
+  /** Short label shown in the buy panel, e.g. "Original". */
+  label: string;
+  /** One line of spec under the label, e.g. "Giclée, A3, edition of 50". */
+  detail: string;
+  /** Formatted price string, injected from content/pricing.ts. */
+  price: string;
+  /** Storefront ProductVariant GID, when the data came from Shopify. */
+  variantId: string | null;
+  available: boolean;
+}
+
+/**
+ * A painting from the studio, sold on its own rather than as part of a
+ * monthly edition. `alt` is required, as it is on every artwork on the site.
+ */
+export interface StudioWork {
+  slug: string;
+  title: string;
+  medium: string;
+  /** Null until measured — the UI says so rather than inventing a size. */
+  dimensions: string | null;
+  /** Two or three factual sentences about what is in the picture. */
+  note: string;
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+  options: StudioWorkOption[];
 }
