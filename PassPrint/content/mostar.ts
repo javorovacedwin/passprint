@@ -1,6 +1,6 @@
 /*
   The cultural introduction to Mostar — used on the homepage, the collection
-  page and the about page for the launch edition of The Balkan Collection.
+  page and the about page for the launch edition of Yugo.
   Written to make a visitor curious about the place, not to teach a history
   lesson. Facts are grounded and respectful; no "hidden gem", no dwelling on
   the 1990s war beyond what explains the bridge itself.

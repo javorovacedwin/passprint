@@ -1,46 +1,46 @@
 import type { Artist } from "./types";
 
 /*
-  Each edition of The Balkan Collection is made by an artist who actually
-  lives in the city it depicts — that is the whole premise, so one person
-  cannot make all twelve. The launch edition, BAL-01 in Mostar, is made by
-  Ajla M. Artists for BAL-04 onward are cast city by city and announced with
-  their edition; until then their editions carry `artistSlug: null`.
+  All twelve editions of Yugo are made by one artist, Bakir C. — not because
+  one person can plausibly live in twelve cities, but because his own family
+  already does. Yugo is built on that fact: he is not a tourist in most of
+  these places, because he has a real reason to be there that predates the
+  collection.
 
   TODO: replace the portrait and studio placeholders with real photographs
-  (public/artists/ajla-m_portrait.jpg, …). Confirm the biography with Ajla
+  (public/artists/bakir-c_portrait.jpg, …). Confirm the biography with Bakir
   before launch. Never use an AI-generated face here.
 */
 
 export const artists: Artist[] = [
   {
-    slug: "ajla-m",
-    name: "Ajla M.",
-    role: "Launch artist, BAL-01",
+    slug: "bakir-c",
+    name: "Bakir C.",
+    role: "Artist, Yugo — Collection 01",
     city: "Mostar",
     country: "Bosnia and Herzegovina",
     technique: "Drawing, screen print and giclée",
     standfirst:
-      "Born and working in Mostar, on the bank of the Neretva, Ajla M. draws the bridge and the old town she has known her whole life.",
+      "Born in Mostar to a family scattered across six countries that used to be one, Bakir C. draws the cities where he still has cousins, not the ones he had to look up.",
     quote:
-      "Everyone who visits photographs the bridge from the same three steps. I wanted to draw it from where I actually stand — from the coppersmiths' row, with someone's washing in the frame. That is the Mostar I know.",
+      "People ask which side of the border my family is from. Wrong question — we're from all of them. My grandmother's sisters ended up in Ljubljana, Skopje and Novi Sad, and none of them stopped being family. That's the collection: not a region split six ways, but one house with six doors.",
     biography: [
-      "Ajla M. was born in Mostar and has lived and worked there for most of her life. She studied printmaking, spent several years working between Mostar and Sarajevo, and returned to open a small studio a short walk from Stari Most — close enough to hear the divers' crowd on a Saturday afternoon.",
-      "She is the first artist commissioned for The Balkan Collection, making the launch edition's main print, its companion study, and the story card that introduces the city. Each future city in the collection is made by a different artist with the same kind of standing in their own place — Mostar is the opening chapter, not the template.",
-      "Her work is quiet and exact. She is less interested in the bridge as a monument than in what happens around it — the coppersmiths still working Kujundžiluk, the queue for the dive, the stone worn pale by four centuries of feet. She treats an ordinary doorway with the same attention another artist might give a landmark.",
+      "Bakir Ćosović — Bakir C. on every card he signs — was born in Mostar in the last years of Yugoslavia. His extended family, like millions of others, was scattered by the wars that followed: aunts, cousins and in-laws ended up in Zagreb, Ljubljana, Belgrade, Skopje and Podgorica, in cities that had all, a few years earlier, shared one passport.",
+      "He is the sole artist behind Yugo, PassPrint's launch collection: twelve monthly editions, twelve cities across six countries that used to be one, drawn over a year by the same hand. It begins, appropriately, at home — with Stari Most, the bridge his own street looks out on.",
+      "His work is quiet and exact. He is less interested in flags and borders than in what these cities still share: the shape of a courtyard, the pitch of a roof, a bazaar street, a fortress wall built by one empire and finished by the next. He draws the family resemblance the region's recent history worked hard to deny.",
     ],
     philosophy: [
-      "A place is not its landmarks. It is the small, repeated things that the people who live there stop noticing — and those are the things Ajla chooses to draw.",
-      "She works against the postcard. Where a photographer looks for the single famous angle — the parapet, the sunset, the dive — she looks for the angle you actually stand at: from the row of shops, from the riverbank steps, slightly off, honest.",
-      "Above all, the work is meant to preserve local identity without freezing it. Mostar is a living, working town, not a monument to what happened to it, and the drawings are contemporary — traditional in their subject, modern in their line.",
+      "A border is a line on paper; a street is not. Bakir draws the second kind — the courtyards, bazaars and bridges that look like each other from Ljubljana to Skopje, because for most of the last century they were built, taxed and lived in by the same country.",
+      "He works against the postcard and against the news report in equal measure — against the single famous angle, and against the idea that these places are defined by the 1990s. Both flatten a place; his drawings do the opposite.",
+      "Above all, the collection is meant as a corrective: twelve cities chosen not for how different their people are, but for how much, underneath the years that pulled them apart, they still look like siblings.",
     ],
     process: [
-      "Each edition begins on foot. Ajla walks the subject at different hours and in different weather before she draws anything, photographing and sketching, waiting for the light she wants.",
-      "The drawing is built by hand — line first, then the two colour layers that will become the print. She keeps the palette deliberately narrow, usually the collection's accent against ink on warm paper, so the composition, not the colour, carries the work.",
-      "Only then does it go to print. She proofs on the final stock, adjusts the registration by eye, and signs off the run herself before every copy is numbered by hand.",
+      "Each edition begins with a visit — often to family. Bakir stays with relatives where he still has them, walks the subject at different hours, and sketches and photographs before he draws anything.",
+      "The drawing is built by hand — line first, then the two colour layers that become the print. He keeps the palette deliberately narrow, usually the collection's rust accent over ink on warm paper, so the composition, not the colour, carries the work.",
+      "Only then does it go to print. He proofs on the final stock, adjusts the registration by eye, and signs off the run himself before every copy is numbered by hand.",
     ],
     studio:
-      "A small studio above a coppersmith's workshop on Kujundžiluk, with a window onto the river and a flat file that is slowly filling with proofs. Most of what she draws is within walking distance of the door.",
+      "A studio in Mostar, a short walk from Stari Most, doubling this year as the first stop on a research trip that will pass through five more countries before it's done.",
     materials: [
       "Ink and pencil for the original drawing",
       "A two-layer approach: the collection accent over ink",
@@ -48,18 +48,18 @@ export const artists: Artist[] = [
       "Giclée pigment and screen print, depending on the edition",
     ],
     inspiration: [
-      "Stari Most and the mostari who dive from it",
-      "The coppersmiths' row on Kujundžiluk",
-      "Ottoman-era stonework, worn pale by the river's light",
-      "The scaffolding and stonemasons' records from the bridge's 2004 rebuilding",
-      "Late-afternoon light on the Neretva",
+      "Stari Most and the Neretva",
+      "Ottoman and Austro-Hungarian architecture, side by side in the same street",
+      "The spomeniks — Yugoslavia's shared, secular war memorials",
+      "Family photographs from before 1991",
+      "A single Yugoslav passport, kept by his grandmother",
     ],
     connection:
-      "Ajla is not a visitor drawing Mostar from the outside. She was born there, her family is there, and she grew up a short walk from a bridge that was rebuilt, stone by stone, within her own lifetime. That is the difference every artist in this collection is chosen for.",
+      "Bakir is not a tourist in most of these twelve cities. He has a grandmother's sister in Ljubljana, a cousin's family in Skopje, in-laws in Novi Sad — reasons to go that have nothing to do with drawing, which is exactly why the drawing works.",
     featuredWorks: [
-      { editionCode: "BAL-01", title: "Stari Most", subject: "The old bridge", technique: "Screen print, two layers" },
-      { editionCode: "BAL-01", title: "Kujundžiluk", subject: "The coppersmiths' row", technique: "Screen print, companion study" },
-      { editionCode: "BAL-01", title: "Mostari", subject: "The divers, waiting", technique: "Preparatory drawing" },
+      { editionCode: "YU-01", title: "Stari Most", subject: "The old bridge", technique: "Screen print, two layers" },
+      { editionCode: "YU-02", title: "Baščaršija", subject: "The old bazaar", technique: "Giclée" },
+      { editionCode: "YU-03", title: "Kalemegdan", subject: "The fortress", technique: "Screen print" },
     ],
     collectionCodes: ["COLLECTION 01"],
   },
@@ -70,5 +70,5 @@ export function artistBySlug(slug: string | null): Artist | undefined {
   return artists.find((a) => a.slug === slug);
 }
 
-/** The artist directing the current, open edition. */
+/** The artist behind the collection. */
 export const leadArtist: Artist = artists[0];

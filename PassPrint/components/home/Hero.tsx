@@ -41,10 +41,10 @@ export function Hero() {
 
           <p className="mt-6 max-w-[36rem] text-[1.08rem] leading-relaxed text-ink-soft">
             Every month an envelope full of it: a numbered A5 print, an A6
-            companion, and the story of one place — drawn by an artist who
-            lives it, not a tourist who visited it. Twelve editions travel
-            twelve cities across the Balkans to build one collection worth
-            keeping. We begin in{" "}
+            companion, and the story of one place — drawn by an artist with
+            real family there, not a tourist passing through. Twelve
+            editions travel twelve cities across six countries that used to
+            be one, to build one collection worth keeping. We begin in{" "}
             <strong className="font-semibold text-ink">{currentEdition.city}</strong>.
           </p>
 

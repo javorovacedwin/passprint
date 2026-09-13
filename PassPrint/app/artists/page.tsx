@@ -4,12 +4,12 @@ import { ArtistPortrait } from "@/components/artist/ArtistPortrait";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { leadArtist } from "@/content/artists";
-import { balkanCollection, currentEdition } from "@/content/collections";
+import { yugoCollection } from "@/content/collections";
 
 export const metadata: Metadata = {
-  title: "Ajla M. — Artist",
+  title: "Bakir C. — Artist",
   description:
-    "Ajla M., born and working in Mostar, draws the launch edition of The Balkan Collection. Biography, philosophy, process, studio and featured works.",
+    "Bakir C., born in Mostar to a family scattered across the former Yugoslavia, draws every edition of Yugo. Biography, philosophy, process, studio and featured works.",
 };
 
 /** Small helper: a titled block of paragraphs, set like a catalogue essay. */
@@ -45,7 +45,7 @@ export default function ArtistsPage() {
       <header className="grid gap-10 border-b border-hairline pb-14 lg:grid-cols-[1.6fr_1fr] lg:items-end">
         <div>
           <p className="mono-label">
-            {currentEdition.code} · one city, one artist
+            {yugoCollection.code} · twelve cities, one artist
           </p>
           <h1 className="font-serif-display mt-5 text-[clamp(2.6rem,7vw,4.6rem)]">
             {artist.name}
@@ -75,7 +75,7 @@ export default function ArtistsPage() {
         </cite>
       </blockquote>
 
-      <Essay index="§ 01" label="Biography" title="A life in one city" paragraphs={artist.biography} />
+      <Essay index="§ 01" label="Biography" title="One family, six countries" paragraphs={artist.biography} />
       <Essay index="§ 02" label="Artistic philosophy" title="Against the postcard" paragraphs={artist.philosophy} />
       <Essay index="§ 03" label="Creative process" title="How an edition is made" paragraphs={artist.process} />
 
@@ -163,11 +163,11 @@ export default function ArtistsPage() {
             </thead>
             <tbody className="font-mono text-[0.82rem] text-ink-soft">
               <tr className="border-b border-hairline-soft">
-                <td className="py-3 pr-6 text-ink">{balkanCollection.code}</td>
-                <td className="py-3 pr-6">{currentEdition.code}</td>
-                <td className="py-3 pr-6">{currentEdition.city}, {currentEdition.country}</td>
-                <td className="py-3 pr-6">Launch artist</td>
-                <td className="py-3">{currentEdition.month}</td>
+                <td className="py-3 pr-6 text-ink">{yugoCollection.code}</td>
+                <td className="py-3 pr-6">Twelve cities, six countries</td>
+                <td className="py-3 pr-6">12 · all plates</td>
+                <td className="py-3 pr-6">Artist</td>
+                <td className="py-3">{yugoCollection.year}</td>
               </tr>
             </tbody>
           </table>
@@ -207,9 +207,8 @@ export default function ArtistsPage() {
       </div>
 
       <p className="mono-label mt-12">
-        Every later city in this collection is made by a different artist
-        with the same kind of connection to their own place. They are
-        announced with their edition.
+        Future PassPrint collections travel to other regions, each made by
+        an artist with the same kind of real connection to their place.
       </p>
     </div>
   );

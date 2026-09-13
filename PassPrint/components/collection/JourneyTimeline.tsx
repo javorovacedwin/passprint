@@ -1,6 +1,6 @@
 import { ArtworkPlaceholder } from "@/components/artwork/ArtworkPlaceholder";
 import { inkFor } from "@/components/ui/Ornaments";
-import { balkanCollection } from "@/content/collections";
+import { yugoCollection } from "@/content/collections";
 import type { Edition } from "@/content/types";
 
 function EditionField({ edition }: { edition: Edition }) {
@@ -75,14 +75,14 @@ function EditionField({ edition }: { edition: Edition }) {
 
 /**
  * The collection as a horizontal shelf of monthly chapters — twelve
- * different Balkan cities — joined by one cartographic dashed route. Each
- * card always names its city (that is the pitch); only the specific subject
- * and site stay sealed with a censor bar, not a padlock icon, until closer
- * to the month.
+ * different former-Yugoslav cities — joined by one cartographic dashed
+ * route. Each card always names its city (that is the pitch); only the
+ * specific subject and site stay sealed with a censor bar, not a padlock
+ * icon, until closer to the month.
  */
 export function JourneyTimeline({
-  editions = balkanCollection.editions,
-  code = balkanCollection.code,
+  editions = yugoCollection.editions,
+  code = yugoCollection.code,
 }: {
   editions?: Edition[];
   code?: string;

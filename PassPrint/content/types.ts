@@ -1,7 +1,7 @@
 export type EditionStatus = "current" | "announced" | "sealed" | "published";
 
 export interface Edition {
-  /** Archive code, e.g. "BAL-01". */
+  /** Archive code, e.g. "YU-01". */
   code: string;
   /** 1–12 within the collection. */
   number: number;
@@ -40,7 +40,7 @@ export interface Collection {
   /** e.g. "COLLECTION 01". */
   code: string;
   number: number;
-  /** The collection's name, e.g. "The Balkan Collection". */
+  /** The collection's name, e.g. "Yugo". */
   title: string;
   /**
    * Orientation only, never a unity: each edition's city, artist and story

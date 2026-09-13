@@ -60,7 +60,7 @@ create table if not exists public.orders (
   currency          text,
   financial_status  text,
   fulfillment_status text,
-  -- the passprint edition codes in the order, e.g. {BAL-01}
+  -- the passprint edition codes in the order, e.g. {YU-01}
   edition_codes     text[],
   raw               jsonb,
   created_at        timestamptz not null default now(),

@@ -59,7 +59,7 @@ export const faqEntries: FaqEntry[] = [
     group: "The artists",
     question: "Who makes the work?",
     answer:
-      "Each edition of The Balkan Collection is made by an artist who lives in the city it depicts. The launch edition is made by Ajla M., born and working in Mostar; artists for later cities are cast and announced with their edition. Every name, city and technique is printed on the story card.",
+      "Every edition of Yugo is made by one artist, Bakir C., born in Mostar to a family scattered across the countries the collection visits. Future collections are made by artists with the same kind of real connection to their place. Every name, city and technique is printed on the story card.",
   },
   {
     group: "The artists",

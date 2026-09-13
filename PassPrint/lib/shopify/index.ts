@@ -1,6 +1,6 @@
 import { isShopifyConfigured, shopifyFetch } from "./client";
 import { COLLECTION_QUERY, SUBSCRIPTION_PRODUCTS_QUERY } from "./queries";
-import { balkanCollection } from "@/content/collections";
+import { yugoCollection } from "@/content/collections";
 import { subscriptionPlans as localPlans } from "@/content/subscriptions";
 import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/content/types";
 
@@ -20,8 +20,8 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
   Create a product in the collection for that city and set these metafields
   (namespace `passprint`, all single-line text unless noted):
 
-    edition_code    BAL-04           month         November 2026
-    edition_number  4 (integer)      month_code    11.2026
+    edition_code    YU-05            month         February 2027
+    edition_number  5 (integer)      month_code    02.2027
     city            Zagreb           country       Croatia
     region          (optional, e.g. "Herzegovina")
     subject         The upper town
@@ -30,7 +30,7 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
     technique       Giclée           edition_size  180 (integer)
     status          current | announced | sealed | published
     note            One or two factual sentences (multi-line)
-    artist_slug     the city's artist, e.g. ajla-m — or leave unset
+    artist_slug     bakir-c — every edition is the same artist
 
   ── How to add a new COLLECTION (a new region) ─────────────────────────
   Create a Shopify collection, tag it `passprint`, set metafields
@@ -45,7 +45,7 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
   (selling plans); this layer reads the price and availability.
 */
 
-const COLLECTION_HANDLE = "the-balkan-collection";
+const COLLECTION_HANDLE = "yugo";
 
 interface MetafieldValue {
   value: string | null;
@@ -157,7 +157,7 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
 export async function getCollection(
   handle: string = COLLECTION_HANDLE
 ): Promise<Collection> {
-  if (!isShopifyConfigured()) return balkanCollection;
+  if (!isShopifyConfigured()) return yugoCollection;
 
   const data = await shopifyFetch<ShopifyCollectionResponse>({
     query: COLLECTION_QUERY,
@@ -165,7 +165,7 @@ export async function getCollection(
   });
 
   const remote = data?.collection;
-  if (!remote) return balkanCollection;
+  if (!remote) return yugoCollection;
 
   const editions = remote.products.nodes
     .map(mapEdition)
@@ -173,16 +173,16 @@ export async function getCollection(
     .sort((a, b) => a.number - b.number);
 
   // A collection with no properly tagged editions is not usable — fall back.
-  if (editions.length === 0) return balkanCollection;
+  if (editions.length === 0) return yugoCollection;
 
   return {
-    code: mf(remote.collectionCode) ?? balkanCollection.code,
-    number: balkanCollection.number,
-    title: remote.title || balkanCollection.title,
-    region: mf(remote.region) ?? balkanCollection.region,
-    year: mf(remote.year) ?? balkanCollection.year,
-    accent: mf(remote.accent) ?? balkanCollection.accent,
-    launchMonth: mf(remote.launchMonth) ?? balkanCollection.launchMonth,
+    code: mf(remote.collectionCode) ?? yugoCollection.code,
+    number: yugoCollection.number,
+    title: remote.title || yugoCollection.title,
+    region: mf(remote.region) ?? yugoCollection.region,
+    year: mf(remote.year) ?? yugoCollection.year,
+    accent: mf(remote.accent) ?? yugoCollection.accent,
+    launchMonth: mf(remote.launchMonth) ?? yugoCollection.launchMonth,
     editions,
   };
 }

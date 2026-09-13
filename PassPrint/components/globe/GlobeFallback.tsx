@@ -10,7 +10,7 @@ export function GlobeFallback() {
       viewBox="0 0 300 300"
       className="h-full w-full"
       role="img"
-      aria-label="A drawn globe with the route from Antwerpen to Mostar, the launch edition of The Balkan Collection"
+      aria-label="A drawn globe with the route from Antwerpen to Mostar, the launch edition of Yugo"
     >
       <circle cx="150" cy="150" r="128" fill="var(--color-paper-deep)" stroke="var(--color-navy)" strokeWidth="1.4" />
       <g fill="none" stroke="var(--color-navy)" strokeWidth="0.7" opacity="0.35">

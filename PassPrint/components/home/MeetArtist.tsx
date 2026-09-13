@@ -5,10 +5,10 @@ import { leadArtist } from "@/content/artists";
 import { currentEdition } from "@/content/collections";
 
 /**
- * The maker, not a marketing element. Ajla M. is the artist behind the
- * launch edition — every future city in the collection gets an artist with
- * the same kind of real connection to their own place. The portrait area is
- * an honest placeholder — a labelled frame, not a fake face.
+ * The maker, not a marketing element. Bakir C. is the sole artist behind
+ * Yugo — every city in the collection is drawn by the same hand. The
+ * portrait area is an honest placeholder — a labelled frame, not a fake
+ * face.
  */
 export function MeetArtist() {
   const artist = leadArtist;
@@ -19,7 +19,7 @@ export function MeetArtist() {
         <SectionHeader
           index="§ 04"
           label="The maker"
-          title="One city. One artist who lives there."
+          title="One artist. Twelve editions. Six countries."
           ink="rosa"
         />
 
@@ -44,11 +44,11 @@ export function MeetArtist() {
               {artist.connection}
             </p>
             <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
-              Ajla makes the launch edition&apos;s main print, companion study
-              and story card — the way every city in this collection is made:
-              by whoever actually lives there, not a name chosen from
-              outside. Her story is also read before printing by someone
-              else from {currentEdition.city}, credited by name on the card.
+              As the sole artist of Yugo, Bakir makes every main print,
+              companion study and story card in the collection — twelve
+              editions, one hand. Each story is also read before printing by
+              someone from the place it describes, credited by name on the
+              card.
             </p>
             <div className="mt-8">
               <ButtonLink href="/artists" variant="text">

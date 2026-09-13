@@ -10,9 +10,9 @@ import { mostarStory } from "@/content/mostar";
 import { getCollection } from "@/lib/shopify";
 
 export const metadata: Metadata = {
-  title: "Collection 01 — The Balkan Collection",
+  title: "Collection 01 — Yugo",
   description:
-    "The launch collection: twelve monthly editions, twelve Balkan cities, each drawn by an artist who lives there. An exhibition catalogue opening in Mostar.",
+    "The launch collection: twelve monthly editions, twelve cities across six countries that used to be one, all drawn by one artist. An exhibition catalogue opening in Mostar.",
 };
 
 // Re-fetch Shopify editions/availability at most hourly (ISR).
@@ -21,8 +21,8 @@ export const revalidate = 3600;
 export default async function CollectionPage() {
   // Editions come from Shopify when configured; from content/collections.ts
   // otherwise. Adding a product in Shopify adds a plate here.
-  const balkanCollection = await getCollection();
-  const editions = balkanCollection.editions;
+  const yugoCollection = await getCollection();
+  const editions = yugoCollection.editions;
   const opening = editions[0];
 
   return (
@@ -31,15 +31,15 @@ export default async function CollectionPage() {
       <header className="grid gap-8 border-b border-hairline pb-12 lg:grid-cols-[2fr_1fr] lg:items-end">
         <div>
           <p className="mono-label">
-            {balkanCollection.code} · {balkanCollection.region} · {balkanCollection.year}
+            {yugoCollection.code} · {yugoCollection.region} · {yugoCollection.year}
           </p>
           <h1 className="font-serif-display mt-5 text-[clamp(2.6rem,7vw,4.6rem)]">
-            {balkanCollection.title}
+            {yugoCollection.title}
           </h1>
           <p className="mt-5 max-w-[var(--container-measure)] text-[1.05rem] italic leading-relaxed text-ink-soft">
-            Twelve months, twelve cities across the Balkans, each with its own
-            artist and its own story. {mostarStory.standfirst} We open in{" "}
-            {opening.city}.
+            Twelve months, twelve cities across six countries that used to be
+            one, all drawn by the same hand. {mostarStory.standfirst} We open
+            in {opening.city}.
           </p>
         </div>
         <dl className="grid grid-cols-2 gap-x-6 gap-y-4 font-mono text-[0.72rem] uppercase tracking-[0.06em]">
@@ -53,7 +53,7 @@ export default async function CollectionPage() {
           </div>
           <div>
             <dt className="text-pencil">Launch</dt>
-            <dd className="mt-1 text-ink">{balkanCollection.launchMonth}</dd>
+            <dd className="mt-1 text-ink">{yugoCollection.launchMonth}</dd>
           </div>
           <div>
             <dt className="text-pencil">Format</dt>
@@ -89,7 +89,7 @@ export default async function CollectionPage() {
       <section className="mt-20">
         <SectionHeader index="Route" label="Twelve cities, one collection" title="The year at a glance" />
         <div className="mt-10">
-          <JourneyTimeline editions={editions} code={balkanCollection.code} />
+          <JourneyTimeline editions={editions} code={yugoCollection.code} />
         </div>
       </section>
 
@@ -103,7 +103,7 @@ export default async function CollectionPage() {
               <EditionRecord
                 key={edition.code}
                 edition={edition}
-                collection={balkanCollection}
+                collection={yugoCollection}
                 index={i}
                 total={editions.length}
               />
@@ -116,7 +116,7 @@ export default async function CollectionPage() {
       <section className="mt-24 border-t border-hairline pt-12">
         <div className="grid gap-8 md:grid-cols-[2fr_1fr] md:items-end">
           <div className="max-w-[var(--container-measure)]">
-            <p className="mono-label">The maker of {opening.code}</p>
+            <p className="mono-label">The maker of the collection</p>
             <h2 className="font-serif-display mt-4 text-3xl">{leadArtist.name}</h2>
             <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
               {leadArtist.standfirst} {leadArtist.connection}

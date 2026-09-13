@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { StampMark } from "@/components/ui/StampMark";
 import { CartoucheLogo } from "@/components/brand/CartoucheLogo";
 import { ButtonLink } from "@/components/ui/Button";
-import { balkanCollection, currentEdition } from "@/content/collections";
+import { yugoCollection, currentEdition } from "@/content/collections";
 import { mostarStory } from "@/content/mostar";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why PassPrint exists, why The Balkan Collection begins in Mostar, who reads the stories before they print, and how the work is made.",
+    "Why PassPrint exists, why Yugo begins in Mostar, who reads the stories before they print, and how the work is made.",
 };
 
 export default function AboutPage() {
@@ -44,10 +44,10 @@ export default function AboutPage() {
             <p>
               PassPrint started from a simple observation: those stories
               usually live in families, not in guidebooks. Each month we
-              travel to a different city and ask one artist who actually
-              lives there to draw it, paint it or print it. Not the postcard
-              version — the version seen by someone who has something to do
-              with it.
+              travel to a different city and ask the same artist — someone
+              with an actual reason to be there — to draw it, paint it or
+              print it. Not the postcard version — the version seen by
+              someone who has something to do with it.
             </p>
             <p>
               You get it by post. An envelope, two prints, a card with the
@@ -64,16 +64,37 @@ export default function AboutPage() {
             ))}
           </div>
 
+          <h2 className="font-serif-display mt-14 text-2xl">Why the collection is called {yugoCollection.title}</h2>
+          <div className="mt-4 space-y-6 text-[1.02rem] leading-relaxed text-ink-soft">
+            <p>
+              {yugoCollection.title} visits six countries that were, until
+              1991, one: Bosnia and Herzegovina, Serbia, Croatia, Slovenia,
+              Montenegro and North Macedonia. It is not a collection about
+              why they split — that story is told everywhere else. It is a
+              collection about what a shared bazaar street, a shared
+              fortress wall, a shared bridge still look like from Mostar to
+              Skopje, once you stop sorting them by faith or flag.
+            </p>
+            <p>
+              No borders are drawn on any map on this site, and no city is
+              introduced by which side of a war it was on. Each one is
+              introduced the way the rest of the site introduces a place: by
+              name, by river, by what still stands.
+            </p>
+          </div>
+
           <h2 className="font-serif-display mt-12 text-2xl">How the work is made</h2>
           <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
-            Each edition of {balkanCollection.title} is drawn by an artist who
-            actually lives in the city it depicts — never one person drawing
-            twelve places they have only visited. The launch edition is made
-            by Ajla M., born and working in {currentEdition.city}. Every story
-            is read before printing by someone else from the place it
-            describes, and that reader is credited by name on the card. We
-            name buildings and people, never a region as if it were one
-            thing, and we draw no borders on any map.
+            Every edition of {yugoCollection.title} is drawn by one artist,
+            Bakir C. — not because one person can live in twelve cities, but
+            because his own family already does. It was scattered across
+            these six countries when Yugoslavia broke apart, so there is
+            barely a city on the route where he doesn&apos;t already have a
+            reason to go. Every story is still read before printing by
+            someone from the place it describes, and that reader is credited
+            by name on the card. We name buildings and people, never a
+            region as if it were one thing, and we draw no borders on any
+            map.
           </p>
 
           <h2 className="font-serif-display mt-12 text-2xl">The same, every month</h2>
@@ -103,7 +124,7 @@ export default function AboutPage() {
               <div>
                 <dt className="text-pencil">Launch edition</dt>
                 <dd className="mt-1 text-ink">
-                  {currentEdition.city} · {balkanCollection.launchMonth}
+                  {currentEdition.city} · {yugoCollection.launchMonth}
                 </dd>
               </div>
               <div>

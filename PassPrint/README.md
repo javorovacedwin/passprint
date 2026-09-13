@@ -3,7 +3,7 @@
 A monthly art publication in an envelope. One place, one artist, one numbered
 edition — with the story that belongs to it.
 
-**Collection 01 — The Balkan Collection. Opens in Mostar, August 2026.**
+**Collection 01 — Yugo. Opens in Mostar, October 2026.**
 
 The strategic plan behind the brand lives in [`passprint-plan.md`](passprint-plan.md);
 the binding design rules in [`CLAUDE.md`](CLAUDE.md).
@@ -69,19 +69,24 @@ No component library. Every component is custom.
 
 ## The first collection
 
-Collection 01 is **The Balkan Collection**: twelve months, twelve different
-Balkan cities, each drawn by an artist who actually lives there — never one
-person drawing twelve places they only visited. It opens in **Mostar,
-Bosnia and Herzegovina**, with **Ajla M.**, born and working there, and runs
-on through Sarajevo, Beograd, Zagreb, Dubrovnik, Kotor, Ljubljana, Skopje,
-Ohrid, Tirana, Sofia and a twelfth city revealed only to members. See
-`content/collections.ts` for the full route and `content/mostar.ts` for the
-launch city's story.
+Collection 01 is **Yugo**: twelve months, twelve cities across the six
+countries that used to be one — Bosnia and Herzegovina, Serbia, Croatia,
+Slovenia, Montenegro and North Macedonia. No Albania: it was never part of
+Yugoslavia, so it isn't part of this collection. It opens in **Mostar**,
+with **Bakir C.**, and runs on through Sarajevo, Beograd, Novi Sad, Zagreb,
+Dubrovnik, Ljubljana, Maribor, Kotor, Cetinje, Skopje and closes in Ohrid.
+See `content/collections.ts` for the full route and `content/mostar.ts` for
+the launch city's story.
 
-The region is named only for orientation — the site never treats "the
-Balkans" as one culture. Each edition keeps its own local spelling (with
-diacritics), its own artist, and its own reader who checks the story before
-it prints.
+All twelve editions are drawn by the same artist — not because one person
+can live in twelve cities, but because Bakir's own family was scattered
+across all six countries when Yugoslavia broke apart, so he has a real
+reason to go to nearly all of them. The collection is built around what
+these cities still share (bazaars, fortresses, bridges), not around the
+borders or faiths usually used to tell them apart, and it isn't a story
+about the wars — that story is told everywhere else. Each edition keeps its
+own local spelling (with diacritics) and its own reader who checks the
+story before it prints; no borders are drawn on any map.
 
 Future collections travel to other regions; the data model does not change.
 
@@ -256,15 +261,15 @@ Create a product in the collection and set these metafields in the
 since a collection spans a whole region:
 
 ```
-edition_code    BAL-04             month         November 2026
-edition_number  4        (integer) month_code    11.2026
+edition_code    YU-05              month         February 2027
+edition_number  5        (integer) month_code    02.2027
 city            Zagreb             country       Croatia
 subject         The upper town     site          Gornji grad
 coordinates     45.8150 N, 15.9785 E
 technique       Giclée             edition_size  180 (integer)
 status          current | announced | sealed | published
 note            One or two factual sentences
-artist_slug     the city's artist, e.g. ajla-m — or leave unset
+artist_slug     bakir-c — every edition is the same artist
 ```
 
 It appears on `/collection` automatically.
@@ -290,18 +295,19 @@ this layer reads price and availability.
 > environment, so the site runs entirely on local content
 > (`content/collections.ts`) — nothing above is live yet.
 >
-> **Rebrand note:** this repository previously described a live store built
-> around a single-city "Novi Pazar" collection (NP-01…NP-12). The content
-> layer has been rebuilt around **The Balkan Collection** — BAL-01…BAL-12,
-> opening in Mostar — but if a Shopify store was actually created against
-> the old schema, it still needs, on the commerce side:
-> 1. **Renaming the collection** from Novi Pazar to The Balkan Collection
->    (handle `the-balkan-collection`), and its `collection_code`/`region`
->    metafields updated (region-level `city`/`country`/`coordinates` no
->    longer apply — see below).
-> 2. **Replacing the 12 NP-* products** with 12 BAL-* products, one per city
->    (Mostar first), each carrying the new per-edition `city` and `country`
->    metafields alongside the existing edition metafields.
+> **Rebrand note:** this repository has gone through two renames — first from
+> a single-city "Novi Pazar" collection (NP-01…NP-12), then briefly through
+> "The Balkan Collection" (BAL-01…BAL-12). The content layer is now built
+> around **Yugo** — YU-01…YU-12, opening in Mostar — but if a Shopify store
+> was actually created against an older schema, it still needs, on the
+> commerce side:
+> 1. **Renaming the collection** to Yugo (handle `yugo`), and its
+>    `collection_code`/`region` metafields updated (region-level
+>    `city`/`country`/`coordinates` don't apply — see below).
+> 2. **Replacing old edition products** with 12 YU-* products, one per city
+>    (Mostar first), each carrying the per-edition `city` and `country`
+>    metafields alongside the existing edition metafields, and
+>    `artist_slug` set to `bakir-c` on every one.
 > 3. **Recurring billing** — the subscription products, once created, need a
 >    Shopify subscriptions app and a selling plan attached to each to charge
 >    monthly rather than once.
@@ -313,7 +319,7 @@ this layer reads price and availability.
 | **Prices** | `content/pricing.ts` — the only place |
 | Editions, cities, subjects, sites, coordinates | `content/collections.ts` |
 | Print sizes / production spec | `production` in `content/collections.ts` |
-| Ajla M.'s biography, philosophy, process | `content/artists.ts` |
+| Bakir C.'s biography, philosophy, process | `content/artists.ts` |
 | The Mostar cultural story (launch edition) | `content/mostar.ts` |
 | Plan copy | `content/subscriptions.ts` |
 | FAQ | `content/faq.ts` |
@@ -373,13 +379,15 @@ the rest. Keyboard users reach the same state through the caption buttons.
 
 ## TODO — real content needed before launch
 
-- [ ] Confirm Ajla M.'s biography with her; replace portrait and studio
+- [ ] Confirm Bakir C.'s biography with him; replace portrait and studio
       placeholders with real photographs.
 - [ ] Photography of actual prints, envelopes and flat lays.
 - [ ] Have the Mostar story read by someone from the city and credit them
-      by name (`content/mostar.ts`); repeat for each later city as it is
-      cast (Sarajevo, Beograd, …).
-- [ ] Cast and confirm the artists for BAL-04 onward.
+      by name (`content/mostar.ts`); repeat for each later city as its
+      edition is announced (Sarajevo, Beograd, …).
+- [ ] Confirm a title for the studio painting Bakir filed as "Unknown
+      name" — we've placed it as "Two Boats, One Horizon"
+      (`content/artworks.ts`).
 - [ ] Final pricing after print/postage quotes (`content/pricing.ts`).
 - [ ] Confirm edition sizes with the printer.
 - [ ] Printer name and city (`app/about/page.tsx`).

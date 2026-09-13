@@ -83,7 +83,7 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
           <figcaption className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.06em] text-pencil">
             {currentEdition.site}, {currentEdition.city} ·{" "}
             {currentEdition.coordinates} · {artist?.name} ·{" "}
-            {currentEdition.technique?.toLowerCase()}, 2026 · edition of{" "}
+            {currentEdition.technique?.toLowerCase()}, {currentEdition.monthCode.split(".")[1]} · edition of{" "}
             {currentEdition.editionSize} · {production.mainFormat}, {production.paper}
           </figcaption>
 

@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { JourneyTimeline } from "@/components/collection/JourneyTimeline";
-import { balkanCollection } from "@/content/collections";
+import { yugoCollection } from "@/content/collections";
 
 /**
  * The year, in one place. This used to be two sections — a timeline and a
@@ -10,23 +10,23 @@ import { balkanCollection } from "@/content/collections";
  * twelve of them make a set worth completing.
  */
 export function CurrentJourney() {
-  const announced = balkanCollection.editions.filter((e) => e.status === "announced");
+  const announced = yugoCollection.editions.filter((e) => e.status === "announced");
 
   return (
     <section className="security-tint border-y border-ink/25 bg-verde/[0.06] py-24">
       <div className="mx-auto max-w-[var(--container-page)] px-gutter">
         <SectionHeader
           index="§ 03"
-          label={`${balkanCollection.code} · ${balkanCollection.year}`}
+          label={`${yugoCollection.code} · ${yugoCollection.year}`}
           title="Twelve envelopes make one collection"
         />
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.02rem] leading-relaxed text-ink-soft">
-          The launch collection crosses the Balkans, one city a month, for a
-          full year — Mostar, Sarajevo, Beograd and nine more, each drawn by
-          an artist who actually lives there. Each city is announced a few
-          months ahead; the last are sealed until they ship. Complete the
-          year and you receive the closing stamp and a thirteenth print, from
-          a destination revealed only to members.
+          The launch collection crosses six countries that used to be one,
+          one city a month, for a full year — Mostar, Sarajevo, Beograd and
+          nine more, all drawn by the same hand. Each city is announced a
+          few months ahead; the last are sealed until they ship. Complete
+          the year and you receive the closing stamp and a thirteenth
+          print.
         </p>
 
         <div className="mt-12">
@@ -37,7 +37,7 @@ export function CurrentJourney() {
           <div>
             <dt className="text-pencil">Open now</dt>
             <dd className="mt-1 text-ink">
-              {balkanCollection.editions
+              {yugoCollection.editions
                 .filter((e) => e.status === "current")
                 .map((e) => `${e.code} · ${e.city}`)
                 .join(", ")}{" "}
@@ -52,7 +52,7 @@ export function CurrentJourney() {
           </div>
           <div>
             <dt className="text-pencil">Completion</dt>
-            <dd className="mt-1 text-ink">Closing stamp + bonus print, July 2027</dd>
+            <dd className="mt-1 text-ink">Closing stamp + bonus print, September 2027</dd>
           </div>
         </dl>
 
