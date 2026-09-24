@@ -88,13 +88,13 @@ export default async function CollectionPage() {
             {
               id: "passprint",
               label: "PassPrint",
-              note: `${yugo.code} · ${yugo.title}`,
+              note: "Monthly edition · by post",
               panel: (
                 <>
                   <TabIntro>
                     Once a month, one city in an envelope: a numbered{" "}
                     {production.mainFormat} print, an {production.companionFormat}{" "}
-                    companion and the story of the place. {yugo.title} travels
+                    companion and the story of the place. The first collection travels
                     twelve cities across six countries that used to be one,
                     starting {yugo.launchMonth}. Each city is announced with
                     its edition — until then, coming soon.
