@@ -75,11 +75,7 @@ export default function AboutPage() {
           <h2 className="font-serif-display mt-12 text-2xl">How the work is made</h2>
           <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
             Every edition of {yugoCollection.title} is drawn by one artist,
-            Bakir C. — not because one person can live in twelve cities, but
-            because his own family already does. It was scattered across
-            these six countries when Yugoslavia broke apart, so there is
-            barely a city on the route where he doesn&apos;t already have a
-            reason to go. Every story is still read before printing by
+            Bakir C., a painter from Novi Pazar. Every story is still read before printing by
             someone from the place it describes, and that reader is credited
             by name on the card. We name buildings and people, never a
             region as if it were one thing, and we draw no borders on any

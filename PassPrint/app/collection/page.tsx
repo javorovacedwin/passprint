@@ -11,7 +11,7 @@ import type { StudioWork } from "@/content/types";
 export const metadata: Metadata = {
   title: "Collection",
   description:
-    "Every painting by Bakir C.: the originals, giclée prints in A3 and A4, and PassPrint — the numbered monthly edition in an envelope.",
+    "Every painting by Bakir C.: the originals, prints in A3, A4, A5 and A6, and PassPrint — the numbered monthly edition in an envelope.",
 };
 
 // Re-fetch Shopify editions/availability at most hourly (ISR).
@@ -73,11 +73,11 @@ export default async function CollectionPage() {
             {
               id: "prints",
               label: "Prints",
-              note: "Giclée · A3 · A4 · A5 · A6",
+              note: "A3 · A4 · A5 · A6",
               panel: (
                 <>
                   <TabIntro>
-                    Every painting as a giclée print, in A3 (29.7 × 42 cm),
+                    Every painting as a print, in A3 (29.7 × 42 cm),
                     A4 (21 × 29.7 cm), A5 (14.8 × 21 cm) or A6 (10.5 × 14.8 cm),
                     in an edition of 50 per size, numbered by hand.
                   </TabIntro>

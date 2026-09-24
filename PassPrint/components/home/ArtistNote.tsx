@@ -5,7 +5,7 @@ import { leadArtist } from "@/content/artists";
 
 /**
  * The painter and the easel, side by side: a real studio photograph on one
- * half, the artist's own words on the other.
+ * half, two lines about the painter on the other.
  */
 export function ArtistNote() {
   const artist = leadArtist;
@@ -31,11 +31,6 @@ export function ArtistNote() {
         <div>
           <SectionHeader index="§ 04" label="The painter" title={`Hi, I'm ${artist.name}`} ink="rosa" />
           <p className="mt-8 text-[1.05rem] leading-relaxed text-ink-soft">{artist.standfirst}</p>
-          <blockquote className="mt-8 border-l-4 border-rosa pl-6">
-            <p className="font-serif-book text-[clamp(1.2rem,2.1vw,1.6rem)] font-bold italic leading-snug">
-              &ldquo;{artist.quote}&rdquo;
-            </p>
-          </blockquote>
           <div className="mt-10">
             <ButtonLink href="/artists" variant="framed">
               More about me
