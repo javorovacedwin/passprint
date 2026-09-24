@@ -21,12 +21,9 @@ export function CurrentJourney() {
           title="Twelve envelopes make one collection"
         />
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.02rem] leading-relaxed text-ink-soft">
-          The launch collection crosses six countries that used to be one,
-          one city a month, for a full year — Mostar, Sarajevo, Beograd and
-          nine more, all drawn by the same hand. Each city is announced a
-          few months ahead; the last are sealed until they ship. Complete
-          the year and you receive the closing stamp and a thirteenth
-          print.
+          One city a month, for a full year — Mostar, Sarajevo, Beograd and
+          nine more, all drawn by the same hand. Complete the year and you
+          receive the closing stamp and a thirteenth print.
         </p>
 
         <div className="mt-12">
