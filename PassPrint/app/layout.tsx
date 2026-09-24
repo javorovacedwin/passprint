@@ -11,7 +11,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "PassPrint — Printed memories, stamped stories",
+    default: "bakirpaints — PassPrint",
     template: "%s — PassPrint",
   },
   description:

@@ -59,7 +59,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-[var(--container-page)] items-center justify-between px-gutter py-4">
         <Link href="/" className="flex items-baseline gap-3">
-          <Wordmark className="text-[1.7rem]" />
+          <Wordmark className="text-[1.7rem]" name="bakirpaints" />
           {/*
             Held back until xl: between the lg breakpoint and about 1150px the
             masthead, five nav items and the join button do not fit on one

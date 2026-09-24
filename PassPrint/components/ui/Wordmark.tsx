@@ -11,6 +11,8 @@ interface WordmarkProps {
   accent?: string;
   paper?: string;
   uid?: string;
+  /** The name set beside the seal. The site is PassPrint; the header shows the artist. */
+  name?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ export function Wordmark({
   accent,
   paper,
   uid = "wm",
+  name = "PassPrint",
 }: WordmarkProps) {
   return (
     <span className={`inline-flex items-center gap-[0.42em] ${className}`}>
@@ -43,7 +46,7 @@ export function Wordmark({
           className="font-serif-display tracking-[0.01em]"
           style={{ fontFeatureSettings: '"liga"' }}
         >
-          PassPrint
+          {name}
         </span>
         {strapline && (
           <span className="mt-[0.35em] font-mono text-[0.3em] font-semibold uppercase tracking-[0.3em] opacity-75">

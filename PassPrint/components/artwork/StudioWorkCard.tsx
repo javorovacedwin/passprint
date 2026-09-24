@@ -27,7 +27,7 @@ export function StudioWorkCard({ work, index }: { work: StudioWork; index: numbe
   const groupName = useId();
 
   return (
-    <article className="group/work">
+    <article id={work.slug} className="group/work scroll-mt-28">
       {/* the mount: a ruled paper border around the picture */}
       <div className="print-block relative overflow-hidden bg-paper p-3 sm:p-4">
         <div className="relative aspect-square w-full">

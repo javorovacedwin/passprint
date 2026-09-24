@@ -101,7 +101,7 @@ export function Footer() {
           </div>
 
           <div className="mt-14 flex flex-col gap-2 border-t border-paper/25 pt-5 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-paper/65 sm:flex-row sm:items-baseline sm:justify-between">
-            <p>© 2026 PassPrint. {t.footer.rights}</p>
+            <p>© 2026 PassPrint · passprint.eu. {t.footer.rights}</p>
             <p>PASSPRINT DIGITAL EDITION — PP/W01/2026</p>
           </div>
         </div>
