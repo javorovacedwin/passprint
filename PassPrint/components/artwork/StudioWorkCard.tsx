@@ -22,12 +22,21 @@ import type { StudioWork } from "@/content/types";
  * a set of choices, and focus-within is what reveals it. Nothing fades: the
  * panel slides, the way a card is pushed under a mount.
  */
-export function StudioWorkCard({ work, index }: { work: StudioWork; index: number }) {
+export function StudioWorkCard({
+  work,
+  index,
+  anchor = true,
+}: {
+  work: StudioWork;
+  index: number;
+  /** Gives the card an id of its slug, so other sections can link to it. */
+  anchor?: boolean;
+}) {
   const [selected, setSelected] = useState(work.options[0]);
   const groupName = useId();
 
   return (
-    <article id={work.slug} className="group/work scroll-mt-28">
+    <article id={anchor ? work.slug : undefined} className="group/work scroll-mt-28">
       {/* the mount: a ruled paper border around the picture */}
       <div className="print-block relative overflow-hidden bg-paper p-3 sm:p-4">
         <div className="relative aspect-square w-full">
@@ -45,7 +54,11 @@ export function StudioWorkCard({ work, index }: { work: StudioWork; index: numbe
           <legend className="sr-only">How to buy {work.title}</legend>
           <p className="mono-label mb-2">Buy this work</p>
 
-          <div className="grid gap-px border border-hairline-soft bg-hairline-soft sm:grid-cols-3">
+          <div
+            className={`grid gap-px border border-hairline-soft bg-hairline-soft ${
+              work.options.length === 1 ? "" : work.options.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+            }`}
+          >
             {work.options.map((option) => {
               const active = option.id === selected.id;
               return (

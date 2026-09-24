@@ -83,7 +83,7 @@ export default async function HomePage() {
           {localEdition.month}.
         </p>
         <div className="mt-6">
-          <ButtonLink href="/collection" variant="framed">
+          <ButtonLink href="/collection#passprint" variant="framed">
             See the collection
           </ButtonLink>
         </div>
