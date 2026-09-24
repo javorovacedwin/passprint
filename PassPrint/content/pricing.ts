@@ -70,15 +70,16 @@ export const singleEditionPrice: Money = { amount: 24, currency: "EUR" };
 
 /*
   Studio works — the paintings sold outside the monthly cycle, as the
-  original or as a giclée print. Deliberately in A4/A3 rather than the
-  house A5/A6, so a studio print is never mistaken for a monthly edition.
+  original or as a giclée print in A3, A4, A5 or A6.
 
-  PLACEHOLDER prices. Confirm with the artist before launch; the original
+  PLACEHOLDER prices — all four print sizes are to be set with the artist. Confirm with the artist before launch; the original
   price is per work and lives in content/artworks.ts.
 */
 export const studioPrintPrice = {
   a3: { amount: 85, currency: "EUR" } as Money,
   a4: { amount: 45, currency: "EUR" } as Money,
+  a5: { amount: 30, currency: "EUR" } as Money,
+  a6: { amount: 20, currency: "EUR" } as Money,
 };
 
 /** Format a Money value as a clean price string, e.g. "€18". */

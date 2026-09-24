@@ -19,8 +19,8 @@ export function StudioWorks({ index = "§ 03" }: { index?: string }) {
 
       <p className="mt-6 max-w-[var(--container-measure)] text-[1.05rem] leading-relaxed text-ink-soft">
         Not every painting becomes an edition. These hang in the studio and
-        are sold on their own — the original, once, or a giclée print in A3
-        or A4. Point at a picture to see the ways to buy it.
+        are sold on their own — the original, once, or a giclée print in A3,
+        A4, A5 or A6. Point at a picture to see the ways to buy it.
       </p>
 
       <div className="mt-14 grid gap-16 lg:grid-cols-2 lg:gap-10">

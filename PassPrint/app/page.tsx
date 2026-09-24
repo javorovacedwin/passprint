@@ -44,7 +44,7 @@ export default async function HomePage() {
         </h1>
         <p className="mt-5 text-[1.08rem] leading-relaxed text-ink-soft">
           Glad you&apos;re here. These are the paintings from my studio in
-          Mostar — sold as originals, as prints, and once a month as a
+          Novi Pazar — sold as originals, as prints, and once a month as a
           numbered edition in an envelope.
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-5">
@@ -56,7 +56,7 @@ export default async function HomePage() {
           </ButtonLink>
         </div>
         <Stamp
-          topText="MOSTAR"
+          topText="NOVI PAZAR"
           bottomText="STUDIO"
           centerBottom="2026"
           shape="octagon"
@@ -78,9 +78,9 @@ export default async function HomePage() {
         </h2>
         <p className="mt-4 leading-relaxed text-ink-soft">
           Every month one city from the six countries that used to be one,
-          painted and printed in a numbered run. It starts in{" "}
-          <strong className="font-semibold text-ink">{localEdition.city}</strong>,{" "}
-          {localEdition.month}.
+          painted and printed in a numbered run. The first envelope goes out in{" "}
+          <strong className="font-semibold text-ink">{localEdition.month}</strong> — which
+          city is coming soon.
         </p>
         <div className="mt-6">
           <ButtonLink href="/collection#passprint" variant="framed">

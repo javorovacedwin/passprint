@@ -46,7 +46,7 @@ export default async function CollectionPage() {
   const yugo = await getCollection();
 
   const originals = studioWorks.map((w) => only(w, ["original"]));
-  const prints = studioWorks.map((w) => only(w, ["print-a3", "print-a4"]));
+  const prints = studioWorks.map((w) => only(w, ["print-a3", "print-a4", "print-a5", "print-a6"]));
 
   return (
     <div className="mx-auto max-w-[var(--container-page)] px-gutter py-16">
@@ -73,12 +73,13 @@ export default async function CollectionPage() {
             {
               id: "prints",
               label: "Prints",
-              note: "Giclée · A3 · A4",
+              note: "Giclée · A3 · A4 · A5 · A6",
               panel: (
                 <>
                   <TabIntro>
-                    Every painting as a giclée print, in A3 (29.7 × 42 cm) or
-                    A4 (21 × 29.7 cm), in an edition of 50, numbered by hand.
+                    Every painting as a giclée print, in A3 (29.7 × 42 cm),
+                    A4 (21 × 29.7 cm), A5 (14.8 × 21 cm) or A6 (10.5 × 14.8 cm),
+                    in an edition of 50 per size, numbered by hand.
                   </TabIntro>
                   <WorkGrid works={prints} />
                 </>
@@ -95,7 +96,8 @@ export default async function CollectionPage() {
                     {production.mainFormat} print, an {production.companionFormat}{" "}
                     companion and the story of the place. {yugo.title} travels
                     twelve cities across six countries that used to be one,
-                    starting in {yugo.editions[0].city}, {yugo.launchMonth}.
+                    starting {yugo.launchMonth}. Each city is announced with
+                    its edition — until then, coming soon.
                   </TabIntro>
                   <JourneyTimeline editions={yugo.editions} code={yugo.code} />
                   <div className="mt-12 flex flex-wrap items-center gap-6">

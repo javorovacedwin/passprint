@@ -7,7 +7,7 @@ import type { StudioWork, StudioWorkOption } from "./types";
   ────────────────────────────────────────────────────────────────────────
 
   These are real photographs of real paintings, not placeholders. They are
-  sold three ways — the original, an A3 giclée or an A4 giclée — and are
+  sold as the original or as a giclée print in A3, A4, A5 or A6 — and are
   deliberately kept separate from the twelve monthly editions so the
   subscription proposition stays clean.
 
@@ -59,6 +59,22 @@ function optionsFor(slug: string): StudioWorkOption[] {
       label: "Print · A4",
       detail: "Giclée, 21 × 29.7 cm, edition of 50",
       price: formatPrice(studioPrintPrice.a4),
+      variantId: null,
+      available: true,
+    },
+    {
+      id: "print-a5",
+      label: "Print · A5",
+      detail: "Giclée, 14.8 × 21 cm, edition of 50",
+      price: formatPrice(studioPrintPrice.a5),
+      variantId: null,
+      available: true,
+    },
+    {
+      id: "print-a6",
+      label: "Print · A6",
+      detail: "Giclée, 10.5 × 14.8 cm, edition of 50",
+      price: formatPrice(studioPrintPrice.a6),
       variantId: null,
       available: true,
     },

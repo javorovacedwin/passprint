@@ -9,7 +9,9 @@ import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { artistBySlug } from "@/content/artists";
 import {
+  COMING_SOON,
   currentEdition as localEdition,
+  isConcealed,
   production,
 } from "@/content/collections";
 import { formatPrice, planPricing, singleEditionPrice } from "@/content/pricing";
@@ -32,17 +34,21 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
   const [face, setFace] = useState<Face>("front");
   const currentEdition = edition ?? localEdition;
   const artist = artistBySlug(currentEdition.artistSlug);
+  const hidden = isConcealed(currentEdition);
+  const name = hidden ? COMING_SOON : currentEdition.subject;
 
   return (
     <section className="mx-auto max-w-[var(--container-page)] px-gutter py-24">
       <SectionHeader
         index="§ 02"
         label={`${currentEdition.code} · ${currentEdition.monthCode}`}
-        title={`This month: ${currentEdition.subject}`}
+        title={`This month: ${name}`}
         ink="vermilion"
       />
       <p className="mono-label mt-4">
-        {currentEdition.site} · {currentEdition.city}, {currentEdition.country}
+        {hidden
+          ? `${currentEdition.month} · the city is announced with the edition`
+          : `${currentEdition.site} · ${currentEdition.city}, ${currentEdition.country}`}
       </p>
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.35fr_1fr]">
@@ -74,15 +80,15 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
                 <ArtworkPlaceholder
                   seedKey={currentEdition.code}
                   face={face}
-                  title={`${currentEdition.subject}, ${currentEdition.city} — ${face === "detail" ? "print detail at actual size" : "main print"}`}
+                  title={`${name} — ${face === "detail" ? "print detail at actual size" : "main print"}`}
                   className="block aspect-[148/210] w-full"
                 />
               )}
             </motion.div>
           </div>
           <figcaption className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.06em] text-pencil">
-            {currentEdition.site}, {currentEdition.city} ·{" "}
-            {currentEdition.coordinates} · {artist?.name} ·{" "}
+            {hidden ? COMING_SOON : `${currentEdition.site}, ${currentEdition.city} · ${currentEdition.coordinates}`} ·{" "}
+            {artist?.name} ·{" "}
             {currentEdition.technique?.toLowerCase()}, {currentEdition.monthCode.split(".")[1]} · edition of{" "}
             {currentEdition.editionSize} · {production.mainFormat}, {production.paper}
           </figcaption>
@@ -106,10 +112,12 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
 
         <div className="max-w-[var(--container-measure)]">
           <h3 className="font-serif-display text-2xl">
-            {currentEdition.subject}, drawn from the ground
+            {hidden ? "Coming soon" : `${currentEdition.subject}, drawn from the ground`}
           </h3>
           <p className="mt-5 text-[1.02rem] leading-relaxed text-ink-soft">
-            {currentEdition.note}
+            {hidden
+              ? `The ${currentEdition.month} edition is being drawn now. Which city it is stays in the envelope until it is announced.`
+              : currentEdition.note}
           </p>
           <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
             {currentEdition.technique} in an edition of {currentEdition.editionSize}.
@@ -127,7 +135,7 @@ export function FeaturedArtwork({ edition }: { edition?: Edition }) {
             </div>
             <div>
               <dt className="text-pencil">Coordinates</dt>
-              <dd className="mt-1 text-ink">{currentEdition.coordinates}</dd>
+              <dd className="mt-1 text-ink">{hidden ? "———" : currentEdition.coordinates}</dd>
             </div>
             <div>
               <dt className="text-pencil">Edition</dt>

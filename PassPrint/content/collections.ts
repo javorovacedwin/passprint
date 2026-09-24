@@ -30,7 +30,11 @@ import type { Collection, Edition, ProductionSpec } from "./types";
 
 const ARTIST = "bakir-c";
 
-const editions: Edition[] = [
+/*
+  The plan for the year. Kept here so it can be revealed later, but not
+  shown: see `conceal` below.
+*/
+const plannedEditions: Edition[] = [
   {
     code: "YU-01",
     number: 1,
@@ -227,6 +231,38 @@ const editions: Edition[] = [
     note: "The closing edition. Ohrid's lake is older than any border ever drawn around it — the year ends where the region's history is oldest, not where it is most divided.",
   },
 ];
+
+/** What every edition shows in place of its city and subject. */
+export const COMING_SOON = "Coming soon";
+
+/**
+ * No edition is named yet — not October, and not any month after it. The
+ * city, subject, site and story are withheld; the month, code, format and
+ * run size stay, because those are what a member signs up for.
+ *
+ * Applied to local content and to editions read from Shopify alike, so a
+ * name in a Shopify metafield cannot slip onto the site. To reveal an
+ * edition again, return it unchanged here.
+ */
+export function conceal(edition: Edition): Edition {
+  return {
+    ...edition,
+    city: COMING_SOON,
+    country: "———",
+    region: undefined,
+    subject: "To be revealed",
+    site: "———",
+    coordinates: "",
+    note: "",
+  };
+}
+
+/** True when an edition's place is still withheld. */
+export function isConcealed(edition: Edition): boolean {
+  return edition.city === COMING_SOON;
+}
+
+const editions: Edition[] = plannedEditions.map(conceal);
 
 export const yugoCollection: Collection = {
   code: "COLLECTION 01",

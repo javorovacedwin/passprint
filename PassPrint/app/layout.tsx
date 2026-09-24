@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s — PassPrint",
   },
   description:
-    "A monthly art publication in an envelope. An A5 print, an A6 companion and one story a month, drawn by an artist from the place. Collection 01: Yugo, opening in Mostar, October 2026.",
+    "A monthly art publication in an envelope. An A5 print, an A6 companion and one story a month, drawn by an artist from the place. Collection 01: Yugo, opening October 2026.",
 };
 
 export default function RootLayout({

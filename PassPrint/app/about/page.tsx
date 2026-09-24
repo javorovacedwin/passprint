@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { StampMark } from "@/components/ui/StampMark";
 import { CartoucheLogo } from "@/components/brand/CartoucheLogo";
 import { ButtonLink } from "@/components/ui/Button";
-import { yugoCollection, currentEdition } from "@/content/collections";
-import { mostarStory } from "@/content/mostar";
+import { yugoCollection } from "@/content/collections";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why PassPrint exists, why Yugo begins in Mostar, who reads the stories before they print, and how the work is made.",
+    "Why PassPrint exists, what Yugo is, who reads the stories before they print, and how the work is made.",
 };
 
 export default function AboutPage() {
@@ -18,9 +17,6 @@ export default function AboutPage() {
       <div className="security-tint mb-16 border border-ink/25 px-6 py-12">
         <CartoucheLogo
           className="mx-auto w-full max-w-[40rem]"
-          coordinates={currentEdition.coordinates
-            .replace(" N,", "° N,")
-            .replace(" E", "° E")}
           uid="about"
         />
       </div>
@@ -57,13 +53,6 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <h2 className="font-serif-display mt-14 text-2xl">Why we begin in {currentEdition.city}</h2>
-          <div className="mt-4 space-y-6 text-[1.02rem] leading-relaxed text-ink-soft">
-            {mostarStory.full.map((para) => (
-              <p key={para.slice(0, 24)}>{para}</p>
-            ))}
-          </div>
-
           <h2 className="font-serif-display mt-14 text-2xl">Why the collection is called {yugoCollection.title}</h2>
           <div className="mt-4 space-y-6 text-[1.02rem] leading-relaxed text-ink-soft">
             <p>
@@ -72,7 +61,7 @@ export default function AboutPage() {
               Montenegro and North Macedonia. It is not a collection about
               why they split — that story is told everywhere else. It is a
               collection about what a shared bazaar street, a shared
-              fortress wall, a shared bridge still look like from Mostar to
+              fortress wall, a shared bridge still look like from Ljubljana to
               Skopje, once you stop sorting them by faith or flag.
             </p>
             <p>
@@ -124,7 +113,7 @@ export default function AboutPage() {
               <div>
                 <dt className="text-pencil">Launch edition</dt>
                 <dd className="mt-1 text-ink">
-                  {currentEdition.city} · {yugoCollection.launchMonth}
+                  {yugoCollection.launchMonth} · city coming soon
                 </dd>
               </div>
               <div>
@@ -134,7 +123,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <dt className="text-pencil">Region</dt>
-                <dd className="mt-1 text-ink">{currentEdition.region ?? currentEdition.country}</dd>
+                <dd className="mt-1 text-ink">{yugoCollection.region}</dd>
               </div>
             </dl>
           </div>

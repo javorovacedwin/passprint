@@ -17,16 +17,16 @@ export const artists: Artist[] = [
     slug: "bakir-c",
     name: "Bakir C.",
     role: "Artist, Yugo — Collection 01",
-    city: "Mostar",
-    country: "Bosnia and Herzegovina",
+    city: "Novi Pazar",
+    country: "Serbia",
     technique: "Drawing, screen print and giclée",
     standfirst:
-      "Born in Mostar to a family scattered across six countries that used to be one, Bakir C. draws the cities where he still has cousins, not the ones he had to look up.",
+      "Born in Novi Pazar to a family scattered across six countries that used to be one, Bakir C. draws the cities where he still has cousins, not the ones he had to look up.",
     quote:
       "People ask which side of the border my family is from. Wrong question — we're from all of them. My grandmother's sisters ended up in Ljubljana, Skopje and Novi Sad, and none of them stopped being family. That's the collection: not a region split six ways, but one house with six doors.",
     biography: [
-      "Bakir Ćosović — Bakir C. on every card he signs — was born in Mostar in the last years of Yugoslavia. His extended family, like millions of others, was scattered by the wars that followed: aunts, cousins and in-laws ended up in Zagreb, Ljubljana, Belgrade, Skopje and Podgorica, in cities that had all, a few years earlier, shared one passport.",
-      "He is the sole artist behind Yugo, PassPrint's launch collection: twelve monthly editions, twelve cities across six countries that used to be one, drawn over a year by the same hand. It begins, appropriately, at home — with Stari Most, the bridge his own street looks out on.",
+      "Bakir Ćosović — Bakir C. on every card he signs — was born in Novi Pazar in the last years of Yugoslavia. His extended family, like millions of others, was scattered by the wars that followed: aunts, cousins and in-laws ended up in Zagreb, Ljubljana, Belgrade, Skopje and Podgorica, in cities that had all, a few years earlier, shared one passport.",
+      "He is the sole artist behind Yugo, PassPrint's launch collection: twelve monthly editions, twelve cities across six countries that used to be one, drawn over a year by the same hand.",
       "His work is quiet and exact. He is less interested in flags and borders than in what these cities still share: the shape of a courtyard, the pitch of a roof, a bazaar street, a fortress wall built by one empire and finished by the next. He draws the family resemblance the region's recent history worked hard to deny.",
     ],
     philosophy: [
@@ -40,7 +40,7 @@ export const artists: Artist[] = [
       "Only then does it go to print. He proofs on the final stock, adjusts the registration by eye, and signs off the run himself before every copy is numbered by hand.",
     ],
     studio:
-      "A studio in Mostar, a short walk from Stari Most, doubling this year as the first stop on a research trip that will pass through five more countries before it's done.",
+      "A studio in Novi Pazar, doubling this year as the base for a research trip that will pass through all six countries before it's done.",
     materials: [
       "Ink and pencil for the original drawing",
       "A two-layer approach: the collection accent over ink",
@@ -48,7 +48,6 @@ export const artists: Artist[] = [
       "Giclée pigment and screen print, depending on the edition",
     ],
     inspiration: [
-      "Stari Most and the Neretva",
       "Ottoman and Austro-Hungarian architecture, side by side in the same street",
       "The spomeniks — Yugoslavia's shared, secular war memorials",
       "Family photographs from before 1991",
@@ -57,9 +56,10 @@ export const artists: Artist[] = [
     connection:
       "Bakir is not a tourist in most of these twelve cities. He has a grandmother's sister in Ljubljana, a cousin's family in Skopje, in-laws in Novi Sad — reasons to go that have nothing to do with drawing, which is exactly why the drawing works.",
     featuredWorks: [
-      { editionCode: "YU-01", title: "Stari Most", subject: "The old bridge", technique: "Screen print, two layers" },
-      { editionCode: "YU-02", title: "Baščaršija", subject: "The old bazaar", technique: "Giclée" },
-      { editionCode: "YU-03", title: "Kalemegdan", subject: "The fortress", technique: "Screen print" },
+      // Edition names are withheld until each is announced — see conceal() in content/collections.ts.
+      { editionCode: "YU-01", title: "Coming soon", subject: "October 2026", technique: "Screen print, two layers" },
+      { editionCode: "YU-02", title: "Coming soon", subject: "November 2026", technique: "Giclée" },
+      { editionCode: "YU-03", title: "Coming soon", subject: "December 2026", technique: "Screen print" },
     ],
     collectionCodes: ["COLLECTION 01"],
   },

@@ -141,7 +141,7 @@ export interface VoteRegion {
 
 /** One way a studio work can be bought: the original, or a print size. */
 export interface StudioWorkOption {
-  id: "original" | "print-a3" | "print-a4";
+  id: "original" | "print-a3" | "print-a4" | "print-a5" | "print-a6";
   /** Short label shown in the buy panel, e.g. "Original". */
   label: string;
   /** One line of spec under the label, e.g. "Giclée, A3, edition of 50". */

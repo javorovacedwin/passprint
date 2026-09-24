@@ -9,7 +9,7 @@ import { yugoCollection } from "@/content/collections";
 export const metadata: Metadata = {
   title: "Bakir C. — Artist",
   description:
-    "Bakir C., born in Mostar to a family scattered across the former Yugoslavia, draws every edition of Yugo. Biography, philosophy, process, studio and featured works.",
+    "Bakir C., born in Novi Pazar to a family scattered across the former Yugoslavia, draws every edition of Yugo. Biography, philosophy, process, studio and featured works.",
 };
 
 /** Small helper: a titled block of paragraphs, set like a catalogue essay. */

@@ -26,7 +26,7 @@ export function PrintsCarousel() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-[var(--container-page)] px-gutter">
-        <SectionHeader index="§ 01" label="Giclée · A4 and A3 · edition of 50" title="Prints" />
+        <SectionHeader index="§ 01" label="Giclée · A3 · A4 · A5 · A6 · edition of 50" title="Prints" />
       </div>
       <div className="mx-auto mt-6 flex max-w-[var(--container-page)] items-end justify-between gap-6 px-gutter">
         <p className="max-w-[var(--container-measure)] leading-relaxed text-ink-soft">
@@ -79,7 +79,7 @@ export function PrintsCarousel() {
               </h3>
               <p className="mt-1 font-serif-book text-lg">
                 <span className="text-pencil">from </span>
-                <span className="font-bold text-vermilion">{formatPrice(studioPrintPrice.a4)}</span>
+                <span className="font-bold text-vermilion">{formatPrice(studioPrintPrice.a6)}</span>
               </p>
             </Link>
           </li>

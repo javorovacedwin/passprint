@@ -30,8 +30,8 @@ export default async function SubscribePage() {
         </h1>
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.05rem] leading-relaxed text-ink-soft">
           Order before the 20th and your first envelope is this month&apos;s
-          edition — {currentEdition.code}, {currentEdition.subject},{" "}
-          {currentEdition.city}. After the 20th you start with the next one;
+          edition — {currentEdition.code}, {currentEdition.month}, its city
+          still coming soon. After the 20th you start with the next one;
           we say so before you pay, not after.
         </p>
       </header>
@@ -49,7 +49,7 @@ export default async function SubscribePage() {
               Buy {currentEdition.code} on its own
             </h2>
             <p className="mt-2 max-w-[34rem] text-[0.98rem] leading-relaxed text-ink-soft">
-              The current edition — {currentEdition.subject}, {currentEdition.city} —
+              The current edition — {currentEdition.code}, {currentEdition.month} —
               as a single order while its window is open. {formatPrice(singleEditionPrice)},
               shipping included.
             </p>

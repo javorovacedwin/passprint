@@ -56,7 +56,7 @@ export function StudioWorkCard({
 
           <div
             className={`grid gap-px border border-hairline-soft bg-hairline-soft ${
-              work.options.length === 1 ? "" : work.options.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+              work.options.length === 1 ? "" : work.options.length % 2 === 0 ? "sm:grid-cols-2" : "sm:grid-cols-3"
             }`}
           >
             {work.options.map((option) => {

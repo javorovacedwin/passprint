@@ -1,6 +1,6 @@
 import { isShopifyConfigured, shopifyFetch } from "./client";
 import { COLLECTION_QUERY, SUBSCRIPTION_PRODUCTS_QUERY } from "./queries";
-import { yugoCollection } from "@/content/collections";
+import { conceal, yugoCollection } from "@/content/collections";
 import { subscriptionPlans as localPlans } from "@/content/subscriptions";
 import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/content/types";
 
@@ -130,7 +130,7 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
   const size = mf(product.editionSize);
   const number = mf(product.number);
 
-  return {
+  return conceal({
     code,
     number: number ? Number(number) : 0,
     month: mf(product.month) ?? "",
@@ -148,7 +148,7 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
     note: mf(product.note) ?? "",
     variantId: product.variants.nodes[0]?.id ?? null,
     available: product.availableForSale,
-  };
+  });
 }
 
 /**
