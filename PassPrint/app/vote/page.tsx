@@ -4,7 +4,7 @@ import { VoteModule } from "@/components/voting/VoteModule";
 export const metadata: Metadata = {
   title: "Vote for the Next Region",
   description:
-    "Choose where PassPrint travels after Yugo: Benelux, Scandinavia, North Africa or the Mediterranean. The vote is binding.",
+    "Choose where PassPrint travels after Yugo: Italy, Greece, Portugal or France. The vote is binding.",
 };
 
 export default function VotePage() {

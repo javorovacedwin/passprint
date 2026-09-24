@@ -23,8 +23,8 @@ export function StudioWorks() {
       <div className="mt-6 grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-end">
         <p className="max-w-[var(--container-measure)] text-[1.05rem] leading-relaxed text-ink-soft">
           Not every painting becomes an edition. These hang in the studio and
-          are sold on their own — the original, once, or a giclée print in A3
-          or A4. Point at a picture to see the ways to buy it.
+          sell on their own — the original, once, or a giclée print. Point at
+          a picture to see how.
         </p>
         <figure className="border border-hairline bg-paper shadow-[var(--shadow-paper)]">
           <div className="relative aspect-[3/4] w-full">

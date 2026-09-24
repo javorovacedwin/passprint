@@ -44,11 +44,9 @@ export function MeetArtist() {
               {artist.connection}
             </p>
             <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
-              As the sole artist of Yugo, Bakir makes every main print,
-              companion study and story card in the collection — twelve
-              editions, one hand. Each story is also read before printing by
-              someone from the place it describes, credited by name on the
-              card.
+              Bakir makes every print, study and story card in the
+              collection by hand — each one read beforehand by someone from
+              the place it describes.
             </p>
             <div className="mt-8">
               <ButtonLink href="/artists" variant="text">
