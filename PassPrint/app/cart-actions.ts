@@ -24,13 +24,15 @@ function unconfigured(): CartResult {
 export async function addToCartAction(
   cartId: string | null,
   merchandiseId: string,
-  quantity = 1
+  quantity = 1,
+  sellingPlanId: string | null = null
 ): Promise<CartResult> {
   if (!isShopifyConfigured()) return unconfigured();
   try {
     const cart = cartId
-      ? (await addLine(cartId, merchandiseId, quantity)) ?? (await createCart(merchandiseId, quantity))
-      : await createCart(merchandiseId, quantity);
+      ? (await addLine(cartId, merchandiseId, quantity, sellingPlanId)) ??
+        (await createCart(merchandiseId, quantity, sellingPlanId))
+      : await createCart(merchandiseId, quantity, sellingPlanId);
     return cart ? { ok: true, cart } : { ok: false, reason: "error" };
   } catch (e) {
     return { ok: false, reason: "error", message: (e as Error).message };

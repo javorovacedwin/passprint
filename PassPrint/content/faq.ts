@@ -35,7 +35,7 @@ export const faqEntries: FaqEntry[] = [
     group: "The subscription",
     question: "When am I charged?",
     answer:
-      "Monthly members are charged at the start of each cycle. Annual and gift runs are paid once, up front, and never renew automatically in the recipient's name.",
+      "You choose one month, six months or a year. One month is charged every month; six months and a year are paid up front, at a lower price per envelope, and renew for the same term unless you cancel. Any term can be sent as a gift to someone else's address.",
   },
   {
     group: "Shipping",

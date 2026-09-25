@@ -74,6 +74,11 @@ export const SUBSCRIPTION_PRODUCTS_QUERY = /* GraphQL */ `
         cadence: metafield(namespace: "passprint", key: "cadence") { value }
         effective: metafield(namespace: "passprint", key: "effective") { value }
         recommended: metafield(namespace: "passprint", key: "recommended") { value }
+        # the recurring plan (Shopify Subscriptions app) — without it a
+        # "subscription" would be charged once, like any other product
+        sellingPlanGroups(first: 5) {
+          nodes { name sellingPlans(first: 5) { nodes { id name } } }
+        }
         variants(first: 5) {
           nodes {
             id
@@ -123,6 +128,7 @@ const CART_FRAGMENT = /* GraphQL */ `
       nodes {
         id
         quantity
+        sellingPlanAllocation { sellingPlan { id name } }
         merchandise {
           ... on ProductVariant {
             id

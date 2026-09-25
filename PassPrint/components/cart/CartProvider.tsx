@@ -32,7 +32,8 @@ interface CartContextValue {
   availability: Availability;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (merchandiseId: string, quantity?: number) => void;
+  /** Pass a selling plan id to add the line as a subscription. */
+  addItem: (merchandiseId: string, quantity?: number, sellingPlanId?: string | null) => void;
   setQuantity: (lineId: string, quantity: number) => void;
   removeItem: (lineId: string) => void;
 }
@@ -82,9 +83,9 @@ export function CartProvider({
   }, []);
 
   const addItem = useCallback(
-    (merchandiseId: string, quantity = 1) => {
+    (merchandiseId: string, quantity = 1, sellingPlanId: string | null = null) => {
       startTransition(async () => {
-        const res = await addToCartAction(cartId.current, merchandiseId, quantity);
+        const res = await addToCartAction(cartId.current, merchandiseId, quantity, sellingPlanId);
         if (res.ok) {
           persist(res.cart);
           setAvailability("ready");

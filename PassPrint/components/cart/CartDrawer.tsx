@@ -92,6 +92,9 @@ export function CartDrawer() {
                   {line.variantTitle && line.variantTitle !== "Default Title" && (
                     <p className="mono-label mt-1">{line.variantTitle}</p>
                   )}
+                  {line.sellingPlan && (
+                    <p className="mono-label mt-1 text-rust">{line.sellingPlan} · cancel any time</p>
+                  )}
                   <div className="mt-3 flex items-center gap-3">
                     <div className="flex items-center border border-hairline">
                       <button

@@ -105,7 +105,7 @@ export interface Artist {
 }
 
 export interface SubscriptionPlan {
-  id: "monthly" | "annual" | "gift";
+  id: "monthly" | "six-months" | "annual";
   name: string;
   /** Formatted price string, injected from content/pricing.ts. */
   price: string;
@@ -117,6 +117,11 @@ export interface SubscriptionPlan {
   recommended?: boolean;
   /** Storefront ProductVariant GID, when the data came from Shopify. */
   variantId?: string | null;
+  /**
+   * The Shopify selling plan that makes the purchase recur. No plan can be
+   * bought without one — it would be charged once, like any other product.
+   */
+  sellingPlanId?: string | null;
   /** Whether the plan can be bought right now (from Shopify). */
   available?: boolean;
 }

@@ -7,7 +7,7 @@ import { getCurrentEdition, getSubscriptionPlans } from "@/lib/shopify";
 export const metadata: Metadata = {
   title: "Subscribe",
   description:
-    "Join PassPrint monthly, for a year, or as a gift. Two numbered prints and one story a month, shipping included in BE/NL/EU.",
+    "Join PassPrint for one month, six months or a year — the longer, the cheaper per envelope. Two numbered prints and one story a month, shipping included in BE/NL/EU.",
 };
 
 // Re-fetch Shopify prices/availability at most hourly (ISR).
@@ -39,6 +39,25 @@ export default async function SubscribePage() {
       <div className="mt-14">
         <SubscriptionPlans plans={plans} purchasable />
       </div>
+
+      {/* how a mail club runs, month by month */}
+      <section className="mt-16 max-w-4xl border-t border-hairline pt-8">
+        <h2 className="font-serif-display text-2xl">How the club works</h2>
+        <ol className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["01", "Choose a term", "One month, six months or a year. Six months and a year are paid up front, at a lower price per envelope."],
+            ["02", "The 20th", "Join before the 20th and this month's envelope is yours; after the 20th you start with the next one."],
+            ["03", "By post", "We print what is ordered, number every copy by hand and post the envelopes at the end of the month."],
+            ["04", "Renew or stop", "Your term renews on its own. Pause, skip or cancel from your account before the 20th — one click."],
+          ].map(([n, title, text]) => (
+            <li key={n}>
+              <p className="font-mono text-[0.8rem] font-medium text-accent-deep">{n}</p>
+              <p className="font-serif-display mt-1 text-lg">{title}</p>
+              <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
 
       {/* Buy the current edition on its own — a real Shopify add-to-cart. */}
       <section className="mt-16 max-w-3xl border-t border-hairline pt-8">
@@ -74,7 +93,10 @@ export default async function SubscribePage() {
             You can pause for one month, twice a year, and keep your place in
             the collection.
           </li>
-          <li>Gift runs end by themselves. The recipient never receives a bill.</li>
+          <li>
+            Any term can be a gift: put the recipient&apos;s address at
+            checkout, and switch off the renewal in your account if it should end.
+          </li>
           <li>
             If an envelope arrives damaged: send one photo and a replacement
             ships from the overrun. No return, no discussion.

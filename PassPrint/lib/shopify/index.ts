@@ -40,7 +40,7 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
 
   ── How to add a SUBSCRIPTION product ─────────────────────────────────
   Create a product, tag it `subscription`, set `plan_id` to monthly |
-  annual | gift, plus `cadence`, optional `effective` and `recommended`.
+  six-months | annual, plus `cadence`, optional `effective` and `recommended`.
   Recurring billing itself is handled by a Shopify subscriptions app
   (selling plans); this layer reads the price and availability.
 */
@@ -100,6 +100,9 @@ interface ShopifySubscriptionProduct {
   cadence: MetafieldValue | null;
   effective: MetafieldValue | null;
   recommended: MetafieldValue | null;
+  sellingPlanGroups: {
+    nodes: Array<{ name: string; sellingPlans: { nodes: Array<{ id: string; name: string }> } }>;
+  };
 }
 
 interface ShopifySubscriptionsResponse {
@@ -222,9 +225,11 @@ export async function getSubscriptionPlans(): Promise<SubscriptionPlan[]> {
       ...plan,
       // Shopify is authoritative for price and cadence when present; copy
       // and unset prices fall back to the local plan.
-      price: price ? (plan.id === "gift" ? `from ${price}` : price) : plan.price,
+      price: price ?? plan.price,
       priceDetail: mf(match.cadence) ?? plan.priceDetail,
       variantId: match.variants.nodes[0]?.id ?? null,
+      sellingPlanId:
+        match.sellingPlanGroups.nodes[0]?.sellingPlans.nodes[0]?.id ?? null,
       available: match.availableForSale,
     };
   });

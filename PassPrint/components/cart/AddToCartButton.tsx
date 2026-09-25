@@ -5,6 +5,8 @@ import { useCart } from "./CartProvider";
 interface AddToCartButtonProps {
   /** Storefront ProductVariant GID. Null when running on local fallback. */
   variantId: string | null;
+  /** Makes the line a subscription (Shopify selling plan). */
+  sellingPlanId?: string | null;
   available?: boolean;
   label?: string;
   variant?: "ink" | "framed";
@@ -18,6 +20,7 @@ interface AddToCartButtonProps {
  */
 export function AddToCartButton({
   variantId,
+  sellingPlanId = null,
   available = true,
   label = "Add to cart",
   variant = "ink",
@@ -44,7 +47,7 @@ export function AddToCartButton({
     <button
       type="button"
       disabled={disabled}
-      onClick={() => variantId && addItem(variantId, 1)}
+      onClick={() => variantId && addItem(variantId, 1, sellingPlanId)}
       className={`${base} ${look} ${className}`}
       aria-label={variantId ? `${label} — ${variantId}` : "Not yet available for purchase"}
     >

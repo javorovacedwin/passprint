@@ -85,7 +85,7 @@ export default async function HomePage() {
           Every month one country, and in time every country in the world,
           painted and printed in a numbered run. The first envelope goes out in{" "}
           <strong className="font-semibold text-ink">{localEdition.month}</strong>, and it
-          can be ordered now.
+          you can join the club now.
         </p>
         <div className="mt-6">
           <ButtonLink href="/collection#passprint" variant="framed">
@@ -94,7 +94,10 @@ export default async function HomePage() {
         </div>
       </ImageBanner>
 
-      <FeaturedArtwork edition={currentEdition} />
+      <FeaturedArtwork
+        edition={currentEdition}
+        monthlyPlan={plans.find((p) => p.id === "monthly")}
+      />
 
       <StudioWorks index="§ 03" />
 

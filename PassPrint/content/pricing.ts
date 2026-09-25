@@ -23,15 +23,13 @@ export interface Money {
 }
 
 export interface PlanPricing {
-  id: "monthly" | "annual" | "gift";
+  id: "monthly" | "six-months" | "annual";
   /** Headline price shown on the plan. */
   price: Money;
   /** Billing cadence label, e.g. "per month". */
   cadence: string;
-  /** Optional effective/comparison note, e.g. "€17 per month". */
+  /** Optional effective/comparison note, e.g. "€16 per month". */
   effective?: string;
-  /** For the gift plan: the lowest of several term prices. */
-  from?: boolean;
 }
 
 export const currency = {
@@ -42,8 +40,9 @@ export const currency = {
 };
 
 /**
- * PLACEHOLDER launch pricing. €18/month is intentionally below the earlier
- * €24 to suit the launch audience — adjust once quotes are in.
+ * Three terms: one month, six months or a year. The longer terms are paid
+ * up front and carry the discount — €18 a month, €16 a month for six, €15
+ * a month for twelve. PLACEHOLDER amounts; adjust once quotes are in.
  */
 export const planPricing: Record<PlanPricing["id"], PlanPricing> = {
   monthly: {
@@ -51,17 +50,17 @@ export const planPricing: Record<PlanPricing["id"], PlanPricing> = {
     price: { amount: 18, currency: "EUR" },
     cadence: "per month",
   },
+  "six-months": {
+    id: "six-months",
+    price: { amount: 96, currency: "EUR" },
+    cadence: "every 6 months",
+    effective: "€16 per month · save €12",
+  },
   annual: {
     id: "annual",
-    price: { amount: 192, currency: "EUR" },
-    cadence: "once, for the year",
-    effective: "€16 per month",
-  },
-  gift: {
-    id: "gift",
-    price: { amount: 54, currency: "EUR" },
-    cadence: "3, 6 or 12 editions, paid once",
-    from: true,
+    price: { amount: 180, currency: "EUR" },
+    cadence: "once a year",
+    effective: "€15 per month · save €36",
   },
 };
 
@@ -91,7 +90,7 @@ export function formatPrice(money: Money): string {
   return `${currency.symbol}${value}`;
 }
 
-/** Format as "from €54", used for the gift plan. */
+/** Format as "from €18". */
 export function formatFrom(money: Money): string {
   return `from ${formatPrice(money)}`;
 }

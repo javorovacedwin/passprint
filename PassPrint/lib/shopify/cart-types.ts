@@ -13,6 +13,8 @@ export interface CartLine {
   handle: string;
   merchandiseId: string;
   price: CartMoney;
+  /** The subscription this line renews on, e.g. "Delivered every month". */
+  sellingPlan: string | null;
 }
 
 export interface Cart {

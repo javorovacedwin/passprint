@@ -22,7 +22,7 @@ interface SubscriptionPlansProps {
 const planInk: Record<string, { band: string; deep: string; badge: string }> = {
   monthly: { band: "var(--color-cobalt)", deep: "var(--color-cobalt-deep)", badge: "bg-cobalt text-paper" },
   annual: { band: "var(--color-vermilion)", deep: "var(--color-vermilion-deep)", badge: "bg-vermilion text-paper" },
-  gift: { band: "var(--color-marigold)", deep: "var(--color-marigold-deep)", badge: "bg-marigold text-ink" },
+  "six-months": { band: "var(--color-marigold)", deep: "var(--color-marigold-deep)", badge: "bg-marigold text-ink" },
 };
 
 export function SubscriptionPlans({ plans, purchasable = false }: SubscriptionPlansProps) {
@@ -63,7 +63,10 @@ export function SubscriptionPlans({ plans, purchasable = false }: SubscriptionPl
           <div className="mt-7">
             {purchasable ? (
               <AddToCartButton
-                variantId={plan.variantId ?? null}
+                // Without a selling plan Shopify would charge once, not every
+                // term — so the button stays shut until the plan exists.
+                variantId={plan.sellingPlanId ? plan.variantId ?? null : null}
+                sellingPlanId={plan.sellingPlanId ?? null}
                 available={plan.available ?? true}
                 label={plan.cta}
                 variant={plan.recommended ? "ink" : "framed"}

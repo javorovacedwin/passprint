@@ -26,6 +26,7 @@ interface RawCart {
     nodes: Array<{
       id: string;
       quantity: number;
+      sellingPlanAllocation: { sellingPlan: { id: string; name: string } } | null;
       merchandise: {
         id: string;
         title: string;
@@ -56,6 +57,7 @@ function mapCart(raw: RawCart): Cart {
         handle: n.merchandise.product.handle,
         merchandiseId: n.merchandise.id,
         price: n.merchandise.price,
+        sellingPlan: n.sellingPlanAllocation?.sellingPlan.name ?? null,
       })
     ),
   };
@@ -66,10 +68,19 @@ const NO_CACHE = 0;
 
 export { isShopifyConfigured };
 
-export async function createCart(merchandiseId: string, quantity: number): Promise<Cart | null> {
+/** A cart line; a selling plan turns it into a subscription. */
+function lineInput(merchandiseId: string, quantity: number, sellingPlanId?: string | null) {
+  return sellingPlanId ? { merchandiseId, quantity, sellingPlanId } : { merchandiseId, quantity };
+}
+
+export async function createCart(
+  merchandiseId: string,
+  quantity: number,
+  sellingPlanId?: string | null
+): Promise<Cart | null> {
   const data = await shopifyFetch<{ cartCreate: CartMutationResult }>({
     query: CART_CREATE,
-    variables: { lines: [{ merchandiseId, quantity }] },
+    variables: { lines: [lineInput(merchandiseId, quantity, sellingPlanId)] },
     revalidate: NO_CACHE,
   });
   const raw = data?.cartCreate.cart;
@@ -79,11 +90,12 @@ export async function createCart(merchandiseId: string, quantity: number): Promi
 export async function addLine(
   cartId: string,
   merchandiseId: string,
-  quantity: number
+  quantity: number,
+  sellingPlanId?: string | null
 ): Promise<Cart | null> {
   const data = await shopifyFetch<{ cartLinesAdd: CartMutationResult }>({
     query: CART_LINES_ADD,
-    variables: { cartId, lines: [{ merchandiseId, quantity }] },
+    variables: { cartId, lines: [lineInput(merchandiseId, quantity, sellingPlanId)] },
     revalidate: NO_CACHE,
   });
   const raw = data?.cartLinesAdd.cart;
