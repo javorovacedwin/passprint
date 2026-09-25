@@ -12,7 +12,6 @@ const EDITION_METAFIELDS = `
   number: metafield(namespace: "passprint", key: "edition_number") { value }
   month: metafield(namespace: "passprint", key: "month") { value }
   monthCode: metafield(namespace: "passprint", key: "month_code") { value }
-  city: metafield(namespace: "passprint", key: "city") { value }
   country: metafield(namespace: "passprint", key: "country") { value }
   region: metafield(namespace: "passprint", key: "region") { value }
   subject: metafield(namespace: "passprint", key: "subject") { value }
@@ -27,8 +26,8 @@ const EDITION_METAFIELDS = `
 
 /**
  * One PassPrint collection and its twelve edition products. Each edition
- * carries its own city/country/region metafields — a collection is now a
- * region-spanning set of cities (Yugo), not one place.
+ * carries its own country metafield — a collection is a set of twelve
+ * countries (Atlas), not one place.
  */
 export const COLLECTION_QUERY = /* GraphQL */ `
   query PassPrintCollection($handle: String!, $first: Int!) {

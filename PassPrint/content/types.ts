@@ -1,7 +1,7 @@
 export type EditionStatus = "current" | "announced" | "sealed" | "published";
 
 export interface Edition {
-  /** Archive code, e.g. "YU-01". */
+  /** Archive code, e.g. "AT-01". */
   code: string;
   /** 1–12 within the collection. */
   number: number;
@@ -9,13 +9,11 @@ export interface Edition {
   month: string;
   /** Short month code for stamps, e.g. "08.2026". */
   monthCode: string;
-  /** The city this edition depicts — each edition travels somewhere new. */
-  city: string;
-  /** Country is orientation only, never a theme. */
+  /** The country this edition depicts — each edition goes somewhere new. */
   country: string;
   /** Historical/cultural region within the country, when it earns its place, e.g. "Herzegovina". Omit rather than force one. */
   region?: string;
-  /** The facet of the city this edition depicts, e.g. "The old bridge". */
+  /** The facet of the country this edition depicts, e.g. "The old bridge". */
   subject: string;
   /** The specific site, in local spelling, e.g. "Stari Most". */
   site: string;
@@ -25,7 +23,7 @@ export interface Edition {
   technique: string | null;
   /** Hand-numbered run size; null until announced. */
   editionSize: number | null;
-  /** Slug of the artist who lives in this edition's city; null until cast. */
+  /** Slug of the artist who draws this edition; null until cast. */
   artistSlug: string | null;
   status: EditionStatus;
   /** One or two factual sentences. Empty until announced. */
@@ -40,10 +38,10 @@ export interface Collection {
   /** e.g. "COLLECTION 01". */
   code: string;
   number: number;
-  /** The collection's name, e.g. "Yugo". */
+  /** The collection's name, e.g. "Atlas". */
   title: string;
   /**
-   * Orientation only, never a unity: each edition's city, artist and story
+   * Orientation only, never a unity: each edition's country, artist and story
    * stand on their own — this is not "one culture" told in twelve parts.
    */
   region: string;
@@ -129,12 +127,10 @@ export interface FaqEntry {
   answer: string;
 }
 
-export interface VoteRegion {
+export interface VoteCountry {
   id: string;
   name: string;
-  /** Three example places a collection there could visit. */
-  samplePlaces: string[];
-  /** One factual sentence on why this region is makeable. */
+  /** One sentence on what the edition would draw — no cities named. */
   reason: string;
   coordinates: string;
 }

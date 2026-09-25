@@ -12,7 +12,7 @@ import { landRings } from "@/content/land";
   Not a satellite Earth: a matte sphere in paper tones carrying an engraved
   coastline, a thin graticule, the two cities of the first leg, and a plane
   flying the route the envelopes actually travel — Antwerpen to Mostar, the
-  opening city of Yugo.
+  opening edition of Atlas.
   Coasts only; no borders are drawn anywhere on the site.
 */
 

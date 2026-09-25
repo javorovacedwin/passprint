@@ -13,6 +13,8 @@ interface WordmarkProps {
   uid?: string;
   /** The name set beside the seal. The site is PassPrint; the header shows the artist. */
   name?: string;
+  /** Sets the name in the studio face (Prata) instead of the display serif. */
+  brand?: boolean;
 }
 
 /**
@@ -28,6 +30,7 @@ export function Wordmark({
   paper,
   uid = "wm",
   name = "PassPrint",
+  brand = false,
 }: WordmarkProps) {
   return (
     <span className={`inline-flex items-center gap-[0.42em] ${className}`}>
@@ -43,7 +46,7 @@ export function Wordmark({
       )}
       <span className="inline-flex flex-col leading-none">
         <span
-          className="font-serif-display tracking-[0.01em]"
+          className={brand ? "font-brand" : "font-serif-display tracking-[0.01em]"}
           style={{ fontFeatureSettings: '"liga"' }}
         >
           {name}

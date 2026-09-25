@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { JourneyTimeline } from "@/components/collection/JourneyTimeline";
-import { yugoCollection } from "@/content/collections";
+import { atlasCollection } from "@/content/collections";
 
 /**
  * The year, in one place. This used to be two sections — a timeline and a
@@ -10,20 +10,19 @@ import { yugoCollection } from "@/content/collections";
  * twelve of them make a set worth completing.
  */
 export function CurrentJourney() {
-  const announced = yugoCollection.editions.filter((e) => e.status === "announced");
+  const announced = atlasCollection.editions.filter((e) => e.status === "announced");
 
   return (
     <section className="security-tint border-y border-ink/25 bg-verde/[0.06] py-24">
       <div className="mx-auto max-w-[var(--container-page)] px-gutter">
         <SectionHeader
           index="§ 03"
-          label={`${yugoCollection.code} · ${yugoCollection.year}`}
+          label={`${atlasCollection.code} · ${atlasCollection.year}`}
           title="Twelve envelopes make one collection"
         />
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.02rem] leading-relaxed text-ink-soft">
-          The launch collection crosses six countries that used to be one,
-          one city a month, for a full year — Mostar, Sarajevo, Beograd and
-          nine more, all drawn by the same hand. Each city is announced a
+          One country a month, and in time every country in the world, all
+          drawn by the same hand. Each country is announced a
           few months ahead; the last are sealed until they ship. Complete
           the year and you receive the closing stamp and a thirteenth
           print.
@@ -37,9 +36,9 @@ export function CurrentJourney() {
           <div>
             <dt className="text-pencil">Open now</dt>
             <dd className="mt-1 text-ink">
-              {yugoCollection.editions
+              {atlasCollection.editions
                 .filter((e) => e.status === "current")
-                .map((e) => `${e.code} · ${e.city}`)
+                .map((e) => `${e.code} · ${e.country}`)
                 .join(", ")}{" "}
               — until the 20th
             </dd>
@@ -47,7 +46,7 @@ export function CurrentJourney() {
           <div>
             <dt className="text-pencil">Announced next</dt>
             <dd className="mt-1 text-ink">
-              {announced.map((e) => `${e.city} — ${e.subject.toLowerCase()}`).join(", ")}
+              {announced.map((e) => `${e.country} — ${e.subject.toLowerCase()}`).join(", ")}
             </dd>
           </div>
           <div>
@@ -58,7 +57,7 @@ export function CurrentJourney() {
 
         <div className="mt-8">
           <ButtonLink href="/collection" variant="text">
-            The full catalogue, city by city →
+            The full catalogue, country by country →
           </ButtonLink>
         </div>
       </div>

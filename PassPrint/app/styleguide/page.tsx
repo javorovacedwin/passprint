@@ -65,7 +65,7 @@ export default function StyleguidePage() {
           fully readable at small sizes.
         </p>
         <p className="font-mono text-[0.82rem] text-pencil">
-          IBM PLEX MONO — YU-01 · MOSTAR · 43.3438 N, 17.8078 E · EDITION OF 180
+          IBM PLEX MONO — AT-01 · BOSNIA AND HERZEGOVINA · 43.3438 N, 17.8078 E · EDITION OF 180
         </p>
       </div>
 

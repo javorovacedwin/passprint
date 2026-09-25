@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { StampMark } from "@/components/ui/StampMark";
 import { CartoucheLogo } from "@/components/brand/CartoucheLogo";
 import { ButtonLink } from "@/components/ui/Button";
-import { yugoCollection } from "@/content/collections";
+import { atlasCollection } from "@/content/collections";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why PassPrint exists, what Yugo is, who reads the stories before they print, and how the work is made.",
+    "Why PassPrint exists, what Atlas is, who reads the stories before they print, and how the work is made.",
 };
 
 export default function AboutPage() {
@@ -40,7 +40,7 @@ export default function AboutPage() {
             <p>
               PassPrint started from a simple observation: those stories
               usually live in families, not in guidebooks. Each month we
-              travel to a different city and ask the same artist — someone
+              travel to a different country and ask the same artist — someone
               with an actual reason to be there — to draw it, paint it or
               print it. Not the postcard version — the version seen by
               someone who has something to do with it.
@@ -53,19 +53,15 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <h2 className="font-serif-display mt-14 text-2xl">Why the collection is called {yugoCollection.title}</h2>
+          <h2 className="font-serif-display mt-14 text-2xl">One country a month</h2>
           <div className="mt-4 space-y-6 text-[1.02rem] leading-relaxed text-ink-soft">
             <p>
-              {yugoCollection.title} visits six countries that were, until
-              1991, one: Bosnia and Herzegovina, Serbia, Croatia, Slovenia,
-              Montenegro and North Macedonia. It is not a collection about
-              why they split — that story is told everywhere else. It is a
-              collection about what a shared bazaar street, a shared
-              fortress wall, a shared bridge still look like from Ljubljana to
-              Skopje, once you stop sorting them by faith or flag.
+              PassPrint goes country by country — one country a month, and
+              in time every country in the world. Each country is announced
+              with its edition, and members vote on where the next one goes.
             </p>
             <p>
-              No borders are drawn on any map on this site, and no city is
+              No borders are drawn on any map on this site, and no country is
               introduced by which side of a war it was on. Each one is
               introduced the way the rest of the site introduces a place: by
               name, by river, by what still stands.
@@ -74,7 +70,7 @@ export default function AboutPage() {
 
           <h2 className="font-serif-display mt-12 text-2xl">How the work is made</h2>
           <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
-            Every edition of {yugoCollection.title} is drawn by one artist,
+            Every edition of {atlasCollection.title} is drawn by one artist,
             Bakir C., a painter from Novi Pazar. Every story is still read before printing by
             someone from the place it describes, and that reader is credited
             by name on the card. We name buildings and people, never a
@@ -87,7 +83,7 @@ export default function AboutPage() {
             The production never changes. Every edition — and every future
             collection — uses the same paper, the same print quality, the same
             finish and the same packaging. Only the artwork, the place, the
-            story and the envelope colour change. When we travel to a new city,
+            story and the envelope colour change. When we travel to a new country,
             the object in your letterbox is made to exactly the same standard.
           </p>
 
@@ -109,7 +105,7 @@ export default function AboutPage() {
               <div>
                 <dt className="text-pencil">Launch edition</dt>
                 <dd className="mt-1 text-ink">
-                  {yugoCollection.launchMonth} · city coming soon
+                  {atlasCollection.launchMonth} · country coming soon
                 </dd>
               </div>
               <div>
@@ -119,7 +115,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <dt className="text-pencil">Region</dt>
-                <dd className="mt-1 text-ink">{yugoCollection.region}</dd>
+                <dd className="mt-1 text-ink">{atlasCollection.region}</dd>
               </div>
             </dl>
           </div>

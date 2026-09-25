@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { newsreader, plexMono, plexSans } from "@/lib/fonts";
+import { newsreader, plexMono, plexSans, prata } from "@/lib/fonts";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/motion/MotionProvider";
@@ -11,11 +11,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "bakirpaints — PassPrint",
+    default: "Pressio Atelier — PassPrint",
     template: "%s — PassPrint",
   },
   description:
-    "A monthly art publication in an envelope. An A5 print, an A6 companion and one story a month, drawn by an artist from the place. Collection 01: Yugo, opening October 2026.",
+    "A monthly art publication in an envelope. An A5 print, an A6 companion and one story a month, drawn by an artist from the place. Collection 01: Atlas, one country a month, opening October 2026.",
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable} ${prata.variable}`}
     >
       <body>
         <a href="#content" className="skip-link">

@@ -18,6 +18,12 @@ export const revalidate = 3600;
 
 const work = (slug: string) => studioWorks.find((w) => w.slug === slug)!;
 
+/** The opening picture — a studio painting shown on its own, not for sale here. */
+const heroImage = {
+  src: "/artworks/HomeHero.jpeg",
+  alt: "Abstract painting in layered earth tones — rust, plum and warm grey — with pale, scraped patches of cream and blue-white and fine dark lines drawn across the surface.",
+};
+
 /*
   The homepage is laid out like an artist's own shop: the paintings first
   and full width, then a rack of prints, the monthly edition, the whole
@@ -31,16 +37,15 @@ export default async function HomePage() {
     getCurrentEdition(),
   ]);
 
-  const hero = work("two-boats-one-horizon");
   const middle = work("into-the-unknown");
   const closing = work("where-the-light-falls");
 
   return (
     <>
-      <ImageBanner src={hero.image.src} alt={hero.image.alt} focus="50% 55%" priority>
+      <ImageBanner src={heroImage.src} alt={heroImage.alt} focus="50% 45%" priority>
         <p className="mono-label">PassPrint · the studio of Bakir C.</p>
-        <h1 className="font-serif-display mt-3 text-[clamp(2.8rem,7vw,5.2rem)] leading-[0.95]">
-          bakirpaints
+        <h1 className="font-brand mt-3 text-[clamp(2.6rem,6.4vw,4.8rem)]">
+          Pressio Atelier
         </h1>
         <p className="mt-5 text-[1.08rem] leading-relaxed text-ink-soft">
           Glad you&apos;re here. These are the paintings from my studio in
@@ -72,15 +77,15 @@ export default async function HomePage() {
       <PrintsCarousel />
 
       <ImageBanner src={middle.image.src} alt={middle.image.alt} align="right" focus="50% 40%">
-        <p className="mono-label">Collection 01 · Yugo</p>
+        <p className="mono-label">Collection 01 · Atlas</p>
         <h2 className="font-serif-display mt-3 text-[clamp(2rem,4.6vw,3.2rem)]">
-          Twelve cities. One hand.
+          Every country. One hand.
         </h2>
         <p className="mt-4 leading-relaxed text-ink-soft">
-          Every month one city from the six countries that used to be one,
+          Every month one country, and in time every country in the world,
           painted and printed in a numbered run. The first envelope goes out in{" "}
-          <strong className="font-semibold text-ink">{localEdition.month}</strong> — which
-          city is coming soon.
+          <strong className="font-semibold text-ink">{localEdition.month}</strong>, and it
+          can be ordered now.
         </p>
         <div className="mt-6">
           <ButtonLink href="/collection#passprint" variant="framed">

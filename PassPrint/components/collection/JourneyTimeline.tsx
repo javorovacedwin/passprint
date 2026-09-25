@@ -1,6 +1,6 @@
 import { ArtworkPlaceholder } from "@/components/artwork/ArtworkPlaceholder";
 import { inkFor } from "@/components/ui/Ornaments";
-import { isConcealed, yugoCollection } from "@/content/collections";
+import { isConcealed, atlasCollection } from "@/content/collections";
 import type { Edition } from "@/content/types";
 
 function EditionField({ edition }: { edition: Edition }) {
@@ -37,7 +37,7 @@ function EditionField({ edition }: { edition: Edition }) {
         {withArt ? (
           <ArtworkPlaceholder
             seedKey={edition.code}
-            title={isConcealed(edition) ? `Edition artwork — ${edition.month}` : `Edition artwork — ${edition.subject}, ${edition.city}`}
+            title={isConcealed(edition) ? `Edition artwork — ${edition.month}` : `Edition artwork — ${edition.subject}, ${edition.country}`}
             className="block h-full w-full"
           />
         ) : (
@@ -48,7 +48,7 @@ function EditionField({ edition }: { edition: Edition }) {
       </div>
 
       <p className="mt-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-accent-deep">
-        {edition.city !== "———" ? edition.city : "———"}
+        {edition.country}
       </p>
       <p className="font-serif-book mt-1 text-xl font-bold">
         {toBeRevealed ? (
@@ -75,13 +75,13 @@ function EditionField({ edition }: { edition: Edition }) {
 
 /**
  * The collection as a horizontal shelf of monthly chapters — twelve
- * different former-Yugoslav cities — joined by one cartographic dashed
+ * different countries — joined by one cartographic dashed
  * route. Until an edition is announced its card reads "Coming soon" in
- * place of the city (see `conceal` in content/collections.ts).
+ * place of the country (see `conceal` in content/collections.ts).
  */
 export function JourneyTimeline({
-  editions = yugoCollection.editions,
-  code = yugoCollection.code,
+  editions = atlasCollection.editions,
+  code = atlasCollection.code,
 }: {
   editions?: Edition[];
   code?: string;

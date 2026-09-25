@@ -24,7 +24,7 @@ export const artists: Artist[] = [
     quote: "",
     biography: [
       "Bakir Ćosović — Bakir C. on every work he signs — was born in Novi Pazar in the last years of Yugoslavia, and paints there.",
-      "He is the sole artist behind PassPrint's first collection: twelve monthly editions, twelve cities across six countries that used to be one, made over a year by the same hand.",
+      "He is the sole artist behind PassPrint's first collection: twelve monthly editions, one country a month, made over a year by the same hand.",
     ],
     philosophy: [],
     process: [],
@@ -34,9 +34,9 @@ export const artists: Artist[] = [
     connection: "",
     featuredWorks: [
       // Edition names are withheld until each is announced — see conceal() in content/collections.ts.
-      { editionCode: "YU-01", title: "Coming soon", subject: "October 2026", technique: "Screen print, two layers" },
-      { editionCode: "YU-02", title: "Coming soon", subject: "November 2026", technique: "Giclée" },
-      { editionCode: "YU-03", title: "Coming soon", subject: "December 2026", technique: "Screen print" },
+      { editionCode: "AT-01", title: "Coming soon", subject: "October 2026", technique: "Screen print, two layers" },
+      { editionCode: "AT-02", title: "Coming soon", subject: "November 2026", technique: "Screen print" },
+      { editionCode: "AT-03", title: "Coming soon", subject: "December 2026", technique: "Screen print" },
     ],
     collectionCodes: ["COLLECTION 01"],
   },

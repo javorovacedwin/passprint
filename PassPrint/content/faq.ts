@@ -59,7 +59,7 @@ export const faqEntries: FaqEntry[] = [
     group: "The artists",
     question: "Who makes the work?",
     answer:
-      "Every edition of Yugo is made by one artist, Bakir C., a painter from Novi Pazar. Future collections are made by artists with the same kind of real connection to their place. Every name, city and technique is printed on the story card.",
+      "Every edition of Atlas is made by one artist, Bakir C., a painter from Novi Pazar. Future collections are made by artists with the same kind of real connection to their place. Every name, country and technique is printed on the story card.",
   },
   {
     group: "The artists",

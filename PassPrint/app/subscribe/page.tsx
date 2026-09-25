@@ -30,7 +30,7 @@ export default async function SubscribePage() {
         </h1>
         <p className="mt-6 max-w-[var(--container-measure)] text-[1.05rem] leading-relaxed text-ink-soft">
           Order before the 20th and your first envelope is this month&apos;s
-          edition — {currentEdition.code}, {currentEdition.month}, its city
+          edition — {currentEdition.code}, {currentEdition.month}, its country
           still coming soon. After the 20th you start with the next one;
           we say so before you pay, not after.
         </p>

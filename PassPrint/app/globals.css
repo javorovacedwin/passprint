@@ -117,6 +117,14 @@ body {
 
 /* --- editorial voices ------------------------------------------------- */
 
+/* the studio name — Prata, quiet and unbolded */
+.font-brand {
+  font-family: var(--font-prata), "Prata", georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
 .font-serif-display {
   font-family: var(--font-serif);
   font-weight: 800;

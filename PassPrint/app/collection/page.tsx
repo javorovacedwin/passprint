@@ -50,7 +50,7 @@ export default async function CollectionPage() {
 
   return (
     <div className="mx-auto max-w-[var(--container-page)] px-gutter py-16">
-      <p className="mono-label">bakirpaints · PassPrint</p>
+      <p className="mono-label">Pressio Atelier · PassPrint</p>
       <h1 className="font-serif-display mt-4 text-[clamp(2.6rem,7vw,4.6rem)]">Collection</h1>
 
       <div className="mt-10">
@@ -92,12 +92,12 @@ export default async function CollectionPage() {
               panel: (
                 <>
                   <TabIntro>
-                    Once a month, one city in an envelope: a numbered{" "}
+                    Once a month, one country in an envelope: a numbered{" "}
                     {production.mainFormat} print, an {production.companionFormat}{" "}
-                    companion and the story of the place. The first collection travels
-                    twelve cities across six countries that used to be one,
-                    starting {yugo.launchMonth}. Each city is announced with
-                    its edition — until then, coming soon.
+                    companion and the story of the place. PassPrint goes country
+                    by country — in time, every country in the world — starting{" "}
+                    {yugo.launchMonth}. Each country is announced with its
+                    edition — until then, coming soon.
                   </TabIntro>
                   <JourneyTimeline editions={yugo.editions} code={yugo.code} />
                   <div className="mt-12 flex flex-wrap items-center gap-6">

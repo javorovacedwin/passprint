@@ -35,9 +35,9 @@ export function ClosingStatement() {
 
         <div className="mt-12 flex flex-col items-center gap-6 text-center">
           <p className="font-serif-display max-w-2xl text-[clamp(1.6rem,3.4vw,2.6rem)] leading-[1.15]">
-            Twelve cities. One collection.
+            One country a month.
             <br />
-            <span className="text-marigold">Begin with {currentEdition.city}.</span>
+            <span className="text-marigold">Begin with {currentEdition.country}.</span>
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <ButtonLink href="/subscribe" variant="vermilion">

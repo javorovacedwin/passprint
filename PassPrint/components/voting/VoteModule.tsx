@@ -4,7 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import { motion } from "motion/react";
 import { StampMark } from "@/components/ui/StampMark";
 import { useLocale } from "@/components/i18n/LocaleProvider";
-import { voteRegions } from "@/content/regions";
+import { voteCountries } from "@/content/countries";
 import {
   getVoteTallyAction,
   submitVoteAction,
@@ -18,7 +18,7 @@ import {
   convenience, not the record.
 */
 
-const STORAGE_KEY = "passprint-vote-region";
+const STORAGE_KEY = "passprint-vote-country";
 
 interface Tally {
   [regionId: string]: number;
@@ -48,7 +48,8 @@ export function VoteModule() {
     });
   }, []);
 
-  const totalVotes = Object.values(tally).reduce((a, b) => a + b, 0);
+  // Count only votes for countries on the current ballot.
+  const totalVotes = voteCountries.reduce((sum, c) => sum + (tally[c.id] ?? 0), 0);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,7 +67,7 @@ export function VoteModule() {
   };
 
   const message: Record<VoteResult["status"], string> = {
-    recorded: "Your vote has been entered into the next route.",
+    recorded: "Your vote has been entered for next month's country.",
     duplicate: "You have already voted — one vote per address. Thank you.",
     "invalid-email": "That address doesn't look right. Check it and try again.",
     unconfigured:
@@ -82,16 +83,16 @@ export function VoteModule() {
   return (
     <form onSubmit={submit}>
       <fieldset disabled={confirmed || pending}>
-        <legend className="sr-only">Choose the region for Collection 02</legend>
+        <legend className="sr-only">Choose the country for next month</legend>
         <div className="grid gap-5 sm:grid-cols-2">
-          {voteRegions.map((region) => {
-            const isSelected = selected === region.id;
-            const count = tally[region.id] ?? 0;
+          {voteCountries.map((country) => {
+            const isSelected = selected === country.id;
+            const count = tally[country.id] ?? 0;
             const share = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
 
             return (
               <label
-                key={region.id}
+                key={country.id}
                 className={`relative block cursor-pointer p-5 transition-colors duration-[var(--duration-ui)] ${
                   isSelected
                     ? "print-block"
@@ -100,21 +101,18 @@ export function VoteModule() {
               >
                 <input
                   type="radio"
-                  name="next-region"
-                  value={region.id}
+                  name="next-country"
+                  value={country.id}
                   checked={isSelected}
-                  onChange={() => setSelected(region.id)}
+                  onChange={() => setSelected(country.id)}
                   className="sr-only"
                 />
                 <span className="flex items-baseline justify-between gap-3">
-                  <span className="font-serif-display text-2xl">{region.name}</span>
-                  <span className="mono-label">{region.coordinates}</span>
-                </span>
-                <span className="mt-3 block font-mono text-[0.72rem] uppercase tracking-[0.06em] text-pencil">
-                  e.g. {region.samplePlaces.join(" · ")}
+                  <span className="font-serif-display text-2xl">{country.name}</span>
+                  <span className="mono-label">{country.coordinates}</span>
                 </span>
                 <span className="mt-3 block text-[0.95rem] leading-relaxed text-ink-soft">
-                  {region.reason}
+                  {country.reason}
                 </span>
 
                 {/* standings, shown as a ruled bar once votes exist */}
@@ -140,7 +138,7 @@ export function VoteModule() {
                     className="absolute -right-3 -top-4"
                   >
                     <StampMark
-                      legend={region.name.toUpperCase()}
+                      legend={country.name.toUpperCase()}
                       size={72}
                       className={confirmed ? "" : "stamp-in"}
                     />

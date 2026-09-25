@@ -1,4 +1,4 @@
-import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader, Prata } from "next/font/google";
 
 /*
   Two visual voices plus one mono, self-hosted by next/font at build time.
@@ -27,5 +27,13 @@ export const plexMono = IBM_Plex_Mono({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
+  display: "swap",
+});
+
+/** The studio name, "Pressio Atelier" — set in Prata, one weight only. */
+export const prata = Prata({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-prata",
   display: "swap",
 });

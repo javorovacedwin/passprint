@@ -33,7 +33,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     priceDetail: `${planPricing.annual.cadence} · ${planPricing.annual.effective}`,
     summary: "All twelve editions of the collection, paid once.",
     items: [
-      "Twelve monthly editions — one former-Yugoslav city a month, from October 2026",
+      "Twelve monthly editions — one country a month, from October 2026",
       "The collector's archive folder, sized for the full set",
       "The final print — a thirteenth work, members only",
       "Your edition number reserved for the whole year",

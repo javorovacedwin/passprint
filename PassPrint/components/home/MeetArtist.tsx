@@ -6,7 +6,7 @@ import { currentEdition } from "@/content/collections";
 
 /**
  * The maker, not a marketing element. Bakir C. is the sole artist behind
- * Yugo — every city in the collection is drawn by the same hand. The
+ * Atlas — every country in the collection is drawn by the same hand. The
  * portrait area is an honest placeholder — a labelled frame, not a fake
  * face.
  */
@@ -19,7 +19,7 @@ export function MeetArtist() {
         <SectionHeader
           index="§ 04"
           label="The maker"
-          title="One artist. Twelve editions. Six countries."
+          title="One artist. One country a month."
           ink="rosa"
         />
 
@@ -44,7 +44,7 @@ export function MeetArtist() {
               {artist.connection}
             </p>
             <p className="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
-              As the sole artist of Yugo, Bakir makes every main print,
+              As the sole artist of Atlas, Bakir makes every main print,
               companion study and story card in the collection — twelve
               editions, one hand. Each story is also read before printing by
               someone from the place it describes, credited by name on the

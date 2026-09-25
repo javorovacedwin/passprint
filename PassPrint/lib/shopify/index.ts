@@ -1,6 +1,6 @@
 import { isShopifyConfigured, shopifyFetch } from "./client";
 import { COLLECTION_QUERY, SUBSCRIPTION_PRODUCTS_QUERY } from "./queries";
-import { conceal, yugoCollection } from "@/content/collections";
+import { COMING_SOON, conceal, atlasCollection } from "@/content/collections";
 import { subscriptionPlans as localPlans } from "@/content/subscriptions";
 import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/content/types";
 
@@ -17,25 +17,25 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
     3. falls back to the local content files on any miss.
 
   ── How to add a new EDITION in Shopify ────────────────────────────────
-  Create a product in the collection for that city and set these metafields
+  Create a product in the collection for that country and set these metafields
   (namespace `passprint`, all single-line text unless noted):
 
-    edition_code    YU-05            month         February 2027
-    edition_number  5 (integer)      month_code    02.2027
-    city            Zagreb           country       Croatia
+    edition_code    AT-04            month         January 2027
+    edition_number  4 (integer)      month_code    01.2027
+    country         Slovenia
     region          (optional, e.g. "Herzegovina")
-    subject         The upper town
-    site            Gornji grad
-    coordinates     45.8150 N, 15.9785 E
-    technique       Giclée           edition_size  180 (integer)
+    subject         The triple bridge
+    site            Tromostovje
+    coordinates     46.0511 N, 14.5051 E
+    technique       Screen print     edition_size  180 (integer)
     status          current | announced | sealed | published
     note            One or two factual sentences (multi-line)
     artist_slug     bakir-c — every edition is the same artist
 
-  ── How to add a new COLLECTION (a new region) ─────────────────────────
+  ── How to add a new COLLECTION (the next twelve countries) ─────────────────────────
   Create a Shopify collection, tag it `passprint`, set metafields
   `collection_code`, `region`, `year`, `accent`, `launch_month`, then add its
-  twelve edition products — each one carrying its own city/country. Pass its
+  twelve edition products — each one carrying its own country. Pass its
   handle to getCollection().
 
   ── How to add a SUBSCRIPTION product ─────────────────────────────────
@@ -45,7 +45,7 @@ import type { Collection, Edition, EditionStatus, SubscriptionPlan } from "@/con
   (selling plans); this layer reads the price and availability.
 */
 
-const COLLECTION_HANDLE = "yugo";
+const COLLECTION_HANDLE = "atlas";
 
 interface MetafieldValue {
   value: string | null;
@@ -63,7 +63,6 @@ interface ShopifyEditionProduct {
   number: MetafieldValue | null;
   month: MetafieldValue | null;
   monthCode: MetafieldValue | null;
-  city: MetafieldValue | null;
   country: MetafieldValue | null;
   region: MetafieldValue | null;
   subject: MetafieldValue | null;
@@ -135,8 +134,7 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
     number: number ? Number(number) : 0,
     month: mf(product.month) ?? "",
     monthCode: mf(product.monthCode) ?? "",
-    city: mf(product.city) ?? "———",
-    country: mf(product.country) ?? "———",
+    country: mf(product.country) ?? COMING_SOON,
     region: mf(product.region) ?? undefined,
     subject,
     site: mf(product.site) ?? "———",
@@ -157,7 +155,7 @@ function mapEdition(product: ShopifyEditionProduct): Edition | null {
 export async function getCollection(
   handle: string = COLLECTION_HANDLE
 ): Promise<Collection> {
-  if (!isShopifyConfigured()) return yugoCollection;
+  if (!isShopifyConfigured()) return atlasCollection;
 
   const data = await shopifyFetch<ShopifyCollectionResponse>({
     query: COLLECTION_QUERY,
@@ -165,7 +163,7 @@ export async function getCollection(
   });
 
   const remote = data?.collection;
-  if (!remote) return yugoCollection;
+  if (!remote) return atlasCollection;
 
   const editions = remote.products.nodes
     .map(mapEdition)
@@ -173,16 +171,16 @@ export async function getCollection(
     .sort((a, b) => a.number - b.number);
 
   // A collection with no properly tagged editions is not usable — fall back.
-  if (editions.length === 0) return yugoCollection;
+  if (editions.length === 0) return atlasCollection;
 
   return {
-    code: mf(remote.collectionCode) ?? yugoCollection.code,
-    number: yugoCollection.number,
-    title: remote.title || yugoCollection.title,
-    region: mf(remote.region) ?? yugoCollection.region,
-    year: mf(remote.year) ?? yugoCollection.year,
-    accent: mf(remote.accent) ?? yugoCollection.accent,
-    launchMonth: mf(remote.launchMonth) ?? yugoCollection.launchMonth,
+    code: mf(remote.collectionCode) ?? atlasCollection.code,
+    number: atlasCollection.number,
+    title: remote.title || atlasCollection.title,
+    region: mf(remote.region) ?? atlasCollection.region,
+    year: mf(remote.year) ?? atlasCollection.year,
+    accent: mf(remote.accent) ?? atlasCollection.accent,
+    launchMonth: mf(remote.launchMonth) ?? atlasCollection.launchMonth,
     editions,
   };
 }

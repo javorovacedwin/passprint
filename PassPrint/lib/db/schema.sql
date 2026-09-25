@@ -4,7 +4,7 @@
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- ── Votes for the next collection ───────────────────────────────────────
--- One vote per email address. The region ids match content/regions.ts.
+-- One vote per email address. The ids match content/countries.ts (vote countries).
 create table if not exists public.votes (
   id          uuid primary key default gen_random_uuid(),
   region_id   text        not null,
