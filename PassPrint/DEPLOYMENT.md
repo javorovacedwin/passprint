@@ -270,10 +270,10 @@ Run against the Vercel URL first, then again after DNS on `https://passprint.eu`
    ones you don't want sold yet to Draft or out-of-stock.
 6. **Install the Shopify Subscriptions app** and attach a selling plan to each
    of the three subscription products (already created, tagged `subscription`):
-   - *PassPrint — 1 month* (`subscription-monthly`, €18): deliver and bill every month.
-   - *PassPrint — 6 months* (`subscription-six-months`, €96): prepaid — bill
+   - *PassPrint — 1 month* (`subscription-monthly`, €15): deliver and bill every month.
+   - *PassPrint — 6 months* (`subscription-six-months`, €84): prepaid — bill
      every 6 months, deliver every month.
-   - *PassPrint — 1 year* (`subscription-annual`, €180): prepaid — bill every
+   - *PassPrint — 1 year* (`subscription-annual`, €156): prepaid — bill every
      12 months, deliver every month.
    Until a product has a selling plan its button on the site stays disabled, so
    nobody can be charged once for a "subscription". The Storefront token needs

@@ -41,26 +41,26 @@ export const currency = {
 
 /**
  * Three terms: one month, six months or a year. The longer terms are paid
- * up front and carry the discount — €18 a month, €16 a month for six, €15
+ * up front and carry the discount — €15 a month, €14 a month for six, €13
  * a month for twelve. PLACEHOLDER amounts; adjust once quotes are in.
  */
 export const planPricing: Record<PlanPricing["id"], PlanPricing> = {
   monthly: {
     id: "monthly",
-    price: { amount: 18, currency: "EUR" },
+    price: { amount: 15, currency: "EUR" },
     cadence: "per month",
   },
   "six-months": {
     id: "six-months",
-    price: { amount: 96, currency: "EUR" },
+    price: { amount: 84, currency: "EUR" },
     cadence: "every 6 months",
-    effective: "€16 per month · save €12",
+    effective: "€14 per month · save €6",
   },
   annual: {
     id: "annual",
-    price: { amount: 180, currency: "EUR" },
+    price: { amount: 156, currency: "EUR" },
     cadence: "once a year",
-    effective: "€15 per month · save €36",
+    effective: "€13 per month · save €24",
   },
 };
 
