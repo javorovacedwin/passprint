@@ -266,11 +266,18 @@ Run against the Vercel URL first, then again after DNS on `https://passprint.eu`
    from Shopify domains** (§6b).
 4. **Edit DNS** (§5) — apex `A` → Vercel, `www` CNAME → Vercel, add `shop`
    CNAME → Shopify. Leave MX/TXT alone.
-5. **Decide on future editions** — once YU-02…YU-12 exist in Shopify, set the
+5. **Decide on future editions** — once AT-02…AT-12 exist in Shopify, set the
    ones you don't want sold yet to Draft or out-of-stock.
-6. **Install a Shopify subscriptions app** and attach selling plans to the three
-   subscription products, so Monthly/Annual/Gift actually recur (right now they
-   charge once).
+6. **Install the Shopify Subscriptions app** and attach a selling plan to each
+   of the three subscription products (already created, tagged `subscription`):
+   - *PassPrint — 1 month* (`subscription-monthly`, €18): deliver and bill every month.
+   - *PassPrint — 6 months* (`subscription-six-months`, €96): prepaid — bill
+     every 6 months, deliver every month.
+   - *PassPrint — 1 year* (`subscription-annual`, €180): prepaid — bill every
+     12 months, deliver every month.
+   Until a product has a selling plan its button on the site stays disabled, so
+   nobody can be charged once for a "subscription". The Storefront token needs
+   the `unauthenticated_read_selling_plans` scope.
 7. Optional: add product images in Shopify; add the Dawn → passprint.eu redirect.
 
 Everything in §1–4 of the code (framework, cart, fallback, ISR, secrets) is done

@@ -283,13 +283,14 @@ products — each one carrying its own `city` and `country`.
 ### Adding a subscription product
 
 Create a product, tag it `subscription`, set `plan_id` to `monthly`,
-`annual` or `gift`, plus `cadence` (and optional `effective`,
+`six-months` or `annual`, plus `cadence` (and optional `effective`,
 `recommended`). Prices and availability come from Shopify; the plan **copy**
 stays in `content/subscriptions.ts` so the editorial voice is not written in
 the Shopify admin.
 
-Recurring billing itself needs a Shopify subscriptions app (selling plans);
-this layer reads price and availability.
+Recurring billing needs the Shopify Subscriptions app: attach a selling plan
+to the product. The site reads the first selling plan and sends its id with
+the cart line; without one the plan's button stays disabled.
 
 > **Store status:** `SHOPIFY_STOREFRONT_ACCESS_TOKEN` is unset in this
 > environment, so the site runs entirely on local content
