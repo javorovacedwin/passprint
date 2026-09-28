@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { WorkView } from "@/components/artwork/WorkView";
 import { ButtonLink } from "@/components/ui/Button";
-import { studioWorks, workBySlug } from "@/content/artworks";
+import { soldPrice, studioWorks, workBySlug } from "@/content/artworks";
 import { formatPrice, studioPrintPrice } from "@/content/pricing";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,7 +24,7 @@ export default async function OriginalPage({ params }: Props) {
     <WorkView work={work} back={{ href: "/originals", label: "All originals" }} label="Original">
       <div className="flex flex-wrap items-center gap-4">
         <span className="border border-ink/30 px-4 py-2 font-sans text-[0.68rem] uppercase tracking-[0.26em] text-ink-soft">
-          Sold
+          Sold · {soldPrice(work)}
         </span>
         <span className="text-[0.9rem] text-ink-soft">This painting has found a home.</span>
       </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { WorkGrid, WorkTile } from "@/components/artwork/WorkTile";
 import { PageTitle } from "@/components/ui/PageTitle";
-import { studioWorks } from "@/content/artworks";
+import { soldPrice, studioWorks } from "@/content/artworks";
 
 export const metadata: Metadata = {
   title: "Originals",
@@ -22,7 +22,7 @@ export default function OriginalsPage() {
               key={work.slug}
               work={work}
               href={`/originals/${work.slug}`}
-              line="Sold"
+              line={`Sold · ${soldPrice(work)}`}
               priority={i < 3}
             />
           ))}

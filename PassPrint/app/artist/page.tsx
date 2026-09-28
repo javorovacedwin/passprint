@@ -3,7 +3,7 @@ import Image from "next/image";
 import { WorkGrid, WorkTile } from "@/components/artwork/WorkTile";
 import { ButtonLink } from "@/components/ui/Button";
 import { leadArtist } from "@/content/artists";
-import { studioWorks } from "@/content/artworks";
+import { soldPrice, studioWorks } from "@/content/artworks";
 
 export const metadata: Metadata = {
   title: "Bakir C. — Artist",
@@ -52,7 +52,7 @@ export default function ArtistPage() {
         <div className="mt-14">
           <WorkGrid>
             {selected.map((work) => (
-              <WorkTile key={work.slug} work={work} href={`/originals/${work.slug}`} line="Original · Sold" />
+              <WorkTile key={work.slug} work={work} href={`/originals/${work.slug}`} line={`Sold · ${soldPrice(work)}`} />
             ))}
           </WorkGrid>
         </div>

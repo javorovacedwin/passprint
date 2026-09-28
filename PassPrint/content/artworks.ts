@@ -84,6 +84,10 @@ function optionsFor(slug: string): StudioWorkOption[] {
 export const printOptions = (work: StudioWork) =>
   work.options.filter((o) => o.id !== "original");
 
+/** What the original sold for, e.g. "€290". */
+export const soldPrice = (work: StudioWork) =>
+  work.options.find((o) => o.id === "original")?.price ?? "";
+
 export const workBySlug = (slug: string) => studioWorks.find((w) => w.slug === slug);
 
 export const studioWorks: StudioWork[] = [
