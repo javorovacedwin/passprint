@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { Wordmark } from "@/components/ui/Wordmark";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { CartButton } from "@/components/cart/CartButton";
 import { useLocale } from "@/components/i18n/LocaleProvider";
+
+const linkClass =
+  "whitespace-nowrap font-sans text-[0.7rem] font-normal uppercase tracking-[0.24em] transition-colors duration-[var(--duration-ui)]";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,12 +18,13 @@ export function Header() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const { t } = useLocale();
 
-  const navLinks = [
-    { href: "/collection", label: t.nav.collection },
-    { href: "/how-it-works", label: t.nav.howItWorks },
-    { href: "/artists", label: t.nav.artists },
-    { href: "/about", label: t.nav.about },
-    { href: "/vote", label: t.nav.vote },
+  const before = [
+    { href: "/originals", label: t.nav.originals },
+    { href: "/prints", label: t.nav.prints },
+  ];
+  const after = [
+    { href: "/artist", label: t.nav.artist },
+    { href: "/contact", label: t.nav.contact },
   ];
 
   useEffect(() => {
@@ -49,53 +52,53 @@ export function Header() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const navLink = (link: { href: string; label: string }) => {
+    const active = pathname.startsWith(link.href);
+    return (
+      <Link
+        key={link.href}
+        href={link.href}
+        aria-current={active ? "page" : undefined}
+        className={`${linkClass} ${active ? "text-ink" : "text-ink-soft hover:text-ink"}`}
+      >
+        <span className={active ? "border-b border-ink pb-1" : ""}>{link.label}</span>
+      </Link>
+    );
+  };
+
   return (
     <header
-      className={`sticky top-0 z-50 border-b-2 transition-colors duration-[var(--duration-ui)] ${
-        scrolled || open
-          ? "border-ink bg-paper/95 backdrop-blur-[2px]"
-          : "border-transparent bg-transparent"
+      className={`sticky top-0 z-50 border-b transition-colors duration-[var(--duration-ui)] ${
+        scrolled || open ? "border-hairline-soft bg-paper/97" : "border-transparent bg-paper"
       }`}
     >
-      <div className="mx-auto flex max-w-[var(--container-page)] items-center justify-between px-gutter py-4">
-        <Link href="/" className="flex items-baseline gap-3">
-          <Wordmark className="text-[1.5rem]" name="Pressio Atelier" brand />
-          {/*
-            Held back until xl: between the lg breakpoint and about 1150px the
-            masthead, five nav items and the join button do not fit on one
-            line, and this badge was the item that broke first.
-          */}
-          <span className="hidden whitespace-nowrap border border-ink/50 px-1.5 py-0.5 font-mono text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-ink-soft sm:max-lg:inline xl:inline" aria-hidden="true">
-            EST. 2026
-          </span>
+      <div className="mx-auto flex max-w-[var(--container-page)] items-center justify-between px-gutter py-6">
+        <Link href="/" className="font-brand text-[1.45rem] uppercase text-ink">
+          Pressio Atelier
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-4 lg:flex xl:gap-7">
-          {navLinks.map((link) => {
-            const active = pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={`whitespace-nowrap font-mono text-[0.78rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-[var(--duration-ui)] ${
-                  active
-                    ? "text-vermilion underline decoration-vermilion decoration-2 underline-offset-8"
-                    : "text-ink-soft hover:text-vermilion-deep"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+        <nav aria-label="Main" className="hidden items-center gap-9 lg:flex">
+          {before.map(navLink)}
+
+          {/* PassPrint is not open yet: a label, not a link, with a line about it on hover. */}
+          <span className="group/pp relative flex cursor-default items-center gap-2" tabIndex={0}>
+            <span className={`${linkClass} text-ink-soft/60`}>PassPrint</span>
+            <span className="border border-ink/25 px-1.5 py-[1px] font-sans text-[0.55rem] uppercase tracking-[0.18em] text-pencil">
+              {t.nav.comingSoon}
+            </span>
+            <span
+              role="tooltip"
+              className="pointer-events-none invisible absolute left-1/2 top-full z-10 mt-4 w-64 -translate-x-1/2 border border-hairline-soft bg-paper p-5 text-center text-[0.85rem] leading-relaxed text-ink-soft opacity-0 transition-opacity duration-[var(--duration-ui)] group-hover/pp:visible group-hover/pp:opacity-100 group-focus/pp:visible group-focus/pp:opacity-100"
+            >
+              <span className="font-serif-display block text-lg italic text-ink">PassPrint</span>
+              <span className="mt-2 block">{t.nav.passprintTeaser}</span>
+            </span>
+          </span>
+
+          {after.map(navLink)}
+          <span className="h-4 w-px bg-hairline" aria-hidden="true" />
           <LanguageSwitcher />
           <CartButton />
-          <Link
-            href="/subscribe"
-            className="shrink-0 whitespace-nowrap border border-vermilion bg-vermilion px-4 py-2 font-mono text-[0.76rem] font-semibold uppercase tracking-[0.12em] text-paper shadow-[inset_0_0_0_2px_var(--color-vermilion),inset_0_0_0_2.6px_var(--color-paper)] transition-colors duration-[var(--duration-ui)] hover:bg-vermilion-deep"
-          >
-            {t.nav.join}
-          </Link>
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
@@ -104,7 +107,7 @@ export function Header() {
           <button
             ref={toggleRef}
             type="button"
-            className="flex flex-col items-end gap-[5px] p-2"
+            className="flex flex-col items-end gap-[6px] p-2"
             aria-expanded={open}
             aria-controls={menuId}
             onClick={() => setOpen((v) => !v)}
@@ -113,49 +116,49 @@ export function Header() {
             <span
               aria-hidden="true"
               className={`block h-px w-6 bg-ink transition-transform duration-[var(--duration-ui)] ${
-                open ? "translate-y-[3px] rotate-45" : ""
+                open ? "translate-y-[3.5px] rotate-45" : ""
               }`}
             />
             <span
               aria-hidden="true"
-              className={`block h-px bg-ink transition-all duration-[var(--duration-ui)] ${
-                open ? "w-6 -translate-y-[3px] -rotate-45" : "w-4"
+              className={`block h-px w-6 bg-ink transition-transform duration-[var(--duration-ui)] ${
+                open ? "-translate-y-[3.5px] -rotate-45" : ""
               }`}
             />
           </button>
         </div>
       </div>
 
-      {/* Mobile menu: an index card that slides down under the masthead. */}
-      <div
-        id={menuId}
-        hidden={!open}
-        className="border-t border-hairline bg-paper lg:hidden"
-      >
-        <nav aria-label="Main mobile" className="px-gutter py-2">
-          <ol className="divide-y divide-hairline-soft">
-            {navLinks.map((link, i) => (
+      <div id={menuId} hidden={!open} className="border-t border-hairline-soft bg-paper lg:hidden">
+        <nav aria-label="Main mobile" className="px-gutter py-4">
+          <ul className="divide-y divide-hairline-soft">
+            {before.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="flex items-baseline justify-between py-4"
+                  className="block py-4 font-serif-display text-2xl"
                   aria-current={pathname.startsWith(link.href) ? "page" : undefined}
                 >
-                  <span className="font-serif-display text-xl">{link.label}</span>
-                  <span className="mono-label">{String(i + 1).padStart(2, "0")}</span>
+                  {link.label}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/subscribe"
-                className="flex items-baseline justify-between py-4 text-accent-deep"
-              >
-                <span className="font-serif-display text-xl">{t.nav.join}</span>
-                <span className="mono-label text-accent-deep">→</span>
-              </Link>
+            <li className="flex items-baseline justify-between py-4 text-ink-soft/60">
+              <span className="font-serif-display text-2xl">PassPrint</span>
+              <span className="mono-label">{t.nav.comingSoon}</span>
             </li>
-          </ol>
+            {after.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-4 font-serif-display text-2xl"
+                  aria-current={pathname.startsWith(link.href) ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
     </header>

@@ -12,12 +12,13 @@ import type { Locale } from "./languages";
 
 export interface Dictionary {
   nav: {
-    collection: string;
-    howItWorks: string;
-    artists: string;
-    about: string;
-    vote: string;
-    join: string;
+    originals: string;
+    prints: string;
+    comingSoon: string;
+    /** The one-line teaser shown on the PassPrint menu item. */
+    passprintTeaser: string;
+    artist: string;
+    contact: string;
     openMenu: string;
     closeMenu: string;
     language: string;
@@ -35,18 +36,20 @@ export interface Dictionary {
   common: {
     skipToContent: string;
     editorialInEnglish: string;
+    /** The running line at the very top of every page. */
+    announcement: string;
   };
 }
 
 export const dictionaries: Record<Locale, Dictionary> = {
   en: {
     nav: {
-      collection: "Collection",
-      howItWorks: "How It Works",
-      artists: "Artists",
-      about: "About",
-      vote: "Vote",
-      join: "Join the club",
+      originals: "Originals",
+      prints: "Prints",
+      comingSoon: "Coming soon",
+      passprintTeaser: "A numbered print in an envelope, once a month — one country at a time.",
+      artist: "Artist",
+      contact: "Contact",
       openMenu: "Open menu",
       closeMenu: "Close menu",
       language: "Language",
@@ -60,21 +63,22 @@ export const dictionaries: Record<Locale, Dictionary> = {
       newsletterDone: "Noted. One email per month, when the new edition closes.",
       rights: "Printed matter, sent as ordinary post.",
       tagline:
-        "A monthly art publication in an envelope. One place, one artist, one numbered edition — with the story that belongs to it.",
+        "Paintings and prints by Bakir C., from a studio in Novi Pazar.",
     },
     common: {
       skipToContent: "Skip to content",
       editorialInEnglish: "Stories and biographies are shown in English while translation is in progress.",
+      announcement: "The PassPrint mail club is coming soon",
     },
   },
   nl: {
     nav: {
-      collection: "Collectie",
-      howItWorks: "Hoe het werkt",
-      artists: "Kunstenaars",
-      about: "Over",
-      vote: "Stemmen",
-      join: "Lid worden",
+      originals: "Originelen",
+      prints: "Prints",
+      comingSoon: "Binnenkort",
+      passprintTeaser: "Eén genummerde print in een envelop, elke maand — land per land.",
+      artist: "Kunstenaar",
+      contact: "Contact",
       openMenu: "Menu openen",
       closeMenu: "Menu sluiten",
       language: "Taal",
@@ -88,21 +92,22 @@ export const dictionaries: Record<Locale, Dictionary> = {
       newsletterDone: "Genoteerd. Eén e-mail per maand, wanneer de nieuwe editie sluit.",
       rights: "Drukwerk, verstuurd als gewone post.",
       tagline:
-        "Een maandelijkse kunstuitgave in een envelop. Eén plaats, één kunstenaar, één genummerde oplage — met het verhaal erbij.",
+        "Schilderijen en prints van Bakir C., uit een atelier in Novi Pazar.",
     },
     common: {
       skipToContent: "Naar de inhoud",
       editorialInEnglish: "Verhalen en biografieën staan in het Engels zolang de vertaling loopt.",
+      announcement: "De PassPrint-mailclub komt binnenkort",
     },
   },
   fr: {
     nav: {
-      collection: "Collection",
-      howItWorks: "Comment ça marche",
-      artists: "Artistes",
-      about: "À propos",
-      vote: "Voter",
-      join: "Rejoindre le club",
+      originals: "Originaux",
+      prints: "Tirages",
+      comingSoon: "Bientôt",
+      passprintTeaser: "Un tirage numéroté sous enveloppe, chaque mois — un pays à la fois.",
+      artist: "Artiste",
+      contact: "Contact",
       openMenu: "Ouvrir le menu",
       closeMenu: "Fermer le menu",
       language: "Langue",
@@ -116,21 +121,22 @@ export const dictionaries: Record<Locale, Dictionary> = {
       newsletterDone: "Noté. Un e-mail par mois, à la clôture de chaque édition.",
       rights: "Imprimé, envoyé par courrier ordinaire.",
       tagline:
-        "Une publication d'art mensuelle dans une enveloppe. Un lieu, un artiste, un tirage numéroté — avec le récit qui l'accompagne.",
+        "Peintures et tirages de Bakir C., depuis un atelier à Novi Pazar.",
     },
     common: {
       skipToContent: "Aller au contenu",
       editorialInEnglish: "Les récits et biographies sont en anglais pendant la traduction.",
+      announcement: "Le club postal PassPrint arrive bientôt",
     },
   },
   de: {
     nav: {
-      collection: "Kollektion",
-      howItWorks: "So funktioniert es",
-      artists: "Künstler",
-      about: "Über uns",
-      vote: "Abstimmen",
-      join: "Mitglied werden",
+      originals: "Originale",
+      prints: "Drucke",
+      comingSoon: "Demnächst",
+      passprintTeaser: "Ein nummerierter Druck im Umschlag, jeden Monat — ein Land nach dem anderen.",
+      artist: "Künstler",
+      contact: "Kontakt",
       openMenu: "Menü öffnen",
       closeMenu: "Menü schließen",
       language: "Sprache",
@@ -144,11 +150,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       newsletterDone: "Notiert. Eine E-Mail pro Monat, wenn die neue Ausgabe schließt.",
       rights: "Drucksache, versendet als gewöhnliche Post.",
       tagline:
-        "Eine monatliche Kunstausgabe im Umschlag. Ein Ort, ein Künstler, eine nummerierte Auflage — mit der dazugehörigen Geschichte.",
+        "Gemälde und Drucke von Bakir C., aus einem Atelier in Novi Pazar.",
     },
     common: {
       skipToContent: "Zum Inhalt springen",
       editorialInEnglish: "Geschichten und Biografien erscheinen auf Englisch, solange die Übersetzung läuft.",
+      announcement: "Der PassPrint-Postclub kommt bald",
     },
   },
 };

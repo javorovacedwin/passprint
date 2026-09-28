@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { newsreader, plexMono, plexSans, prata } from "@/lib/fonts";
+import { cormorant, jost } from "@/lib/fonts";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { CartProvider } from "@/components/cart/CartProvider";
@@ -11,11 +12,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Pressio Atelier — PassPrint",
-    template: "%s — PassPrint",
+    default: "Pressio Atelier — Bakir C.",
+    template: "%s — Pressio Atelier",
   },
   description:
-    "A monthly art publication in an envelope. An A5 print, an A6 companion and one story a month, drawn by an artist from the place. Collection 01: Atlas, one country a month, opening October 2026.",
+    "Paintings by Bakir C. from a studio in Novi Pazar, and prints of them in A3, A4, A5 and A6, numbered by hand.",
 };
 
 export default function RootLayout({
@@ -24,7 +25,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable} ${prata.variable}`}
+      className={`${cormorant.variable} ${jost.variable}`}
     >
       <body>
         <a href="#content" className="skip-link">
@@ -33,6 +34,7 @@ export default function RootLayout({
         <LocaleProvider>
           <CartProvider enabled={isShopifyConfigured()}>
             <MotionProvider>
+              <AnnouncementBar />
               <Header />
               <main id="content">{children}</main>
               <Footer />

@@ -29,7 +29,7 @@ export function ImageBanner({
   className = "",
 }: ImageBannerProps) {
   return (
-    <section className={`relative border-y-2 border-ink ${className}`}>
+    <section className={`relative ${className}`}>
       <div className="relative h-[72svh] min-h-[420px] w-full md:h-[86svh]">
         <Image
           src={src}
@@ -47,7 +47,7 @@ export function ImageBanner({
           align === "right" ? "md:flex md:justify-end" : ""
         }`}
       >
-        <div className="print-block relative -mt-16 max-w-[34rem] p-6 sm:p-8 md:mt-0">
+        <div className="relative -mt-16 max-w-[32rem] bg-paper p-8 sm:p-12 md:mt-0">
           {children}
         </div>
       </div>

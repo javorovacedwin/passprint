@@ -57,7 +57,7 @@ export function CartDrawer() {
         }`}
       >
         <header className="flex items-baseline justify-between border-b border-hairline px-6 py-5">
-          <h2 className="font-serif-display text-2xl">Your envelope</h2>
+          <h2 className="font-serif-display text-2xl">Your cart</h2>
           <button
             type="button"
             onClick={closeCart}
@@ -72,15 +72,14 @@ export function CartDrawer() {
             <SealLogo className="w-[92px] opacity-35" distress={false} uid="cart-empty" />
             <p className="mono-label">Nothing here yet</p>
             <p className="max-w-xs text-[0.98rem] leading-relaxed text-ink-soft">
-              Add this month&apos;s edition or a membership and it will collect
-              here.
+              Add a print and it will collect here.
             </p>
             <Link
-              href="/subscribe"
+              href="/prints"
               onClick={closeCart}
               className="mt-1 font-mono text-[0.76rem] font-semibold uppercase tracking-[0.12em] text-ink underline decoration-vermilion underline-offset-[6px] hover:text-vermilion-deep"
             >
-              See the memberships →
+              See the prints →
             </Link>
           </div>
         ) : (

@@ -26,19 +26,18 @@ export default function NotFound() {
 
       <p className="mt-6 max-w-[34rem] text-[1.05rem] leading-relaxed text-ink-soft">
         The page you were looking for isn&apos;t here — it may have moved, or
-        the link may have been mistyped. Everything we publish is one of the
-        three below.
+        the link may have been mistyped.
       </p>
 
       <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
-        <ButtonLink href="/" variant="vermilion">
-          Back to the front
+        <ButtonLink href="/" variant="ink">
+          Home
         </ButtonLink>
-        <ButtonLink href="/collection" variant="framed">
-          The collection
+        <ButtonLink href="/prints" variant="framed">
+          Prints
         </ButtonLink>
         <ButtonLink href="/contact" variant="text">
-          Write to us →
+          Contact
         </ButtonLink>
       </div>
     </div>

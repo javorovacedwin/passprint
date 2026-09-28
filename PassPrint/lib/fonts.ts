@@ -1,39 +1,22 @@
-import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader, Prata } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 
 /*
-  Two visual voices plus one mono, self-hosted by next/font at build time.
+  Two voices, self-hosted by next/font at build time: a fine Garamond for
+  titles and a quiet geometric sans for text, labels and prices.
   latin-ext is mandatory: place names carry č ć š ž đ.
-
-  Newsreader now loads its heavy display weights too — the site's voice is
-  a loud, joyful poster serif, not a whisper.
 */
 
-export const newsreader = Newsreader({
+export const cormorant = Cormorant_Garamond({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "700", "800"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-newsreader",
+  variable: "--font-cormorant",
   display: "swap",
 });
 
-export const plexSans = IBM_Plex_Sans({
+export const jost = Jost({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-sans",
-  display: "swap",
-});
-
-export const plexMono = IBM_Plex_Mono({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
-  display: "swap",
-});
-
-/** The studio name, "Pressio Atelier" — set in Prata, one weight only. */
-export const prata = Prata({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-prata",
+  weight: ["300", "400", "500"],
+  variable: "--font-jost",
   display: "swap",
 });

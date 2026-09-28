@@ -3,20 +3,15 @@ import type { StudioWork, StudioWorkOption } from "./types";
 
 /*
   ────────────────────────────────────────────────────────────────────────
-  STUDIO WORKS — paintings sold outside the monthly cycle
+  STUDIO WORKS — the paintings, and the prints made from them
   ────────────────────────────────────────────────────────────────────────
 
-  These are real photographs of real paintings, not placeholders. They are
-  sold as the original or as a print in A3, A4, A5 or A6 — and are
-  deliberately kept separate from the twelve monthly editions so the
-  subscription proposition stays clean.
+  These are real photographs of real paintings, not placeholders. Every
+  original is sold; each painting is still available as a print in A3, A4,
+  A5 or A6, edition of 50 per size, numbered by hand.
 
-  Every painting is hand-painted, acrylic on canvas. Sizes are the
-  original canvas; prints say which size the original is. Original prices
-  follow the canvas size.
-
-  TODO before launch: fill in the Shopify variant ids so the buy panel
-  stops saying "available soon".
+  The prints are Shopify products (tag `print`, one per painting, a Size
+  option A3–A6). Their variant ids are below, in size order.
 
   Never invent provenance here. What is written below is only what can be
   seen in the picture.
@@ -35,7 +30,7 @@ const size: Record<string, string> = {
   "fading-memories": "80 × 60 cm",
 };
 
-/** One-off price per original, set by canvas size. */
+/** One-off price per original, set by canvas size. Kept for the record; all are sold. */
 const originalPrice: Record<string, Money> = {
   "casing-shadows": { amount: 290, currency: "EUR" },
   "into-the-unknown": { amount: 290, currency: "EUR" },
@@ -46,51 +41,50 @@ const originalPrice: Record<string, Money> = {
   "desert-desires": { amount: 1150, currency: "EUR" },
 };
 
+/** Shopify variant ids of each print, in the order A3, A4, A5, A6. */
+const printVariants: Record<string, [string, string, string, string]> = {
+  "casing-shadows": ["50529691205851", "50529691238619", "50529691271387", "50529691304155"],
+  "desert-desires": ["50529692516571", "50529692549339", "50529692582107", "50529692614875"],
+  "into-the-unknown": ["50529692745947", "50529692778715", "50529692811483", "50529692844251"],
+  "pieces-of-a-dream": ["50529692942555", "50529692975323", "50529693008091", "50529693040859"],
+  "where-the-light-falls": ["50529693139163", "50529693171931", "50529693204699", "50529693237467"],
+  "golden-hour": ["50529693335771", "50529693368539", "50529693401307", "50529693434075"],
+  "fading-memories": ["50529693532379", "50529693565147", "50529693597915", "50529693630683"],
+};
+
+const printSizes = [
+  { id: "print-a3", label: "A3", detail: "29.7 × 42 cm", price: studioPrintPrice.a3 },
+  { id: "print-a4", label: "A4", detail: "21 × 29.7 cm", price: studioPrintPrice.a4 },
+  { id: "print-a5", label: "A5", detail: "14.8 × 21 cm", price: studioPrintPrice.a5 },
+  { id: "print-a6", label: "A6", detail: "10.5 × 14.8 cm", price: studioPrintPrice.a6 },
+] as const;
+
 function optionsFor(slug: string): StudioWorkOption[] {
-  const original = `original ${size[slug]}`;
   return [
     {
       id: "original",
       label: "The original",
-      detail: `The painting itself — ${size[slug]}, acrylic on canvas, hand-painted, one only, signed`,
+      detail: `The painting itself — ${size[slug]}, acrylic on canvas, signed`,
       price: formatPrice(originalPrice[slug]),
       variantId: null,
-      available: true,
+      available: false,
     },
-    {
-      id: "print-a3",
-      label: "Print · A3",
-      detail: `29.7 × 42 cm, edition of 50 · ${original}`,
-      price: formatPrice(studioPrintPrice.a3),
-      variantId: null,
+    ...printSizes.map((p, i) => ({
+      id: p.id,
+      label: p.label,
+      detail: p.detail,
+      price: formatPrice(p.price),
+      variantId: `gid://shopify/ProductVariant/${printVariants[slug][i]}`,
       available: true,
-    },
-    {
-      id: "print-a4",
-      label: "Print · A4",
-      detail: `21 × 29.7 cm, edition of 50 · ${original}`,
-      price: formatPrice(studioPrintPrice.a4),
-      variantId: null,
-      available: true,
-    },
-    {
-      id: "print-a5",
-      label: "Print · A5",
-      detail: `14.8 × 21 cm, edition of 50 · ${original}`,
-      price: formatPrice(studioPrintPrice.a5),
-      variantId: null,
-      available: true,
-    },
-    {
-      id: "print-a6",
-      label: "Print · A6",
-      detail: `10.5 × 14.8 cm, edition of 50 · ${original}`,
-      price: formatPrice(studioPrintPrice.a6),
-      variantId: null,
-      available: true,
-    },
+    })),
   ];
 }
+
+/** The print sizes of a work, without the original. */
+export const printOptions = (work: StudioWork) =>
+  work.options.filter((o) => o.id !== "original");
+
+export const workBySlug = (slug: string) => studioWorks.find((w) => w.slug === slug);
 
 export const studioWorks: StudioWork[] = [
   {

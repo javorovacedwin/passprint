@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "./CartProvider";
+import { buttonBase, buttonVariants } from "@/components/ui/Button";
 
 interface AddToCartButtonProps {
   /** Storefront ProductVariant GID. Null when running on local fallback. */
@@ -31,15 +32,8 @@ export function AddToCartButton({
   const disabled =
     !variantId || !available || availability === "unconfigured" || pending;
 
-  const base =
-    "inline-flex items-center justify-center gap-2 font-mono text-[0.8rem] font-semibold uppercase tracking-[0.12em] px-6 py-3 border transition-colors duration-[var(--duration-ui)] disabled:cursor-not-allowed disabled:opacity-45";
-  const look =
-    variant === "ink"
-      ? "border-vermilion bg-vermilion text-paper shadow-[inset_0_0_0_2px_var(--color-vermilion),inset_0_0_0_2.6px_var(--color-paper)] hover:bg-vermilion-deep"
-      : "border-current text-ink shadow-[inset_0_0_0_2px_var(--color-paper),inset_0_0_0_2.6px_currentColor] hover:bg-ink hover:text-paper";
-
   let text = label;
-  if (!available) text = "Sold out";
+  if (!available) text = "Sold";
   else if (availability === "unconfigured" || !variantId) text = "Available soon";
   else if (pending) text = "Adding…";
 
@@ -48,8 +42,8 @@ export function AddToCartButton({
       type="button"
       disabled={disabled}
       onClick={() => variantId && addItem(variantId, 1, sellingPlanId)}
-      className={`${base} ${look} ${className}`}
-      aria-label={variantId ? `${label} — ${variantId}` : "Not yet available for purchase"}
+      className={`${buttonBase} ${buttonVariants[variant]} disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+      aria-label={variantId ? label : "Not yet available for purchase"}
     >
       {text}
     </button>

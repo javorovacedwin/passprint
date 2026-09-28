@@ -1,137 +1,101 @@
+import Image from "next/image";
 import { ImageBanner } from "@/components/home/ImageBanner";
-import { PrintsCarousel } from "@/components/home/PrintsCarousel";
-import { FeaturedArtwork } from "@/components/artwork/FeaturedArtwork";
-import { StudioWorks } from "@/components/home/StudioWorks";
-import { ArtistNote } from "@/components/home/ArtistNote";
-import { HomeNewsletter } from "@/components/home/HomeNewsletter";
-import { HomeFaq } from "@/components/home/HomeFaq";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { WorkGrid, WorkTile } from "@/components/artwork/WorkTile";
 import { ButtonLink } from "@/components/ui/Button";
-import { Stamp, ArchEmblem } from "@/components/ui/Stamp";
-import { SubscriptionPlans } from "@/components/subscription/SubscriptionPlans";
-import { currentEdition as localEdition } from "@/content/collections";
+import { leadArtist } from "@/content/artists";
 import { studioWorks } from "@/content/artworks";
-import { getCurrentEdition, getSubscriptionPlans } from "@/lib/shopify";
-
-// Re-fetch Shopify prices at most hourly (ISR).
-export const revalidate = 3600;
+import { formatPrice, studioPrintPrice } from "@/content/pricing";
 
 const work = (slug: string) => studioWorks.find((w) => w.slug === slug)!;
 
-/** The opening picture — a studio painting shown on its own, not for sale here. */
+/** The opening picture — a studio painting shown on its own. */
 const heroImage = {
   src: "/artworks/HomeHero.jpeg",
   alt: "Abstract painting in layered earth tones — rust, plum and warm grey — with pale, scraped patches of cream and blue-white and fine dark lines drawn across the surface.",
 };
 
 /*
-  The homepage is laid out like an artist's own shop: the paintings first
-  and full width, then a rack of prints, the monthly edition, the whole
-  gallery, the painter, and only then the memberships, the list and the
-  small print. Pictures lead; the passport ornament frames them.
+  The homepage is a gallery's front room: one painting full width, a few
+  prints, the painter, and a way to write. Nothing else.
 */
-
-export default async function HomePage() {
-  const [plans, currentEdition] = await Promise.all([
-    getSubscriptionPlans(),
-    getCurrentEdition(),
-  ]);
-
-  const middle = work("into-the-unknown");
+export default function HomePage() {
   const closing = work("where-the-light-falls");
+  const featured = ["golden-hour", "casing-shadows", "into-the-unknown"].map(work);
 
   return (
     <>
       <ImageBanner src={heroImage.src} alt={heroImage.alt} focus="50% 45%" priority>
-        <p className="mono-label">PassPrint · the studio of Bakir C.</p>
-        <h1 className="font-brand mt-3 text-[clamp(2.6rem,6.4vw,4.8rem)]">
+        <p className="mono-label">Paintings by Bakir C. · Novi Pazar</p>
+        <h1 className="font-brand mt-4 text-[clamp(2.4rem,5.4vw,4rem)] uppercase">
           Pressio Atelier
         </h1>
-        <p className="mt-5 text-[1.08rem] leading-relaxed text-ink-soft">
-          Glad you&apos;re here. These are the paintings from my studio in
-          Novi Pazar — sold as originals, as prints, and once a month as a
-          numbered edition in an envelope.
-        </p>
-        <div className="mt-7 flex flex-wrap items-center gap-5">
-          <ButtonLink href="#gallery" variant="vermilion">
-            See the paintings
+        <div className="mt-8 flex flex-wrap items-center gap-7">
+          <ButtonLink href="/prints" variant="ink">
+            Shop prints
           </ButtonLink>
-          <ButtonLink href="/subscribe" variant="text">
-            Monthly edition →
-          </ButtonLink>
-        </div>
-        <Stamp
-          topText="NOVI PAZAR"
-          bottomText="STUDIO"
-          centerBottom="2026"
-          shape="octagon"
-          ink="cobalt"
-          size={104}
-          rotate={-13}
-          emblem={<ArchEmblem />}
-          idPrefix="hero-studio"
-          className="pointer-events-none absolute -right-8 -top-12 hidden opacity-90 sm:block"
-        />
-      </ImageBanner>
-
-      <PrintsCarousel />
-
-      <ImageBanner src={middle.image.src} alt={middle.image.alt} align="right" focus="50% 40%">
-        <p className="mono-label">Collection 01 · Atlas</p>
-        <h2 className="font-serif-display mt-3 text-[clamp(2rem,4.6vw,3.2rem)]">
-          Every country. One hand.
-        </h2>
-        <p className="mt-4 leading-relaxed text-ink-soft">
-          Every month one country, and in time every country in the world,
-          painted and printed in a numbered run. The first envelope goes out in{" "}
-          <strong className="font-semibold text-ink">{localEdition.month}</strong>, and it
-          you can join the club now.
-        </p>
-        <div className="mt-6">
-          <ButtonLink href="/collection#passprint" variant="framed">
-            See the collection
+          <ButtonLink href="/originals" variant="text">
+            Originals
           </ButtonLink>
         </div>
       </ImageBanner>
 
-      <FeaturedArtwork
-        edition={currentEdition}
-        monthlyPlan={plans.find((p) => p.id === "monthly")}
-      />
-
-      <StudioWorks index="§ 03" />
-
-      <ArtistNote />
-
-      <section id="join" className="security-tint border-b border-ink/25 bg-cobalt/[0.05] py-24">
-        <div className="mx-auto max-w-[var(--container-page)] px-gutter">
-          <SectionHeader
-            index="§ 05"
-            label="Shipping included BE · NL · EU"
-            title="The monthly edition, by post"
-          />
-          <div className="mt-12">
-            <SubscriptionPlans plans={plans} purchasable />
-          </div>
-          <p className="mt-6 max-w-[var(--container-measure)] font-mono text-[0.74rem] font-semibold uppercase tracking-[0.06em] leading-relaxed text-pencil">
-            Order before the 20th and you start with this month&apos;s edition.
-            Cancelling takes one click, before the 20th, no questions asked.
-          </p>
+      <section className="mx-auto max-w-[var(--container-page)] px-gutter py-28 md:py-36">
+        <header className="text-center">
+          <p className="mono-label">Edition of 50 · numbered by hand</p>
+          <h2 className="font-serif-display mt-4 text-[clamp(2.4rem,5vw,3.6rem)]">Prints</h2>
+        </header>
+        <div className="mt-16">
+          <WorkGrid>
+            {featured.map((w) => (
+              <WorkTile
+                key={w.slug}
+                work={w}
+                href={`/prints/${w.slug}`}
+                line={`From ${formatPrice(studioPrintPrice.a6)}`}
+              />
+            ))}
+          </WorkGrid>
+        </div>
+        <div className="mt-16 text-center">
+          <ButtonLink href="/prints" variant="framed">
+            All prints
+          </ButtonLink>
         </div>
       </section>
 
-      <HomeNewsletter />
-
-      <HomeFaq />
+      <section className="border-t border-hairline-soft bg-paper-deep/40 py-28 md:py-36">
+        <div className="mx-auto grid max-w-[var(--container-page)] items-center gap-14 px-gutter md:grid-cols-2 md:gap-20">
+          <div className="relative aspect-[4/5] w-full">
+            <Image
+              src="/artworks/Conceptimage.jpeg"
+              alt="A still life mid block-in on an easel in the studio: a kettle, a small ribbed vase and a bundle of firewood laid in as a rough sepia underpainting, not yet in colour."
+              fill
+              sizes="(min-width: 768px) 46vw, 92vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <p className="mono-label">The painter</p>
+            <h2 className="font-serif-display mt-4 text-[clamp(2.4rem,5vw,3.6rem)]">
+              {leadArtist.name}
+            </h2>
+            <div className="mt-6 h-px w-12 bg-ink/30" />
+            <p className="mt-6 max-w-[30rem] text-[1.05rem] leading-[1.85] text-ink-soft">
+              {leadArtist.standfirst}
+            </p>
+            <div className="mt-10">
+              <ButtonLink href="/artist" variant="text">
+                About the artist
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <ImageBanner src={closing.image.src} alt={closing.image.alt} focus="50% 50%">
-        <h2 className="font-serif-display text-[clamp(1.9rem,4vw,2.8rem)]">
-          Something you&apos;d like to ask?
-        </h2>
-        <p className="mt-4 leading-relaxed text-ink-soft">
-          About a painting, a size or a commission — write, and you hear back within two working days.
-        </p>
-        <div className="mt-6">
+        <p className="mono-label">Commissions &amp; questions</p>
+        <h2 className="font-serif-display mt-4 text-[clamp(1.9rem,4vw,2.8rem)]">Write to the studio</h2>
+        <div className="mt-8">
           <ButtonLink href="/contact" variant="framed">
             Get in touch
           </ButtonLink>

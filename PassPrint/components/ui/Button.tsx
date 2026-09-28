@@ -10,24 +10,23 @@ interface ButtonLinkProps {
   className?: string;
 }
 
-const base =
-  "inline-flex items-center gap-2 font-mono text-[0.8rem] font-semibold uppercase tracking-[0.12em] transition-colors duration-[var(--duration-ui)]";
+/** Shared by links and the cart button, so every button on the site matches. */
+export const buttonBase =
+  "inline-flex items-center justify-center gap-3 font-sans text-[0.72rem] font-normal uppercase tracking-[0.24em] transition-colors duration-[var(--duration-slide)] ease-[var(--ease-ink)]";
 
-/* An engraved double rule: outer border plus an inset hairline. */
-const engraved =
-  "px-6 py-3 border border-current shadow-[inset_0_0_0_2px_var(--color-paper),inset_0_0_0_2.6px_currentColor]";
+const solid = "px-9 py-4 border";
 
-const variants: Record<Variant, string> = {
-  framed: `${engraved} text-ink hover:bg-ink hover:text-paper`,
-  ink: `${engraved} bg-ink text-paper shadow-[inset_0_0_0_2px_var(--color-ink),inset_0_0_0_2.6px_var(--color-paper)] hover:bg-vermilion hover:text-paper`,
-  vermilion: `${engraved} bg-vermilion text-paper shadow-[inset_0_0_0_2px_var(--color-vermilion),inset_0_0_0_2.6px_var(--color-paper)] hover:bg-vermilion-deep`,
-  cobalt: `${engraved} bg-cobalt text-paper shadow-[inset_0_0_0_2px_var(--color-cobalt),inset_0_0_0_2.6px_var(--color-paper)] hover:bg-cobalt-deep`,
-  text: "text-ink underline decoration-vermilion decoration-1 underline-offset-[6px] hover:text-vermilion-deep hover:decoration-2",
+export const buttonVariants: Record<Variant, string> = {
+  framed: `${solid} border-ink/40 text-ink hover:border-ink hover:bg-ink hover:text-paper`,
+  ink: `${solid} border-ink bg-ink text-paper hover:border-navy-deep hover:bg-navy-deep`,
+  vermilion: `${solid} border-ink bg-ink text-paper hover:border-navy-deep hover:bg-navy-deep`,
+  cobalt: `${solid} border-navy bg-navy text-paper hover:border-navy-deep hover:bg-navy-deep`,
+  text: "border-b border-ink/30 pb-1 text-ink hover:border-ink",
 };
 
 /**
- * Buttons framed like a stamped document panel: a rule, a hairline inside
- * it, letterspaced mono. They fill with ink on hover instead of levitating.
+ * Quiet buttons: one fine rule, generous space, small spaced capitals.
+ * They fill with ink on hover instead of lifting.
  */
 export function ButtonLink({
   href,
@@ -36,7 +35,7 @@ export function ButtonLink({
   className = "",
 }: ButtonLinkProps) {
   return (
-    <Link href={href} className={`${base} ${variants[variant]} ${className}`}>
+    <Link href={href} className={`${buttonBase} ${buttonVariants[variant]} ${className}`}>
       {children}
     </Link>
   );
